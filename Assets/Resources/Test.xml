@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Stage_Test>
+  <Spots SpotCount="5">
+    <spot>
+      <ID>0</ID>
+      <position>(-2.7, -2.8, 0.0)</position>
+      <type>1</type>
+      <prefabs PrefabCount="1">
+        <prefab>NomalAttack</prefab>
+      </prefabs>
+      <spot>
+        <ID>1</ID>
+        <position>(-3.7, -1.8, 0.0)</position>
+        <type>1</type>
+        <prefabs PrefabCount="1">
+          <prefab>Skeleton</prefab>
+        </prefabs>
+        <spot>
+          <ID>2</ID>
+          <position>(-2.7, -0.8, 0.0)</position>
+          <type>0</type>
+          <prefabs PrefabCount="0" />
+        </spot>
+      </spot>
+      <spot>
+        <ID>3</ID>
+        <position>(-2.7, -1.8, 0.0)</position>
+        <type>2</type>
+        <prefabs PrefabCount="0" />
+        <nextSpot>2</nextSpot>
+      </spot>
+      <spot>
+        <ID>4</ID>
+        <position>(-1.7, -1.8, 0.0)</position>
+        <type>3</type>
+        <prefabs PrefabCount="0" />
+        <nextSpot>2</nextSpot>
+      </spot>
+    </spot>
+  </Spots>
+</Stage_Test>
