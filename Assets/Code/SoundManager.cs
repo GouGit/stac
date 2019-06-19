@@ -102,7 +102,12 @@ public class SoundManager : MonoBehaviour
 
         if (SceneLoader.GetNowSceneIndex() == 0)
         {
-            GameObject.Find("VolumeController").transform.GetChild(0).GetComponent<UnityEngine.UI.Slider>().value = volume;
+            UnityEngine.UI.Slider VolumeController = GameObject.Find("VolumeController").transform.GetChild(0).GetComponent<UnityEngine.UI.Slider>();
+            VolumeController.value = volume;
+            VolumeController.onValueChanged.AddListener((value) =>
+            {
+                SetVolume(value);
+            });
             m_VolumeText.text = ((int)(volume * 100)).ToString() + "%";
         }
 
@@ -161,8 +166,8 @@ public class SoundManager : MonoBehaviour
 #if UNITY_EDITOR
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            PlayBGM(BGMList.BGM_MAIN, 5, 0.2f);
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //    PlayBGM(BGMList.BGM_MAIN, 5, 0.2f);
     }
 #endif
 }
