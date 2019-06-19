@@ -47,7 +47,7 @@ public static class MapDataHandler
     }
 
     /// <summary>
-    /// 게임의 진행도를 저장합니다.
+    /// 맵을 저장합니다.
     /// </summary>
     /// <param name="spot">제일 첫 spot</param>
     /// <param name="filePath">XML파일의 위치</param>
@@ -123,13 +123,13 @@ public static class MapDataHandler
 
 
     /// <summary>
-    /// 게임의 진행도를 불러옵니다.
+    /// 맵을 불러옵니다.
     /// </summary>
     /// <param name="spot">제일 첫 spot</param>
     /// <param name="filePath">XML파일의 위치</param>
-    public static void LoadMap(Spot spot, string filePath)
+    public static void LoadProgress(Spot spot, string filePath)
     {
-        Debug.Log("맵을 불러옵니다.");
+        Debug.Log("진행도를 불러옵니다.");
         TextAsset textAsset = (TextAsset)Resources.Load(filePath);
         Debug.Log(textAsset);
         XmlDocument document = new XmlDocument();
@@ -139,10 +139,10 @@ public static class MapDataHandler
 
         XmlNode root = document.SelectSingleNode("Stage_Test/Spots/spot");
 
-        LoadMap(spot, document, root);
+        LoadProgress(spot, document, root);
     }
 
-    private static void LoadMap(Spot spot, XmlDocument document, XmlNode root)
+    private static void LoadProgress(Spot spot, XmlDocument document, XmlNode root)
     {
         // spot.transform.position = root.SelectSingleNode("position").InnerText.;
 
@@ -153,7 +153,7 @@ public static class MapDataHandler
             int count = spot.nextRoutes.Count;
             for (int i = 0; i < count; i++)
             {
-                LoadMap(spot.nextRoutes[i], document, list[i]);
+                LoadProgress(spot.nextRoutes[i], document, list[i]);
             }
         }
     }

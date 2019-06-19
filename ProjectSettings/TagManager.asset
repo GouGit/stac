@@ -54,3 +54,12 @@ TagManager:
   - name: Card
     uniqueID: 3566187181
     locked: 0
+  - name: Paper
+    uniqueID: 3982724489
+    locked: 0
+  - name: Route
+    uniqueID: 426252349
+    locked: 0
+  - name: Spot
+    uniqueID: 1014298329
+    locked: 0
