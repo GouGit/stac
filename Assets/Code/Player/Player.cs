@@ -27,6 +27,8 @@ public class Player : PlayObject
             Destroy(gameObject);
         }
         DontDestroyOnLoad(inst);
+
+        Player.inst.gameObject.SetActive(false);
     } 
 
     void Start()
@@ -34,7 +36,7 @@ public class Player : PlayObject
         MyCard.Clear();
         HandCard.Clear();
         TrashCard.Clear();
-        for(int i=0;i<GameManager.instance.AllCards.Count;i++)
+        for(int i = 0; i < GameManager.instance.AllCards.Count; i++)
         {
             MyCard.AddLast(GameManager.instance.AllCards[i]);
         }
@@ -50,6 +52,9 @@ public class Player : PlayObject
             return;
         
         MyTurn();
+
+        if(Input.GetKeyDown(KeyCode.Space))
+            EndTurn();
     }
 
     void Show()

@@ -17,11 +17,12 @@ public class Skeleton : PlayObject
 
     void Awake()
     {
-        attack = GameObject.Find("attackUI").GetComponent<ShowMotion>();
-        defens = GameObject.Find("StateUI").transform.Find("defensUI").GetComponent<ShowMotion>();
-        DefensUI = GameObject.Find("StateUI").transform.Find("MonsterDefens").GetComponent<OnDefens>();
+        GameObject StateUI = GameObject.Find("StateUI");
+        attack = StateUI.transform.GetChild(2).GetComponent<ShowMotion>();
+        defens = StateUI.transform.GetChild(3).GetComponent<ShowMotion>();
+        DefensUI = StateUI.transform.GetChild(4).GetComponent<OnDefens>();
 
-        GameObject.Find("Hpbar").transform.GetChild(1).GetComponent<Hpbar>().myObject = this;
+        StateUI.transform.GetChild(0).transform.GetChild(1).GetComponent<Hpbar>().myObject = this;
 
         hp = 40;
         attackPower = 5;

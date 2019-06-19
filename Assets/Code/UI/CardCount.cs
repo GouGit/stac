@@ -7,21 +7,27 @@ public class CardCount : MonoBehaviour
 {
     public bool isUsed;
     private Text text;
+    Player player;
 
     void Start()
     {
-        text = GetComponent<Text>();    
+        text = GetComponent<Text>();
+        player = Player.inst;    
     }
 
     void Update()
     {
+        Debug.Log("asdf");
         if(!isUsed)
         {
-            text.text = "" + Player.inst.cardsCount;
+            Debug.Log("??? : " + player.cardsCount);
+            text.text = "" + player.cardsCount;
         }
         else
         {
-            text.text = "" + Player.inst.usedCount;
+            
+            Debug.Log("used : " + player.usedCount);
+            text.text = "" + player.usedCount;
         }
     }
 }
