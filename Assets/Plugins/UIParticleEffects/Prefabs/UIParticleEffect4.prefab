@@ -60,7 +60,7 @@ MonoBehaviour:
   Particle: {fileID: 21300004, guid: 74d9483d1c1f4f6429eb98583a034d6c, type: 3}
   Duration: 5
   Looping: 1
-  Lifetime: 0.7
+  Lifetime: 1.2
   Speed: 3
   Size: 2
   Rotation: 360

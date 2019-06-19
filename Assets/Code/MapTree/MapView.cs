@@ -24,9 +24,12 @@ public class MapView : MonoBehaviour
     {
         map = GameObject.Find("Map");
         routePickerLayout = GameObject.Find("GridLayout");
-        Change();
 
-        //pickerStartPosition = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f );
+        pickerStartPosition = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f - Screen.height * 0.065f);
+        pickerEndPosition = pickerStartPosition;
+        pickerEndPosition.y = -2000.0f;
+
+        Change();
     }
 
     public void Change()
