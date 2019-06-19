@@ -21,7 +21,7 @@ public class Skeleton : PlayObject
         attack = StateUI.transform.GetChild(2).GetComponent<ShowMotion>();
         defens = StateUI.transform.GetChild(3).GetComponent<ShowMotion>();
         DefensUI = StateUI.transform.GetChild(4).GetComponent<OnDefens>();
-
+        
         StateUI.transform.GetChild(0).transform.GetChild(1).GetComponent<Hpbar>().myObject = this;
 
         hp = 40;

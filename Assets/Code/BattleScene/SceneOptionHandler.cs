@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.Events;
+
 using UnityEngine.UI;
 
 // 이 컴포넌트는 씬에 하나만 존재하여야 하며, SceneOption을 기반으로 배틀씬을 구성합니다.
@@ -19,8 +21,10 @@ public class SceneOptionHandler : MonoBehaviour
         CreateBattleScene(transporter.sceneOption);
         Player.inst.gameObject.SetActive(true);
         Player.inst.DefensUI = GameObject.Find("StateUI").transform.GetChild(5).GetComponent<OnDefens>();
-        var asdf =  GameObject.Find("end").GetComponent<Button>();
-        asdf.onClick.AddListener()
+        GameObject.Find("end").GetComponent<Button>().onClick.AddListener(Player.inst.EndTurn);
+
+        GameObject StateUI = GameObject.Find("StateUI");
+        StateUI.transform.GetChild(1).transform.GetChild(1).GetComponent<Hpbar>().myObject = Player.inst;
     }
 
     public void CreateBattleScene(SceneOption option)

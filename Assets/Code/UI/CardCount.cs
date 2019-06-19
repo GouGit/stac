@@ -17,16 +17,13 @@ public class CardCount : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("asdf");
         if(!isUsed)
         {
-            Debug.Log("??? : " + player.cardsCount);
             text.text = "" + player.cardsCount;
         }
         else
         {
             
-            Debug.Log("used : " + player.usedCount);
             text.text = "" + player.usedCount;
         }
     }
