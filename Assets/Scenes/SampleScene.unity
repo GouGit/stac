@@ -758,7 +758,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -546}
+  m_AnchoredPosition: {x: 0, y: -475}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &831773484
@@ -3063,6 +3063,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6954218718053678135, guid: 2f5167beeac223c4ca4f6094aee43136,
+        type: 3}
+      propertyPath: DefensUI
+      value: 
+      objectReference: {fileID: 1560753606}
     - target: {fileID: 6954218718053678136, guid: 2f5167beeac223c4ca4f6094aee43136,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3118,11 +3123,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6954218718053678135, guid: 2f5167beeac223c4ca4f6094aee43136,
-        type: 3}
-      propertyPath: DefensUI
-      value: 
-      objectReference: {fileID: 1560753606}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f5167beeac223c4ca4f6094aee43136, type: 3}
 --- !u!1001 &7076936215224958584
@@ -3137,6 +3137,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton
       objectReference: {fileID: 0}
+    - target: {fileID: 7076936215295342384, guid: dc395753ed33f694191ad4768f341c30,
+        type: 3}
+      propertyPath: DefensUI
+      value: 
+      objectReference: {fileID: 1980191480}
+    - target: {fileID: 7076936215295342384, guid: dc395753ed33f694191ad4768f341c30,
+        type: 3}
+      propertyPath: attack
+      value: 
+      objectReference: {fileID: 68034476}
+    - target: {fileID: 7076936215295342384, guid: dc395753ed33f694191ad4768f341c30,
+        type: 3}
+      propertyPath: defens
+      value: 
+      objectReference: {fileID: 2089334312}
     - target: {fileID: 7076936215295342399, guid: dc395753ed33f694191ad4768f341c30,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3192,20 +3207,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7076936215295342384, guid: dc395753ed33f694191ad4768f341c30,
-        type: 3}
-      propertyPath: DefensUI
-      value: 
-      objectReference: {fileID: 1980191480}
-    - target: {fileID: 7076936215295342384, guid: dc395753ed33f694191ad4768f341c30,
-        type: 3}
-      propertyPath: attack
-      value: 
-      objectReference: {fileID: 68034476}
-    - target: {fileID: 7076936215295342384, guid: dc395753ed33f694191ad4768f341c30,
-        type: 3}
-      propertyPath: defens
-      value: 
-      objectReference: {fileID: 2089334312}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc395753ed33f694191ad4768f341c30, type: 3}
