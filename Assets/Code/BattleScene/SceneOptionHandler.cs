@@ -19,12 +19,13 @@ public class SceneOptionHandler : MonoBehaviour
         }
 
         CreateBattleScene(transporter.sceneOption);
-        Player.inst.gameObject.SetActive(true);
-        Player.inst.DefensUI = GameObject.Find("StateUI").transform.GetChild(5).GetComponent<OnDefens>();
-        GameObject.Find("end").GetComponent<Button>().onClick.AddListener(Player.inst.EndTurn);
+        //코드를 엎어서 수정할때까지 시간이 걸릴듯함 //
+        // Player.inst.gameObject.SetActive(true);
+        // Player.inst.DefensUI = GameObject.Find("StateUI").transform.GetChild(5).GetComponent<OnDefens>();
+        // GameObject.Find("end").GetComponent<Button>().onClick.AddListener(Player.inst.EndTurn);
 
-        GameObject StateUI = GameObject.Find("StateUI");
-        StateUI.transform.GetChild(1).transform.GetChild(1).GetComponent<Hpbar>().myObject = Player.inst;
+        // GameObject StateUI = GameObject.Find("StateUI");
+        // StateUI.transform.GetChild(1).transform.GetChild(1).GetComponent<Hpbar>().myObject = Player.inst;
     }
 
     public void CreateBattleScene(SceneOption option)
@@ -37,7 +38,7 @@ public class SceneOptionHandler : MonoBehaviour
 
     void OnDestroy()
     {
-        Player.inst.gameObject.SetActive(false);
-        Player.inst.DefensUI = null;
+        // Player.inst.gameObject.SetActive(false);
+        // Player.inst.DefensUI = null;
     }
 }
