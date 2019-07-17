@@ -10,4 +10,5 @@ public class Monster : ScriptableObject
     public int attackPower;
     public int defensPower;
     public Sprite image;
+    public Type.TYPE type;
 }

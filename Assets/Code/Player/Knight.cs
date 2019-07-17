@@ -5,14 +5,27 @@ using UnityEngine;
 public class Knight : MonoBehaviour
 {
     public Player player;
+    public static Knight instance = null;
+    public int defensPower;
     private  LinkedList<GameObject> MyCard = new LinkedList<GameObject>();
     private LinkedList<GameObject> HandCard = new LinkedList<GameObject>();
     private LinkedList<GameObject> TrashCard = new LinkedList<GameObject>();
     private GameObject showCard;
     private int hp;
-    private int defensPower;
     private string playerName;
     private int cost;
+
+    void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }    
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
@@ -106,6 +119,41 @@ public class Knight : MonoBehaviour
         Shuffle();   
     }
 
+    private void MyTurn()
+    {
+        Vector3 scale = new Vector3(1,1,1);
+        transform.localScale = scale;
+    }
+
+    public void EndTurn()
+    {
+        GameManager.instance.isPlayerTurn = false;
+        DropCard();
+        Vector3 scale = new Vector3(0.8f,0.8f,1);
+        transform.localScale = scale;
+    }
+
+    public void LoseHp(int damage)
+    {
+        if(defensPower > 0)
+        {
+            int defens = defensPower - damage;
+            defensPower = defens;
+            if(defensPower < 0)
+            {
+                hp -= defensPower;
+            }
+        }
+        else
+        {
+            hp -= damage;
+        }
+
+        if(hp <= 0)
+        {
+            Debug.Log("die");
+        }
+    }
 
     void Update()
     {
@@ -113,7 +161,7 @@ public class Knight : MonoBehaviour
             return;
         else
         {
-            player.MyTurn(transform.localScale);
+            MyTurn();
         }
     }
 }
