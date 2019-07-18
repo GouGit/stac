@@ -9,7 +9,7 @@ public class ShowCard : MonoBehaviour
     private int cost;
     private int attackPower;
     private int defensPower;
-    private Vector3 scale;
+    private Vector3 scale, origin;
     private BoxCollider2D myBox;
     private Type.TYPE type, monsterType;
 
@@ -23,6 +23,7 @@ public class ShowCard : MonoBehaviour
         defensPower = card.defensPower;
         scale = transform.localScale;
         type = card.type;
+        origin = transform.position;
         myBox = GetComponent<BoxCollider2D>();
     }
 
@@ -68,6 +69,19 @@ public class ShowCard : MonoBehaviour
         }       
     }
 
+    private void OnlyDefens()
+    {
+        if(origin.y + 2 <= transform.position.y)
+        {
+            if(GameManager.instance.cost >= cost)
+            {
+                GameManager.instance.cost -= cost;
+                Knight.instance.defensPower += defensPower;
+                gameObject.SetActive(false);
+            }
+        }
+    }
+
     private void UseCard()
     {
         myBox.enabled = false;
@@ -94,9 +108,23 @@ public class ShowCard : MonoBehaviour
         transform.localScale = scale * 1.25f;
     }
 
+    void OnMouseDrag()
+    {
+        Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        pos.z = 0;
+        transform.position = pos;
+    }
+
     void OnMouseUp()
     {
         transform.localScale = scale;
-        UseCard();
+        if(attackPower > 0)
+        {
+            UseCard();
+        }
+        else
+        {
+            OnlyDefens();
+        }
     }
 }

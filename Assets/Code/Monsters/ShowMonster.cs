@@ -2,25 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShowMonster : MonoBehaviour
+public abstract class ShowMonster : MonoBehaviour
 {
-    private enum ACTION
+    public Monster mon;
+    protected enum ACTION
     {
         NONE,
         ATTACK,
         DEFENS,
         END
     }
-    public Monster mon;
-    private new string name;
-    private int hp;
-    private int attackPower;
-    private int defensPower;
-    private Type.TYPE type;
-    private ACTION action;
-    private bool isAttack = true;
+    protected Type.TYPE type;
+    protected ACTION action;
+    protected new string name;
+    protected int hp;
+    protected int attackPower;
+    protected int defensPower;
+    protected bool isAttack = true;
 
-    void Start()
+    protected virtual void Start()
     {
         GetComponent<SpriteRenderer>().sprite = mon.image;
         name = mon.name;
@@ -69,13 +69,21 @@ public class ShowMonster : MonoBehaviour
         {
             hp -= damage;
         }
-
-        Debug.Log(hp);
         
         if(hp <= 0)
         {
             gameObject.SetActive(false);
         }
+    }
+
+    protected virtual void Attack()
+    {
+
+    }
+
+    protected virtual void Defens()
+    {
+
     }
 
     void Update()
@@ -99,14 +107,16 @@ public class ShowMonster : MonoBehaviour
             }
             break;
         case ACTION.ATTACK:
-            Knight.instance.LoseHp(attackPower);
+            Attack();
             action = ACTION.END;
+            StartCoroutine(WaitTime());
             break;
         case ACTION.DEFENS:
+            Defens();
             action = ACTION.END;
+            StartCoroutine(WaitTime());
             break;
         case ACTION.END:
-            StartCoroutine(WaitTime());
             break;
         }
     }

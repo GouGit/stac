@@ -48,11 +48,11 @@ TagManager:
   - name: Player
     uniqueID: 4262104237
     locked: 0
-  - name: UI
-    uniqueID: 2792765019
-    locked: 0
   - name: Card
     uniqueID: 3566187181
+    locked: 0
+  - name: UI
+    uniqueID: 2792765019
     locked: 0
   - name: Paper
     uniqueID: 3982724489

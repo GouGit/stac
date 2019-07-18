@@ -7,13 +7,13 @@ public class Knight : MonoBehaviour
     public Player player;
     public static Knight instance = null;
     public int defensPower;
+    public int usingCard, usedCard;
     private  LinkedList<GameObject> MyCard = new LinkedList<GameObject>();
     private LinkedList<GameObject> HandCard = new LinkedList<GameObject>();
     private LinkedList<GameObject> TrashCard = new LinkedList<GameObject>();
     private GameObject showCard;
     private int hp;
     private string playerName;
-    private int cost;
 
     void Awake()
     {
@@ -29,9 +29,6 @@ public class Knight : MonoBehaviour
 
     void Start()
     {
-        MyCard.Clear();
-        HandCard.Clear();
-        TrashCard.Clear();
         for(int i = 0; i < GameManager.instance.AllCards.Count; i++)
         {
             MyCard.AddLast(GameManager.instance.AllCards[i]);
@@ -43,7 +40,6 @@ public class Knight : MonoBehaviour
         hp = player.hp;
         defensPower = player.defensPower;
         playerName = player.name;
-        cost = player.cost;
     }
 
     void Show()
@@ -53,7 +49,7 @@ public class Knight : MonoBehaviour
         for(var node = HandCard.First; node != null; node = node.Next)
         {
             GameObject temp;
-            temp = Instantiate(node.Value,new Vector3(i*2,-2.5f,0),Quaternion.identity);
+            temp = Instantiate(node.Value,new Vector3(i*2,-3.0f,0),Quaternion.identity);
             temp.gameObject.SetActive(true);
             temp.transform.position = temp.transform.position + new Vector3(0,0,-i);
             temp.transform.SetParent(showCard.transform);
@@ -90,23 +86,25 @@ public class Knight : MonoBehaviour
         HandCard.Clear();
         for(int i=0; i<5; i++)
         {
-            HandCard.AddLast(MyCard.Last.Value);
-            MyCard.RemoveLast();
+            HandCard.AddFirst(MyCard.First.Value);
+            MyCard.RemoveFirst();
 
             if(MyCard.Count == 0)
                 ReBulid();
         }
+        usingCard = MyCard.Count;
+        usedCard = TrashCard.Count;
         Show();
     }
 
     void DropCard()
     {
-        Destroy(showCard);
-        for(int i=0;i<5;i++)
+        for(int i=0;i<showCard.transform.childCount;i++)
         {
            TrashCard.AddFirst(HandCard.First.Value);
            HandCard.RemoveFirst();
         }
+        Destroy(showCard);
     }
 
     void ReBulid()
