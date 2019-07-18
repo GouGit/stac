@@ -1067,7 +1067,7 @@ Canvas:
   m_GameObject: {fileID: 943060678}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 631219566}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
@@ -1077,7 +1077,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: -1502202277
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &943060682
 RectTransform:
@@ -2425,6 +2425,8 @@ MonoBehaviour:
   - {fileID: 534210945925966799, guid: f9c52a617455c7940aafa6f1a201b2cb, type: 3}
   - {fileID: 8198993514602083125, guid: ae45f6969f26508429c4d69cd0843aa4, type: 3}
   cost: 3
+  ResultWindowPrefab: {fileID: 1353063834063852120, guid: 3916c3e33bb40224c8fcb344b7accb46,
+    type: 3}
 --- !u!4 &1688723986
 Transform:
   m_ObjectHideFlags: 0
@@ -3471,6 +3473,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142333176020848299, guid: 2da281c7db651974885f47340fe5533d,
+        type: 3}
+      propertyPath: OnMonsterDead.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142333176020848299, guid: 2da281c7db651974885f47340fe5533d,
+        type: 3}
+      propertyPath: OnMonsterDead.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142333176020848299, guid: 2da281c7db651974885f47340fe5533d,
+        type: 3}
+      propertyPath: OnMonsterDead.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142333176020848299, guid: 2da281c7db651974885f47340fe5533d,
+        type: 3}
+      propertyPath: OnMonsterDead.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142333176020848299, guid: 2da281c7db651974885f47340fe5533d,
+        type: 3}
+      propertyPath: OnMonsterDead.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142333176020848299, guid: 2da281c7db651974885f47340fe5533d,
+        type: 3}
+      propertyPath: OnMonsterDead.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1688723985}
+    - target: {fileID: 3142333176020848299, guid: 2da281c7db651974885f47340fe5533d,
+        type: 3}
+      propertyPath: OnMonsterDead.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnGameEnd
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142333176020848299, guid: 2da281c7db651974885f47340fe5533d,
+        type: 3}
+      propertyPath: OnMonsterDead.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2da281c7db651974885f47340fe5533d, type: 3}

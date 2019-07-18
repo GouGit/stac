@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class ShowMonster : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public abstract class ShowMonster : MonoBehaviour
     protected int attackPower;
     protected int defensPower;
     protected bool isAttack = true;
+    public UnityEvent OnMonsterDead;
 
     protected virtual void Start()
     {
@@ -73,6 +75,7 @@ public abstract class ShowMonster : MonoBehaviour
         if(hp <= 0)
         {
             gameObject.SetActive(false);
+            OnMonsterDead?.Invoke();
         }
     }
 

@@ -33,6 +33,9 @@ public class MainUIMnager : MonoBehaviour
     private bool isVibrationControl = false;
     private Coroutine VibrationCoroutine = null;
 
+    // Shop
+    public GameObject ShopPrefab;
+
     // Text
     public Text GoldText;
     public Text RubyText;
@@ -77,6 +80,11 @@ public class MainUIMnager : MonoBehaviour
             yield return null;
         }
         obj.localPosition = pos;
+    }
+
+    public void OpenShopPrefab()
+    {
+        Instantiate(ShopPrefab);
     }
 
     public void Exit()

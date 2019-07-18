@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     public bool isPlayerTurn = true;
     public List<GameObject> AllCards = new List<GameObject>();
     public int cost = 3;
+
+    public ResultWindow ResultWindowPrefab;
     
     void Awake()
     {
@@ -31,5 +33,14 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void OnGameEnd()
+    {
+        ResultWindow obj = Instantiate(ResultWindowPrefab);
+        obj.TitleButton.onClick.AddListener(() =>
+        {
+            SceneLoader.LoadSceneWithFadeStatic("Title");
+        });
     }
 }
