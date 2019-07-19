@@ -79,6 +79,10 @@ public class ShowCard : MonoBehaviour
                 Knight.instance.defensPower += defensPower;
                 gameObject.SetActive(false);
             }
+            else
+            {
+                transform.position = origin;
+            }
         }
     }
 
@@ -110,9 +114,12 @@ public class ShowCard : MonoBehaviour
 
     void OnMouseDrag()
     {
-        Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        pos.z = 0;
-        transform.position = pos;
+        if(attackPower <= 0)
+        {
+            Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            pos.z = 0;
+            transform.position = pos;
+        } 
     }
 
     void OnMouseUp()

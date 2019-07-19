@@ -12,6 +12,7 @@ public class Knight : MonoBehaviour
     private LinkedList<GameObject> HandCard = new LinkedList<GameObject>();
     private LinkedList<GameObject> TrashCard = new LinkedList<GameObject>();
     private GameObject showCard;
+    private CameraManager cam;
     private int hp;
     private string playerName;
 
@@ -36,6 +37,7 @@ public class Knight : MonoBehaviour
         Shuffle();
         DrawCard();
 
+        cam = Camera.main.GetComponent<CameraManager>();
         GetComponent<SpriteRenderer>().sprite = player.image;
         hp = player.hp;
         defensPower = player.defensPower;
@@ -145,6 +147,7 @@ public class Knight : MonoBehaviour
         else
         {
             hp -= damage;
+            cam.Shake(15);
         }
 
         if(hp <= 0)
