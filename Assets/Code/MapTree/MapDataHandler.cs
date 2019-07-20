@@ -22,7 +22,6 @@ public static class MapDataHandler
 
     private static int SetID(Spot spot)
     {// 모든 Spot에 ID를 부여합니다. 그리고 모든 spot의 갯수를 리턴합니다.
-        Debug.Log("각각 spot에 ID를 부여합니다.");
         int IDcount = 0;
         SetID(spot, ref IDcount);
         ResetSpot(spot);
@@ -53,8 +52,6 @@ public static class MapDataHandler
     /// <param name="filePath">XML파일의 위치</param>
     public static void SaveMap(Spot spot, string filePath)
     {
-        Debug.Log("맵을 저장합니다.");
-
         int spotCount = SetID(spot);
 
         XmlDocument document = new XmlDocument();
@@ -72,6 +69,8 @@ public static class MapDataHandler
         ResetSpot(spot);
 
         document.Save(filePath);
+        UnityEditor.AssetDatabase.Refresh();
+        // document.
     }
 
     private static void SaveMap(Spot spot, XmlDocument document, XmlNode root)
@@ -98,6 +97,10 @@ public static class MapDataHandler
         XmlElement type = document.CreateElement("type");
         type.InnerText = ((int)spot.sceneOption.type).ToString();
         wow.AppendChild(type);
+
+        XmlElement clear = document.CreateElement("clear");
+        clear.InnerText = spot.isClear.ToString().ToLower();
+        wow.AppendChild(clear);
 
         XmlElement prefabs = document.CreateElement("prefabs");
         prefabs.SetAttribute("PrefabCount", spot.sceneOption.objectList.Count.ToString());
@@ -129,13 +132,10 @@ public static class MapDataHandler
     /// <param name="filePath">XML파일의 위치</param>
     public static void LoadProgress(Spot spot, string filePath)
     {
-        // Debug.Log("진행도를 불러옵니다.");
         TextAsset textAsset = (TextAsset)Resources.Load(filePath);
-        // Debug.Log(textAsset);
         XmlDocument document = new XmlDocument();
 
         document.LoadXml(textAsset.text);
-        // Debug.Log(document.InnerText);
 
         XmlNode root = document.SelectSingleNode("Stage_Test/Spots/spot");
 
@@ -164,9 +164,7 @@ public static class MapDataHandler
     /// <param name="filePath">XML파일의 위치</param>
     public static Spot CreateMap(string filePath)
     {
-        Debug.Log(filePath);
         TextAsset textAsset = (TextAsset)Resources.Load(filePath);
-        Debug.Log(textAsset);
         XmlDocument document = new XmlDocument();
 
         document.LoadXml(textAsset.text);
@@ -177,7 +175,6 @@ public static class MapDataHandler
         List<Spot> spotList = new List<Spot>();
 
         XmlNode root = spots.SelectSingleNode("spot");
-        Debug.Log(root.InnerText);
         return CreateMap(document, root, spotList);
     }
 
@@ -185,13 +182,16 @@ public static class MapDataHandler
     {
         int ID = root.SelectSingleNode("ID").InnerText.ToInt();
         Vector3 position = root.SelectSingleNode("position").InnerText.ToVector3();
-        // position.x += 10;
+        
         int type = root.SelectSingleNode("type").InnerText.ToInt();
+        bool isClear = bool.Parse(root.SelectSingleNode("clear").InnerText);
+
         XmlNodeList nextSpotList = root.SelectNodes("nextSpot");
 
         Spot spot = (GameObject.Instantiate(Resources.Load("Spot"), position, Quaternion.identity) as GameObject).GetComponent<Spot>();
         spot.ID = ID;
         spot.sceneOption.type = (SceneOption.Type)type;
+        spot.isClear = isClear;
 
         XmlNodeList prefabList = root.SelectNodes("prefabs");
         for(int i = 0; i < prefabList.Count; i++)

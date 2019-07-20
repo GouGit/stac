@@ -54,6 +54,7 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadSceneWithFade(string name)
     {
+        // Debug.Log(name);
         FadeUI[] fadePanels = FindObjectsOfType<FadeUI>();
         foreach (var fadePanel in fadePanels)
         {

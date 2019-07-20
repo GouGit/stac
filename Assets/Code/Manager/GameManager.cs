@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Type
 {
@@ -43,8 +44,29 @@ public class GameManager : MonoBehaviour
         ResultWindow obj = Instantiate(ResultWindowPrefab);
         obj.TitleButton.onClick.AddListener(() =>
         {
-            // SceneLoader.LoadSceneWithFadeStatic("Title");
-            SceneLoader.LoadSceneWithFadeStatic("");
+            SceneLoader.LoadSceneWithFadeStatic("MapTree");
+            // SceneLoader.LoadSceneWithFadeStatic("");
         });
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += AutoReset;
+    }
+
+    /// <summary>
+    /// This function is called when the behaviour becomes disabled or inactive.
+    /// </summary>
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= AutoReset;
+    }
+
+    void AutoReset(Scene scene, LoadSceneMode mode)
+    {
+        if (string.Equals(scene.name, "Title"))
+        {
+            isFirstStart = true;
+        }
     }
 }

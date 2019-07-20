@@ -16,7 +16,7 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
     [HideInInspector]
     public int ID;                      // 맵을 저장하고 불러올때 사용될 변수 입니다. 코드상에서 절대로 건들면 안됩니다.
     // [HideInInspector]
-    private bool isClear = false;        // 맵의 진행도를 저장하고 불러올때 사용할 변수 입니다. 해당 Spot에 도달 했었는지를 나타냅니다.
+    public bool isClear = false;        // 맵의 진행도를 저장하고 불러올때 사용할 변수 입니다. 해당 Spot에 도달 했었는지를 나타냅니다.
 
     public List<Sprite> spriteList;
 
@@ -122,12 +122,6 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
 
         MapDataHandler.SaveMap(GetFirstSpot(), "./Assets/Resources/Test_Progress.xml");
 
-        for(int i = 0; i < transform.parent.childCount; i++)
-        {
-            Destroy(transform.parent.GetChild(i).gameObject);
-        }
-
-        // traveler.ChangeSpot(spot);
         SceneLoader.LoadScene("BattleScene", sceneOption);
     }
 }

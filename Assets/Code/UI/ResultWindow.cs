@@ -15,11 +15,11 @@ public class ResultWindow : MonoBehaviour
 
     protected void OnInitialized()
     {
-        TitleButton.onClick.AddListener(OnClickTitleButton);
+        // TitleButton.onClick.AddListener(OnClickTitleButton);
     }
 
     protected void OnClickTitleButton()
     {
-        SceneLoader.LoadSceneWithFadeStatic("Title");
+        // SceneLoader.LoadSceneWithFadeStatic("Title");
     }
 }

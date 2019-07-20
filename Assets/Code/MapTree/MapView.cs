@@ -36,7 +36,6 @@ public class MapView : MonoBehaviour
     public void Change()
     {
         pickerUp = !pickerUp;
-        // Debug.Log("Change()!!");
 
         if(pickerUp)
         {

@@ -8,6 +8,7 @@ public class Skeleton : ShowMonster
     protected override void Start()
     {
         base.Start();
+        OnMonsterDead.AddListener(GameManager.instance.OnGameEnd);
     }
 
     protected override void Attack()
