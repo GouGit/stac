@@ -69,15 +69,65 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
         }
     }
 
+    public static Spot GetFirstSpot()
+    {// Spot 컴포넌트를 가지는 모든 오브젝트를 조회하여 첫 Spot을 찾습니다.
+        Spot[] spots = GameObject.FindObjectsOfType<Spot>();
+        foreach(Spot spot in spots)
+        {
+            if(spot.ID == 0)
+            {
+                return spot;
+            }
+        }
+        // 여기까지 왔다는 것은 맵 파일이 잘못 되었다는것을 의미합니다.
+        return null;
+    }
+
+    public static Spot GetProgressSpot()
+    {
+        Spot firstSpot = GetFirstSpot();
+        if(firstSpot == null)
+        {// 맵 파일이 잘못 되었습니다.
+            return null;
+        }
+
+        return GetProgressSpotRecursion(firstSpot);
+    }
+
+    private static Spot GetProgressSpotRecursion(Spot spot)
+    {// isClear가 false인 spot을 리턴하기 위한 재귀함수 입니다.
+        foreach(Spot nextSpot in spot.nextRoutes)
+        {
+            if(nextSpot.isClear)
+                return GetProgressSpotRecursion(nextSpot);
+        }
+
+        // 여기까지 왔다는 것은 현재 spot이 최종 진행도 라는 뜻 입니다.
+        return spot;
+    }
+
+    public static void SetParent()
+    {
+        Spot[] spots = GameObject.FindObjectsOfType<Spot>();
+        GameObject map = GameObject.Find("Map");
+        foreach(Spot spot in spots)
+        {
+            spot.transform.SetParent(map.transform);
+        }   
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
+        isClear = true;
+
+        MapDataHandler.SaveMap(GetFirstSpot(), "./Assets/Resources/Test_Progress.xml");
+
         for(int i = 0; i < transform.parent.childCount; i++)
         {
             Destroy(transform.parent.GetChild(i).gameObject);
         }
 
-        SceneLoader.LoadScene("TestScene", sceneOption);
-
-        // traveler.ChangeSpot(spot);    
+        // traveler.ChangeSpot(spot);
+        SceneLoader.LoadScene("BattleScene", sceneOption);
     }
 }

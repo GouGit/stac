@@ -30,11 +30,22 @@ public class Test : MonoBehaviour
         }
     }
 
-    void Start()
+    void Awake()
     {
         // MapDataHandler.SetID(traveler.nowSpot);
-        MapDataHandler.SaveMap(traveler.nowSpot, "./Assets/Resources/Test.xml");
-        // traveler.nowSpot = MapDataHandler.CreateMap("Test");
+        // MapDataHandler.SaveMap(traveler.nowSpot, "./Assets/Resources/Test.xml");
+        if(GameManager.instance.isFirstStart)
+        {
+            traveler.nowSpot = MapDataHandler.CreateMap("Test");
+            GameManager.instance.isFirstStart = false;
+            Spot.SetParent();
+        }
+        else
+        {
+            Spot firstSpot = MapDataHandler.CreateMap("Test_Progress");
+            traveler.nowSpot = Spot.GetProgressSpot();
+            Spot.SetParent();
+        }
         // MapDataHandler.LoadMap(traveler.nowSpot, "Test");
         // traveler.ChangeSpot(traveler.nowSpot.nextRoutes[0]);
     }

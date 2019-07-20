@@ -22,12 +22,15 @@ public class GameManager : MonoBehaviour
     public int cost = 3;
 
     public ResultWindow ResultWindowPrefab;
-    
+    public string mapName;// 현재 맵의 이름 (나중에 사용할 예정)
+    public bool isFirstStart = true;// 해당맵이 처음 시작되는것 인지 맵이 바뀔때 마다 true로 해주어야 합니다.
+
     void Awake()
     {
         if(instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }    
         else
         {
@@ -40,7 +43,8 @@ public class GameManager : MonoBehaviour
         ResultWindow obj = Instantiate(ResultWindowPrefab);
         obj.TitleButton.onClick.AddListener(() =>
         {
-            SceneLoader.LoadSceneWithFadeStatic("Title");
+            // SceneLoader.LoadSceneWithFadeStatic("Title");
+            SceneLoader.LoadSceneWithFadeStatic("");
         });
     }
 }

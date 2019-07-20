@@ -49,9 +49,9 @@ public class Knight : MonoBehaviour
         for(var node = HandCard.First; node != null; node = node.Next)
         {
             GameObject temp;
-            temp = Instantiate(node.Value,new Vector3(i*2,-3.0f,0),Quaternion.identity);
+            temp = Instantiate(node.Value,new Vector3(i * 2, -3.0f, 0),Quaternion.identity);
             temp.gameObject.SetActive(true);
-            temp.transform.position = temp.transform.position + new Vector3(0,0,-i);
+            temp.transform.position = temp.transform.position + new Vector3(0, 0, -i);
             temp.transform.SetParent(showCard.transform);
             i += 1;
         }

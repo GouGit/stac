@@ -66,7 +66,7 @@ public class Traveler : MonoBehaviour
         // nowSpot.ChangeScene();
     }
 
-    void Awake()
+    void Start()
     {
         if(nowSpot == null)
         {

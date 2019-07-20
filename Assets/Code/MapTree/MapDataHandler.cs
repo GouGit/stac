@@ -129,13 +129,13 @@ public static class MapDataHandler
     /// <param name="filePath">XML파일의 위치</param>
     public static void LoadProgress(Spot spot, string filePath)
     {
-        Debug.Log("진행도를 불러옵니다.");
+        // Debug.Log("진행도를 불러옵니다.");
         TextAsset textAsset = (TextAsset)Resources.Load(filePath);
-        Debug.Log(textAsset);
+        // Debug.Log(textAsset);
         XmlDocument document = new XmlDocument();
 
         document.LoadXml(textAsset.text);
-        Debug.Log(document.InnerText);
+        // Debug.Log(document.InnerText);
 
         XmlNode root = document.SelectSingleNode("Stage_Test/Spots/spot");
 
@@ -164,6 +164,7 @@ public static class MapDataHandler
     /// <param name="filePath">XML파일의 위치</param>
     public static Spot CreateMap(string filePath)
     {
+        Debug.Log(filePath);
         TextAsset textAsset = (TextAsset)Resources.Load(filePath);
         Debug.Log(textAsset);
         XmlDocument document = new XmlDocument();
@@ -184,11 +185,23 @@ public static class MapDataHandler
     {
         int ID = root.SelectSingleNode("ID").InnerText.ToInt();
         Vector3 position = root.SelectSingleNode("position").InnerText.ToVector3();
-        position.x += 10;
+        // position.x += 10;
+        int type = root.SelectSingleNode("type").InnerText.ToInt();
         XmlNodeList nextSpotList = root.SelectNodes("nextSpot");
 
         Spot spot = (GameObject.Instantiate(Resources.Load("Spot"), position, Quaternion.identity) as GameObject).GetComponent<Spot>();
         spot.ID = ID;
+        spot.sceneOption.type = (SceneOption.Type)type;
+
+        XmlNodeList prefabList = root.SelectNodes("prefabs");
+        for(int i = 0; i < prefabList.Count; i++)
+        {
+            string name = prefabList[i].InnerText;
+            if(!name.Equals(""))
+                spot.sceneOption.objectList.Add(Resources.Load(prefabList[i].InnerText) as GameObject);
+
+        }
+
         spotList.Add(spot);
         
         for(int i = 0; i < nextSpotList.Count;i++)
