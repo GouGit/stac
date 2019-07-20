@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Spot : MonoBehaviour
+public class Spot : MonoBehaviour,  IPointerClickHandler
 {
     public LineRenderer liner;
     [Tooltip("이 지점에서 길을 이을 다음 지점 입니다.")]
@@ -15,7 +16,7 @@ public class Spot : MonoBehaviour
     [HideInInspector]
     public int ID;                      // 맵을 저장하고 불러올때 사용될 변수 입니다. 코드상에서 절대로 건들면 안됩니다.
     // [HideInInspector]
-    private bool isClear = true;        // 맵의 진행도를 저장하고 불러올때 사용할 변수 입니다. 해당 Spot에 도달 했었는지를 나타냅니다.
+    private bool isClear = false;        // 맵의 진행도를 저장하고 불러올때 사용할 변수 입니다. 해당 Spot에 도달 했었는지를 나타냅니다.
 
     public List<Sprite> spriteList;
 
@@ -41,12 +42,11 @@ public class Spot : MonoBehaviour
         SpriteRenderer render = GetComponent<SpriteRenderer>();
         render.sprite = spriteList[(int)sceneOption.type];
 
-        Debug.Log(isClear);
+        if(isClear)
+        {
             Color color = render.color;
             color.a = 0.3f;
             render.color = color;
-        if(isClear)
-        {
         }
     }
 
@@ -67,5 +67,17 @@ public class Spot : MonoBehaviour
             liner.SetPosition(offset - 1, transform.position);
             liner.SetPosition(offset, nextRoutes[i].transform.position);
         }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        for(int i = 0; i < transform.parent.childCount; i++)
+        {
+            Destroy(transform.parent.GetChild(i).gameObject);
+        }
+
+        SceneLoader.LoadScene("TestScene", sceneOption);
+
+        // traveler.ChangeSpot(spot);    
     }
 }
