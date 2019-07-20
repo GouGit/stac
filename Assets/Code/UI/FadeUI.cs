@@ -100,6 +100,22 @@ public class FadeUI : MonoBehaviour
         m_fadeRoutine = StartCoroutine(CO_FadeOut(duration));
     }
 
+    public void FadeOut(float duration, Color alpha)
+    {
+        gameObject.SetActive(true);
+        
+        Color color = m_FadeObject.color;
+        color.a = alpha.a;
+        m_FadeObject.color = color;
+
+        if (m_fadeRoutine != null)
+        {
+            StopCoroutine(m_fadeRoutine);
+            m_fadeRoutine = null;
+        }
+        m_fadeRoutine = StartCoroutine(CO_FadeOut(duration));
+    }
+
     IEnumerator CO_FadeOut(float duration)
     {
         m_OnFadeOutBegin(this);

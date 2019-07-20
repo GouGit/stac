@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraManager : MonoBehaviour
+public class ShakeObject : MonoBehaviour
 {
+    private GameObject shakeObject;
     private bool shaking = false;
     private float shakePower;
 
@@ -12,22 +13,22 @@ public class CameraManager : MonoBehaviour
         if(shaking)
         {
             Vector3 newpos = Random.insideUnitSphere * (Time.deltaTime * shakePower);
-            //newpos.y = transform.position.y;
-            newpos.z = transform.position.z;
-        
-            transform.position = newpos;
+            newpos.y = transform.position.y;
+            newpos.z = shakeObject.transform.position.z;
+            shakeObject.transform.position = newpos;
         }
     }
 
-    public void Shake(float power)
+    public void Shake(float power, GameObject shake)
     {
+        shakeObject = shake;
         shakePower = power;
         StartCoroutine(Shaking());
     }
 
     IEnumerator Shaking()
     {
-        Vector3 origin = transform.position;
+        Vector3 origin = shakeObject.transform.position;
 
         if(!shaking)
         {
@@ -37,7 +38,7 @@ public class CameraManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         shaking = false;
-        transform.position = origin;
+        shakeObject.transform.position = origin;
     }
 
 }

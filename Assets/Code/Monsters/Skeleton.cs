@@ -17,7 +17,7 @@ public class Skeleton : ShowMonster
 
     protected override void Defens()
     {
-        
+        ondefensPower += defensPower;
     }
 
 }

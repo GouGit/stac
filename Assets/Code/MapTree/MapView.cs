@@ -30,6 +30,7 @@ public class MapView : MonoBehaviour
         pickerEndPosition.y = -2000.0f;
 
         Change();
+        Change();
     }
 
     public void Change()

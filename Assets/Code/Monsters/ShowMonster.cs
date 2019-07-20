@@ -13,13 +13,17 @@ public abstract class ShowMonster : MonoBehaviour
         DEFENS,
         END
     }
+    public GameObject hpUI, attackUI, defensUI, defensOnUI;
     protected Type.TYPE type;
     protected ACTION action;
     protected new string name;
-    protected int hp;
-    protected int attackPower;
-    protected int defensPower;
+    public int hp;
+    public int attackPower;
+    public int defensPower;
+    public int ondefensPower = 0;
     protected bool isAttack = true;
+    protected bool shaking = false;
+    protected float shakePower = 5;
     public UnityEvent OnMonsterDead;
 
     protected virtual void Start()
@@ -31,6 +35,18 @@ public abstract class ShowMonster : MonoBehaviour
         defensPower = mon.defensPower;
         type = mon.type;
         action = ACTION.NONE;
+
+        hpUI.SetActive(true);
+        if(isAttack)
+        {
+            attackUI.SetActive(true);
+            defensUI.SetActive(false);
+        }
+        else
+        {
+            attackUI.SetActive(false);
+            defensUI.SetActive(true);
+        }
     }
 
     IEnumerator WaitTime()
@@ -41,6 +57,17 @@ public abstract class ShowMonster : MonoBehaviour
 
     void MyTurn()
     {
+        if(!isAttack)
+        {
+            attackUI.SetActive(true);
+            defensUI.SetActive(false);
+        }
+        else
+        {
+            attackUI.SetActive(false);
+            defensUI.SetActive(true);
+        }
+        ondefensPower = 0;
         Vector3 scale = new Vector3(1,1,1);
         transform.localScale = scale;
     }
@@ -56,24 +83,65 @@ public abstract class ShowMonster : MonoBehaviour
         transform.localScale = scale;
     }
 
+    void Shake()
+    {
+        if(shaking)
+        {
+            Vector3 newpos = Random.insideUnitSphere * (Time.deltaTime * shakePower);
+            newpos.y = transform.position.y;
+            newpos.z = transform.position.z;
+            transform.position = newpos;
+        }
+
+        if(ondefensPower > 0)
+        {
+            defensOnUI.SetActive(true);
+        }
+        else
+        {
+            defensOnUI.SetActive(false);
+        }
+    }
+
+    IEnumerator Shaking()
+    {
+        Vector3 origin = transform.position;
+
+        if(!shaking)
+        {
+            shaking = true;
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        shaking = false;
+        transform.position = origin;
+    }
+
     public void LoseHp(int damage)
     {
-        if(action == ACTION.DEFENS)
+        if(ondefensPower > 0)
         {
-            int defens = defensPower - damage;
-            defensPower = defens;
-            if(defensPower < 0)
+            int defens = ondefensPower - damage;
+            ondefensPower = defens;
+            if(ondefensPower < 0)
             {
-                hp -= defensPower;
+                hp -= ondefensPower;
+                StartCoroutine(Shaking());
             }
         }
         else
         {
             hp -= damage;
+            StartCoroutine(Shaking());
         }
         
         if(hp <= 0)
         {
+            hpUI.SetActive(false);
+            attackUI.SetActive(false);
+            defensOnUI.SetActive(false);
+            defensUI.SetActive(false);
             gameObject.SetActive(false);
             OnMonsterDead?.Invoke();
         }
@@ -91,6 +159,8 @@ public abstract class ShowMonster : MonoBehaviour
 
     void Update()
     {
+        Shake();
+
         if(GameManager.instance.isPlayerTurn)
             return;
         
