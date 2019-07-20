@@ -126,7 +126,7 @@ public abstract class ShowMonster : MonoBehaviour
             ondefensPower = defens;
             if(ondefensPower < 0)
             {
-                hp -= ondefensPower;
+                hp += ondefensPower;
                 StartCoroutine(Shaking());
             }
         }
