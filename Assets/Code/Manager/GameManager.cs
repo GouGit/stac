@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
     public bool isPlayerTurn = true;
     public List<GameObject> AllCards = new List<GameObject>();
+    public List<ShowMonster> AllMonsters = new List<ShowMonster>();
     public int cost = 3;
 
     public ResultWindow ResultWindowPrefab;

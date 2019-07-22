@@ -13,15 +13,25 @@ public class MonsterUI : MonoBehaviour
         SHELID
     }
     public TYPE type;
-    public GameObject monster;
     private ShowMonster mon;
+    private SetMonster set;
     private Text text;
     private Image image;
     private float maxHp;
 
     void Start()
     {
-        mon = monster.GetComponent<ShowMonster>();
+        if(type == TYPE.HP)
+        {
+            set = transform.parent.parent.GetComponent<SetMonster>();
+        }
+        else
+        {
+            set = transform.parent.GetComponent<SetMonster>();
+        }
+        
+        mon = set.monster;
+
         image = GetComponent<Image>();
         text = transform.GetChild(0).GetComponent<Text>();
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public abstract class ShowMonster : MonoBehaviour
 {
@@ -13,7 +14,9 @@ public abstract class ShowMonster : MonoBehaviour
         DEFENS,
         END
     }
-    public GameObject hpUI, attackUI, defensUI, defensOnUI;
+    public Canvas uiCanvas;
+    private GameObject ui;
+    private GameObject hpUI, attackUI, defensUI, defensOnUI;
     protected Type.TYPE type;
     protected ACTION action;
     protected new string name;
@@ -21,9 +24,9 @@ public abstract class ShowMonster : MonoBehaviour
     public int attackPower;
     public int defensPower;
     public int ondefensPower = 0;
-    protected bool isAttack = true;
+    protected bool isAttack;
     protected bool shaking = false;
-    protected float shakePower = 5;
+    protected float shakePower;
     public UnityEvent OnMonsterDead;
 
     protected virtual void Start()
@@ -36,17 +39,25 @@ public abstract class ShowMonster : MonoBehaviour
         type = mon.type;
         action = ACTION.NONE;
 
+        isAttack = true;
+        GameManager.instance.AllMonsters.Add(this);
+
+        uiCanvas.worldCamera = Camera.main;
+        SetMonster set = uiCanvas.GetComponent<SetMonster>();
+        set.Set(this);
+        ui = Instantiate(uiCanvas.gameObject, Vector3.zero, Quaternion.identity);
+        ui.SetActive(true);
+
+        hpUI = ui.transform.GetChild(0).gameObject;
+        defensOnUI = ui.transform.GetChild(1).gameObject;
+        attackUI = ui.transform.GetChild(2).gameObject;
+        defensUI = ui.transform.GetChild(3).gameObject;
+
         hpUI.SetActive(true);
-        if(isAttack)
-        {
-            attackUI.SetActive(true);
-            defensUI.SetActive(false);
-        }
-        else
-        {
-            attackUI.SetActive(false);
-            defensUI.SetActive(true);
-        }
+        attackUI.SetActive(isAttack);
+        defensUI.SetActive(!isAttack);
+
+        OnMonsterDead.AddListener(GameManager.instance.OnGameEnd);
     }
 
     IEnumerator WaitTime()
@@ -57,16 +68,19 @@ public abstract class ShowMonster : MonoBehaviour
 
     void MyTurn()
     {
-        if(!isAttack)
+        if(isAttack)
         {
-            attackUI.SetActive(true);
-            defensUI.SetActive(false);
+            action = ACTION.ATTACK;
         }
         else
         {
-            attackUI.SetActive(false);
-            defensUI.SetActive(true);
+            action = ACTION.DEFENS;
         }
+        isAttack = !isAttack;
+        
+        attackUI.SetActive(isAttack);
+        defensUI.SetActive(!isAttack);
+
         ondefensPower = 0;
         Vector3 scale = new Vector3(1,1,1);
         transform.localScale = scale;
@@ -126,22 +140,21 @@ public abstract class ShowMonster : MonoBehaviour
             ondefensPower = defens;
             if(ondefensPower < 0)
             {
+                shakePower = Mathf.Abs(ondefensPower);
                 hp += ondefensPower;
                 StartCoroutine(Shaking());
             }
         }
         else
         {
+            shakePower = damage;
             hp -= damage;
             StartCoroutine(Shaking());
         }
         
         if(hp <= 0)
         {
-            hpUI.SetActive(false);
-            attackUI.SetActive(false);
-            defensOnUI.SetActive(false);
-            defensUI.SetActive(false);
+            ui.gameObject.SetActive(false);
             gameObject.SetActive(false);
             OnMonsterDead?.Invoke();
         }
@@ -168,16 +181,6 @@ public abstract class ShowMonster : MonoBehaviour
         {
         case ACTION.NONE:
             MyTurn();
-            if(isAttack)
-            {
-                action = ACTION.ATTACK;
-                isAttack = false;
-            }
-            else
-            {
-                action = ACTION.DEFENS;
-                isAttack = true;
-            }
             break;
         case ACTION.ATTACK:
             Attack();

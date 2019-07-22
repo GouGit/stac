@@ -13,7 +13,7 @@ public class Knight : MonoBehaviour
     private LinkedList<GameObject> HandCard = new LinkedList<GameObject>();
     private LinkedList<GameObject> TrashCard = new LinkedList<GameObject>();
     private GameObject showCard;
-    private int hp;
+    private int hp, maxhp;
     private string playerName;
 
     void Awake()
@@ -38,6 +38,7 @@ public class Knight : MonoBehaviour
         DrawCard();
 
         hp = player.hp;
+        maxhp = hp;
         defensPower = player.defensPower;
         playerName = player.name;
     }
@@ -145,7 +146,7 @@ public class Knight : MonoBehaviour
         else
         {
             hp -= damage;
-            hitUI.FadeOut(1.0f, new Color(1,1,1,0.4f));
+            hitUI.FadeOut(1.0f, new Color(1,1,1,(1 - hp/maxhp)));
         }
 
         if(hp <= 0)
