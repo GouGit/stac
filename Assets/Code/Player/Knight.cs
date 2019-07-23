@@ -6,15 +6,16 @@ public class Knight : MonoBehaviour
 {
     public Player player;
     public static Knight instance = null;
-    public FadeUI hitUI;
+    public Canvas playerUI;
     public int defensPower;
     public int usingCard, usedCard;
     private  LinkedList<GameObject> MyCard = new LinkedList<GameObject>();
     private LinkedList<GameObject> HandCard = new LinkedList<GameObject>();
     private LinkedList<GameObject> TrashCard = new LinkedList<GameObject>();
-    private GameObject showCard;
+    private GameObject showCard, temp;
     private int hp, maxhp;
     private string playerName;
+    private FadeUI hitUI;
 
     void Awake()
     {
@@ -36,6 +37,12 @@ public class Knight : MonoBehaviour
         }
         Shuffle();
         DrawCard();
+
+        playerUI.worldCamera = Camera.main;
+        temp = Instantiate(playerUI.gameObject, Vector3.zero, Quaternion.identity);
+        temp.SetActive(true);
+
+        hitUI = temp.transform.GetChild(0).gameObject.GetComponent<FadeUI>();
 
         hp = player.hp;
         maxhp = hp;

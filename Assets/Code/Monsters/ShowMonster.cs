@@ -38,9 +38,7 @@ public abstract class ShowMonster : MonoBehaviour
         defensPower = mon.defensPower;
         type = mon.type;
         action = ACTION.NONE;
-
         isAttack = true;
-        GameManager.instance.AllMonsters.Add(this);
 
         uiCanvas.worldCamera = Camera.main;
         SetMonster set = uiCanvas.GetComponent<SetMonster>();
@@ -102,6 +100,7 @@ public abstract class ShowMonster : MonoBehaviour
         if(shaking)
         {
             Vector3 newpos = Random.insideUnitSphere * (Time.deltaTime * shakePower);
+            newpos.x = transform.position.x + newpos.x;
             newpos.y = transform.position.y;
             newpos.z = transform.position.z;
             transform.position = newpos;

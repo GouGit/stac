@@ -15,12 +15,53 @@ public class Type
     }
 }
 
+public static class MonsterOption
+{
+    public static LinkedList<GameObject> AllMonsters = new LinkedList<GameObject>();
+    private static List<Vector3> posistions =  new List<Vector3>();
+
+    public static void SetPos()
+    {
+        posistions.Clear();
+        switch (AllMonsters.Count)
+        {
+        case 1:
+            posistions.Add(new Vector3(0,2.75f,0));
+            break;
+        case 2:
+            posistions.Add(new Vector3(-2.25f,2.75f,0));
+            posistions.Add(new Vector3(2.25f,2.75f,0));
+            break;
+        case 3:
+            posistions.Add(new Vector3(-4.5f,2.75f,0));
+            posistions.Add(new Vector3(0,2.75f,0));
+            posistions.Add(new Vector3(4.5f,2.75f,0));
+            break;
+        }
+    }
+
+    public static Vector3 ReturnPos(int number)
+    {
+        return posistions[number];
+    }
+
+    public static void Remove()
+    {
+        for(var node = AllMonsters.First; node != null; node = node.Next)
+        {
+            if(!node.Value.activeSelf)
+            {
+                AllMonsters.Remove(node);
+            }
+        }
+    }
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
     public bool isPlayerTurn = true;
     public List<GameObject> AllCards = new List<GameObject>();
-    public List<ShowMonster> AllMonsters = new List<ShowMonster>();
     public int cost = 3;
 
     public ResultWindow ResultWindowPrefab;

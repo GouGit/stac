@@ -93,7 +93,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: 762b3b3fd56ba864897697fde9b2facf, type: 2}
-  hitUI: {fileID: 0}
+  playerUI: {fileID: 1914762179071678152, guid: 3b660c3304a360b4dbc92f544fe34815,
+    type: 3}
   defensPower: 0
   usingCard: 0
   usedCard: 0

@@ -13,16 +13,14 @@ public class Gagoil : ShowMonster
     protected override void Attack()
     {
         Knight.instance.LoseHp(attackPower);
-        isAttack = !isAttack;
     }
 
     protected override void Defens()
     {
-        for(int i = 0; i < GameManager.instance.AllMonsters.Count; i++)
+        for(var node = MonsterOption.AllMonsters.First; node != null; node = node.Next)
         {
-            ShowMonster monster = GameManager.instance.AllMonsters[i].GetComponent<ShowMonster>();
+            ShowMonster monster = node.Value.GetComponent<ShowMonster>();
             monster.ondefensPower += defensPower;
         }
-        isAttack = !isAttack;
     }
 }
