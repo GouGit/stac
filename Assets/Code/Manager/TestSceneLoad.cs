@@ -8,7 +8,17 @@ public class TestSceneLoad : MonoBehaviour
 
     void Start()
     {
-        temp = Instantiate(Resources.Load("Player") as GameObject, Vector3.zero, Quaternion.identity);    
+        temp = Instantiate(Resources.Load("Skeleton") as GameObject, Vector3.zero, Quaternion.identity);
+        MonsterOption.AllMonsters.AddLast(temp);
+        temp = Instantiate(Resources.Load("Gagoil") as GameObject, Vector3.zero, Quaternion.identity);
+        MonsterOption.AllMonsters.AddLast(temp);
+        MonsterOption.SetPos();
+        int i = 0;
+        for(var node = MonsterOption.AllMonsters.First; node != null; node = node.Next)
+        {
+            node.Value.transform.position = MonsterOption.ReturnPos(i);
+            ++i;
+        }
     }
 
 }

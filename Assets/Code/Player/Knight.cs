@@ -91,7 +91,8 @@ public class Knight : MonoBehaviour
 
     public void DrawCard()
     {
-        HandCard.Clear();
+        if(HandCard.Count > 0)
+            return;
         for(int i=0; i<5; i++)
         {
             HandCard.AddFirst(MyCard.First.Value);
@@ -112,6 +113,7 @@ public class Knight : MonoBehaviour
            TrashCard.AddFirst(HandCard.First.Value);
            HandCard.RemoveFirst();
         }
+        HandCard.Clear();
         Destroy(showCard);
     }
 

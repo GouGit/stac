@@ -47,9 +47,13 @@ public abstract class ShowMonster : MonoBehaviour
         ui.SetActive(true);
 
         hpUI = ui.transform.GetChild(0).gameObject;
+        hpUI.transform.position = transform.position + Vector3.down*2.5f;
         defensOnUI = ui.transform.GetChild(1).gameObject;
+        defensOnUI.transform.position = transform.position + Vector3.down*2f + Vector3.left*1.5f;
         attackUI = ui.transform.GetChild(2).gameObject;
+        attackUI.transform.position = transform.position + Vector3.down*2f + Vector3.right*1.5f;
         defensUI = ui.transform.GetChild(3).gameObject;
+        defensUI.transform.position = transform.position + Vector3.down*2f + Vector3.right*1.5f;
 
         hpUI.SetActive(true);
         attackUI.SetActive(isAttack);
