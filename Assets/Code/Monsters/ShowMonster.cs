@@ -16,7 +16,7 @@ public abstract class ShowMonster : MonoBehaviour
     }
     public Canvas uiCanvas;
     private GameObject ui;
-    private GameObject hpUI, attackUI, defensUI, defensOnUI;
+    protected GameObject hpUI, attackUI, defensUI, defensOnUI;
     protected Type.TYPE type;
     protected ACTION action;
     protected new string name;

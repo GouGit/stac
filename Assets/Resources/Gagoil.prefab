@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8397348453376147089}
   - component: {fileID: 8397348453376147088}
   - component: {fileID: 8397348453376147103}
-  - component: {fileID: 4744183218671899201}
+  - component: {fileID: -8470907869056037666}
   m_Layer: 8
   m_Name: Gagoil
   m_TagString: Monster
@@ -107,7 +107,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.96, y: 4.16}
   m_EdgeRadius: 0
---- !u!114 &4744183218671899201
+--- !u!114 &-8470907869056037666
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8397348453376147091}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b226f48d78aa85a439556906b7306039, type: 3}
+  m_Script: {fileID: 11500000, guid: b8fd2d9008d412942b6dc1b14eae027a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mon: {fileID: 11400000, guid: 2af57eb0beb209c43813af165a5d5a13, type: 2}
