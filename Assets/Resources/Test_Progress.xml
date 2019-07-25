@@ -13,7 +13,7 @@
         <ID>1</ID>
         <position>(-2.2, -1.6, 0.0)</position>
         <type>1</type>
-        <clear>true</clear>
+        <clear>false</clear>
         <prefabs PrefabCount="1">
           <prefab>Skeleton</prefab>
         </prefabs>
@@ -21,7 +21,7 @@
           <ID>2</ID>
           <position>(0.0, 1.8, 0.0)</position>
           <type>0</type>
-          <clear>true</clear>
+          <clear>false</clear>
           <prefabs PrefabCount="1">
             <prefab>Skeleton</prefab>
           </prefabs>
@@ -31,7 +31,7 @@
         <ID>3</ID>
         <position>(0.0, -0.9, 0.0)</position>
         <type>2</type>
-        <clear>true</clear>
+        <clear>false</clear>
         <prefabs PrefabCount="0" />
         <nextSpot>2</nextSpot>
       </spot>

@@ -57,7 +57,7 @@ public class Knight : MonoBehaviour
         for(var node = HandCard.First; node != null; node = node.Next)
         {
             GameObject temp;
-            temp = Instantiate(node.Value,new Vector3(i * 2, -3.0f, 0),Quaternion.identity);
+            temp = Instantiate(node.Value, new Vector3(i * 2, -3.0f, 0), Quaternion.identity);
             temp.gameObject.SetActive(true);
             temp.transform.position = temp.transform.position + new Vector3(0, 0, -i);
             temp.transform.SetParent(showCard.transform);
@@ -83,7 +83,7 @@ public class Knight : MonoBehaviour
         }
 
         MyCard.Clear();
-        for(int i=0;i<result.Count;i++)
+        for(int i = 0; i < result.Count; i++)
         {
             MyCard.AddLast(result[i]);
         }
@@ -92,7 +92,7 @@ public class Knight : MonoBehaviour
     public void DrawCard()
     {
         HandCard.Clear();
-        for(int i=0; i<5; i++)
+        for(int i = 0; i < 5; i++)
         {
             HandCard.AddFirst(MyCard.First.Value);
             MyCard.RemoveFirst();
@@ -107,7 +107,7 @@ public class Knight : MonoBehaviour
 
     void DropCard()
     {
-        for(int i=0;i<showCard.transform.childCount;i++)
+        for(int i = 0; i < showCard.transform.childCount; i++)
         {
            TrashCard.AddFirst(HandCard.First.Value);
            HandCard.RemoveFirst();

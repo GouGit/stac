@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Newtonsoft.Json.Linq;
 
 public static class ExtendedString
 {
@@ -27,4 +28,20 @@ public static class ExtendedString
     {
         return float.Parse(str);
     }
+
+    public static int ToInt(this JToken token)
+    {
+        return token.ToString().ToInt();
+    }
+    
+    public static float ToFloat(this JToken token)
+    {
+        return token.ToString().ToFloat();
+    }
+
+    public static Vector3 ToVector3(this JToken token)
+    {
+        return token.ToString().ToVector3();
+    }
+
 }

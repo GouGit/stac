@@ -1,0 +1,48 @@
+{
+  "Test": {
+    "spots": [
+      {
+        "ID": 0,
+        "position": "(0.1, -4.0, 0.0)",
+        "type": 1,
+        "prefabs": [
+          "Skeleton"
+        ],
+        "spots": [
+          {
+            "ID": 1,
+            "position": "(-2.2, -1.6, 0.0)",
+            "type": 1,
+            "prefabs": [
+              "Skeleton"
+            ],
+            "spots": [
+              {
+                "ID": 2,
+                "position": "(0.0, 1.8, 0.0)",
+                "type": 0,
+                "prefabs": [
+                  "Skeleton"
+                ]
+              }
+            ]
+          },
+          {
+            "ID": 3,
+            "position": "(0.0, -0.9, 0.0)",
+            "type": 2,
+            "nextSpot": 2,
+            "spots": []
+          },
+          {
+            "ID": 4,
+            "position": "(1.7, -0.4, 0.0)",
+            "type": 3,
+            "nextSpot": 2,
+            "spots": []
+          }
+        ]
+      }
+    ]
+  }
+}

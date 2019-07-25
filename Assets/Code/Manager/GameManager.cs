@@ -64,6 +64,11 @@ public class GameManager : MonoBehaviour
     public List<GameObject> AllCards = new List<GameObject>();
     public int cost = 3;
 
+    public int rubyCount = 0;
+    public int sapphireCount = 0;
+    public int topazCount = 0;
+    public int diamondCount = 0;
+    
     public ResultWindow ResultWindowPrefab;
     public string mapName;// 현재 맵의 이름 (나중에 사용할 예정)
     public bool isFirstStart = true;// 해당맵이 처음 시작되는것 인지 맵이 바뀔때 마다 true로 해주어야 합니다.

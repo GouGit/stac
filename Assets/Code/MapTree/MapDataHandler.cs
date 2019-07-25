@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+// using LitJson;
+using Newtonsoft.Json.Linq;
 using System.Xml;
+using System.IO;
 
 public static class MapDataHandler
 {
@@ -13,10 +15,10 @@ public static class MapDataHandler
 
         spot.isTraversal = false;
 
-        int count = spot.nextRoutes.Count;
+        int count = spot.nextSpots.Count;
         for (int i = 0; i < count; i++)
         {
-            ResetSpot(spot.nextRoutes[i]);
+            ResetSpot(spot.nextSpots[i]);
         }
     }
 
@@ -38,10 +40,10 @@ public static class MapDataHandler
 
         spot.ID = IDcount++;
 
-        int count = spot.nextRoutes.Count;
+        int count = spot.nextSpots.Count;
         for (int i = 0; i < count; i++)
         {
-            SetID(spot.nextRoutes[i], ref IDcount);
+            SetID(spot.nextSpots[i], ref IDcount);
         }
     }
 
@@ -71,6 +73,28 @@ public static class MapDataHandler
         document.Save(filePath);
         UnityEditor.AssetDatabase.Refresh();
         // document.
+    }
+
+    public static void SaveMapJson(Spot spot, string fileName)
+    {
+        int spotCount = SetID(spot);
+       
+        JObject stage = new JObject();
+        JObject spots = new JObject();
+        JArray jarray = new JArray();
+
+        SaveMapJson(spot, jarray);
+        
+        spots.Add("spots", jarray);
+
+        stage.Add(fileName, spots);
+
+        ResetSpot(spot);
+
+
+        File.WriteAllText("./Assets/Resources/MapFiles/" + fileName + ".json", stage.ToString());
+
+        UnityEditor.AssetDatabase.Refresh();
     }
 
     private static void SaveMap(Spot spot, XmlDocument document, XmlNode root)
@@ -109,19 +133,59 @@ public static class MapDataHandler
         {
             XmlElement prefab = document.CreateElement("prefab");
             prefab.InnerText = prefabObject.name;
-            prefabs.AppendChild(prefab);        
+            prefabs.AppendChild(prefab);
         }
 
         wow.AppendChild(prefabs);
 
         spot.isTraversal = true;
 
-        int count = spot.nextRoutes.Count;
+        int count = spot.nextSpots.Count;
         for (int i = 0; i < count; i++)
         {
-            SaveMap(spot.nextRoutes[i], document, wow);
+            SaveMap(spot.nextSpots[i], document, wow);
         }
         root.AppendChild(wow);
+    }
+
+    private static void SaveMapJson(Spot spot, JArray spotArray)
+    {
+        JObject childSpot = new JObject();
+
+        childSpot.Add("ID", spot.ID);
+        childSpot.Add("position", spot.transform.position.ToString());
+        childSpot.Add("type", (int)spot.sceneOption.type);
+        // 무언가 저장할 데이터가 늘었다면 여기서 추가 하면 됩니다.
+        // 주의 : 이곳에서는 spot의 속성만 저장하여야 합니다.
+
+        if (spot.sceneOption.objectList.Count > 0)
+        {
+            JArray prefabs = new JArray();
+
+            foreach (GameObject prefabObject in spot.sceneOption.objectList)
+                prefabs.Add(prefabObject.name);
+
+            childSpot.Add("prefabs", prefabs);
+        }
+
+        spot.isTraversal = true;
+        int count = spot.nextSpots.Count;
+        if (count != 0)
+        {
+            JArray jarray = new JArray();
+            for (int i = 0; i < count; i++)
+            {
+                Spot next = spot.nextSpots[i];
+
+                if (next.isTraversal)
+                    childSpot.Add("nextSpot", next.ID);
+                else
+                    SaveMapJson(next, jarray);
+            }
+            childSpot.Add("spots", jarray);
+        }
+
+        spotArray.Add(childSpot);
     }
 
 
@@ -142,6 +206,7 @@ public static class MapDataHandler
         LoadProgress(spot, document, root);
     }
 
+
     private static void LoadProgress(Spot spot, XmlDocument document, XmlNode root)
     {
         // spot.transform.position = root.SelectSingleNode("position").InnerText.;
@@ -150,10 +215,10 @@ public static class MapDataHandler
         {
             spot.isTraversal = true;
             XmlNodeList list = root.SelectNodes("spot");
-            int count = spot.nextRoutes.Count;
+            int count = spot.nextSpots.Count;
             for (int i = 0; i < count; i++)
             {
-                LoadProgress(spot.nextRoutes[i], document, list[i]);
+                LoadProgress(spot.nextSpots[i], document, list[i]);
             }
         }
     }
@@ -177,12 +242,25 @@ public static class MapDataHandler
         XmlNode root = spots.SelectSingleNode("spot");
         return CreateMap(document, root, spotList);
     }
+    
+    public static Spot LoadMapJson(string fileName)
+    {
+        UnityEditor.AssetDatabase.Refresh();
+
+        string jsonData = File.ReadAllText("./Assets/Resources/MapFiles/" + fileName + ".json");
+        JObject stage = (JObject)JObject.Parse(jsonData)[fileName];
+        JArray spots = (JArray)stage["spots"];
+
+        List<Spot> spotList = new List<Spot>();
+
+        return CreateMapJson((JObject)spots[0], spotList);
+    }
 
     private static Spot CreateMap(XmlDocument document, XmlNode root, List<Spot> spotList)
     {
         int ID = root.SelectSingleNode("ID").InnerText.ToInt();
         Vector3 position = root.SelectSingleNode("position").InnerText.ToVector3();
-        
+
         int type = root.SelectSingleNode("type").InnerText.ToInt();
         bool isClear = bool.Parse(root.SelectSingleNode("clear").InnerText);
 
@@ -194,28 +272,76 @@ public static class MapDataHandler
         spot.isClear = isClear;
 
         XmlNodeList prefabList = root.SelectNodes("prefabs");
-        for(int i = 0; i < prefabList.Count; i++)
+        for (int i = 0; i < prefabList.Count; i++)
         {
             string name = prefabList[i].InnerText;
-            if(!name.Equals(""))
-                spot.sceneOption.objectList.Add(Resources.Load(prefabList[i].InnerText) as GameObject);
+            if (!name.Equals(""))
+                spot.sceneOption.objectList.Add(Resources.Load(name) as GameObject);
 
         }
 
         spotList.Add(spot);
-        
-        for(int i = 0; i < nextSpotList.Count;i++)
+
+        for (int i = 0; i < nextSpotList.Count; i++)
         {
-            spot.nextRoutes.Add(spotList[nextSpotList[i].InnerText.ToInt()]);
+            Debug.Log(nextSpotList[i].InnerText.ToInt());
+            spot.nextSpots.Add(spotList[nextSpotList[i].InnerText.ToInt()]);
         }
 
         XmlNodeList list = root.SelectNodes("spot");
         int count = list.Count;
-        for(int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++)
         {
-            spot.nextRoutes.Add(CreateMap(document, list[i], spotList));
+            spot.nextSpots.Add(CreateMap(document, list[i], spotList));
         }
 
+        return spot;
+    }
+
+    private static Spot CreateMapJson(JObject root, List<Spot> spotList)
+    {
+        int ID = root["ID"].ToInt();
+        Vector3 position = root["position"].ToVector3();
+
+        SceneOption.Type type = (SceneOption.Type)root["type"].ToInt();
+
+        Spot spot = (GameObject.Instantiate(Resources.Load("Spot"), position, Quaternion.identity) as GameObject).GetComponent<Spot>();
+        spot.ID = ID;
+        spot.sceneOption.type = type;
+
+        Debug.Log(ID);
+
+        JToken prefabsValue;
+        if(root.TryGetValue("prefabs", out prefabsValue))
+        {
+            JArray prefabList = (JArray)prefabsValue;
+            
+            for (int i = 0; i < prefabList.Count; i++)
+            {
+                string name = prefabList[i].ToString();
+                if (!name.Equals(""))
+                    spot.sceneOption.objectList.Add(Resources.Load(name) as GameObject);
+            }
+        }
+
+        spotList.Add(spot);
+
+        JToken nextSpotValue;
+        if(root.TryGetValue("nextSpot", out nextSpotValue))
+        {
+            spot.nextSpots.Add(spotList[nextSpotValue.ToInt()]);
+        }
+
+        JToken spotsValue;
+        if(root.TryGetValue("spots", out spotsValue))
+        {
+            JArray list = (JArray)spotsValue;
+            int count = list.Count;
+            for (int i = 0; i < count; i++)
+            {
+                spot.nextSpots.Add(CreateMapJson((JObject)list[i], spotList));
+            }
+        }
         return spot;
     }
 }
