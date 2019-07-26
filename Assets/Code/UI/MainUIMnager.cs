@@ -46,6 +46,15 @@ public class MainUIMnager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        GameObject Images = GameObject.Find("Images");
+        GameObject GoldImg = Images?.transform?.GetChild(0)?.gameObject;
+        GameObject MaterialImg = Images?.transform?.GetChild(0)?.gameObject;
+
+        GoldText = GoldImg?.transform?.GetChild(0)?.GetComponent<Text>();
+        RubyText = MaterialImg?.transform?.GetChild(0)?.GetComponent<Text>();
+        SapphireText = MaterialImg?.transform?.GetChild(1)?.GetComponent<Text>();
+        TopazText = MaterialImg?.transform?.GetChild(2)?.GetComponent<Text>();
+        DiamondText = MaterialImg?.transform?.GetChild(3)?.GetComponent<Text>();
     }
 
     public void VolumeControl()

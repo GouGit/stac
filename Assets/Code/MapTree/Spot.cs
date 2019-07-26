@@ -7,7 +7,7 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
 {
     public LineRenderer liner;
     [Tooltip("이 지점에서 길을 이을 다음 지점 입니다.")]
-    public List<Spot> nextRoutes;       // 다음으로 이어질 spot 입니다.
+    public List<Spot> nextSpots;       // 다음으로 이어질 spot 입니다.
 
     public SceneOption sceneOption;
 
@@ -27,15 +27,15 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
 
     void Start()
     {
-        liner.positionCount = nextRoutes.Count * 2;
+        liner.positionCount = nextSpots.Count * 2;
         
-        int count = nextRoutes.Count;
+        int count = nextSpots.Count;
 
         for(int i = 0; i < count; i++)
         {
             int offset = (i + 1) * 2 - 1;
             liner.SetPosition(offset - 1, transform.position);
-            liner.SetPosition(offset, nextRoutes[i].transform.position);
+            liner.SetPosition(offset, nextSpots[i].transform.position);
         }
         
         
@@ -57,15 +57,15 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
 
     void LateUpdate()
     {
-        liner.positionCount = nextRoutes.Count * 2;
+        liner.positionCount = nextSpots.Count * 2;
         
-        int count = nextRoutes.Count;
+        int count = nextSpots.Count;
 
         for(int i = 0; i < count; i++)
         {
             int offset = (i + 1) * 2 - 1;
             liner.SetPosition(offset - 1, transform.position);
-            liner.SetPosition(offset, nextRoutes[i].transform.position);
+            liner.SetPosition(offset, nextSpots[i].transform.position);
         }
     }
 
@@ -96,7 +96,7 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
 
     private static Spot GetProgressSpotRecursion(Spot spot)
     {// isClear가 false인 spot을 리턴하기 위한 재귀함수 입니다.
-        foreach(Spot nextSpot in spot.nextRoutes)
+        foreach(Spot nextSpot in spot.nextSpots)
         {
             if(nextSpot.isClear)
                 return GetProgressSpotRecursion(nextSpot);

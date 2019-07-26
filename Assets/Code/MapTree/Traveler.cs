@@ -62,8 +62,6 @@ public class Traveler : MonoBehaviour
 
         if(OnMoveEnd != null)
             OnMoveEnd.Invoke();
-        
-        // nowSpot.ChangeScene();
     }
 
     void Start()
@@ -74,8 +72,6 @@ public class Traveler : MonoBehaviour
             return;
         }
 
-        // ChangeSpot(nowSpot);
-
         transform.position = nowSpot.transform.position;
         canvas = GameObject.Find("Canvas");
         ViewRoutes();
@@ -83,10 +79,10 @@ public class Traveler : MonoBehaviour
 
     public void ViewRoutes()
     {
-        for(int i = 0; i < nowSpot.nextRoutes.Count; i++)
+        for(int i = 0; i < nowSpot.nextSpots.Count; i++)
         {
             RoutePicker picker = Instantiate(routePicker);
-            picker.SetOption(this, nowSpot.nextRoutes[i]);
+            picker.SetOption(this, nowSpot.nextSpots[i]);
             picker.transform.SetParent(canvas.transform.GetChild(0).transform);
         }
     }

@@ -8,6 +8,8 @@ public class Gagoil : ShowMonster
     {
         base.Start();
         isAttack = false;
+        attackUI.SetActive(isAttack);
+        defensUI.SetActive(!isAttack);
     }
 
     protected override void Attack()

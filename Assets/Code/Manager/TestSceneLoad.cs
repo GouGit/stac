@@ -6,7 +6,7 @@ public class TestSceneLoad : MonoBehaviour
 {
     private GameObject temp;
 
-    void Start()
+    void Awake()
     {
         temp = Instantiate(Resources.Load("Skeleton") as GameObject, Vector3.zero, Quaternion.identity);
         MonsterOption.AllMonsters.AddLast(temp);
