@@ -19,7 +19,7 @@ public class Gagoil : ShowMonster
 
     protected override void Defens()
     {
-        for(var node = MonsterOption.AllMonsters.First; node != null; node = node.Next)
+        for(var node = GameManager.instance.monsterOption.AllMonsters.First; node != null; node = node.Next)
         {
             ShowMonster monster = node.Value.GetComponent<ShowMonster>();
             monster.ondefensPower += defensPower;

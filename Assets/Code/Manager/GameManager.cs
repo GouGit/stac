@@ -15,48 +15,6 @@ public class Type
     }
 }
 
-public static class MonsterOption
-{
-    public static LinkedList<GameObject> AllMonsters = new LinkedList<GameObject>();
-    private static List<Vector3> posistions =  new List<Vector3>();
-
-    public static void SetPos()
-    {
-        posistions.Clear();
-        switch (AllMonsters.Count)
-        {
-        case 1:
-            posistions.Add(new Vector3(0,2.75f,0));
-            break;
-        case 2:
-            posistions.Add(new Vector3(-2.25f,2.75f,0));
-            posistions.Add(new Vector3(2.25f,2.75f,0));
-            break;
-        case 3:
-            posistions.Add(new Vector3(-4.5f,2.75f,0));
-            posistions.Add(new Vector3(0,2.75f,0));
-            posistions.Add(new Vector3(4.5f,2.75f,0));
-            break;
-        }
-    }
-
-    public static Vector3 ReturnPos(int number)
-    {
-        return posistions[number];
-    }
-
-    public static void Remove()
-    {
-        for(var node = AllMonsters.First; node != null; node = node.Next)
-        {
-            if(!node.Value.activeSelf)
-            {
-                AllMonsters.Remove(node);
-            }
-        }
-    }
-}
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
@@ -73,6 +31,8 @@ public class GameManager : MonoBehaviour
     public string mapName;// 현재 맵의 이름 (나중에 사용할 예정)
     public bool isFirstStart = true;// 해당맵이 처음 시작되는것 인지 맵이 바뀔때 마다 true로 해주어야 합니다.
 
+    public MonsterManager monsterOption;
+
     void Awake()
     {
         if(instance == null)
@@ -84,6 +44,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    void Start()
+    {
+        monsterOption = GetComponent<MonsterManager>();
     }
 
     public void OnGameEnd()

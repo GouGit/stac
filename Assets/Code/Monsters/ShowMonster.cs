@@ -157,6 +157,7 @@ public abstract class ShowMonster : MonoBehaviour
         
         if(hp <= 0)
         {
+            GameManager.instance.monsterOption.Remove();
             ui.gameObject.SetActive(false);
             gameObject.SetActive(false);
             OnMonsterDead?.Invoke();

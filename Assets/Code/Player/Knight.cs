@@ -12,7 +12,7 @@ public class Knight : MonoBehaviour
     private  LinkedList<GameObject> MyCard = new LinkedList<GameObject>();
     private LinkedList<GameObject> HandCard = new LinkedList<GameObject>();
     private LinkedList<GameObject> TrashCard = new LinkedList<GameObject>();
-    private GameObject showCard, temp;
+    private GameObject showCard;
     private int hp, maxhp;
     private string playerName;
     private FadeUI hitUI;
@@ -31,23 +31,22 @@ public class Knight : MonoBehaviour
 
     void Start()
     {
+        hp = player.hp;
+        maxhp = hp;
+        defensPower = player.defensPower;
+        playerName = player.name;
+
+        playerUI.worldCamera = Camera.main;
+        GameObject temp = Instantiate(playerUI.gameObject, Vector3.zero, Quaternion.identity);
+        temp.SetActive(true);
+        hitUI = temp.transform.GetChild(0).gameObject.GetComponent<FadeUI>();
+        
         for(int i = 0; i < GameManager.instance.AllCards.Count; i++)
         {
             MyCard.AddLast(GameManager.instance.AllCards[i]);
         }
         Shuffle();
         DrawCard();
-
-        playerUI.worldCamera = Camera.main;
-        temp = Instantiate(playerUI.gameObject, Vector3.zero, Quaternion.identity);
-        temp.SetActive(true);
-
-        hitUI = temp.transform.GetChild(0).gameObject.GetComponent<FadeUI>();
-
-        hp = player.hp;
-        maxhp = hp;
-        defensPower = player.defensPower;
-        playerName = player.name;
     }
 
     void Show()
@@ -91,7 +90,8 @@ public class Knight : MonoBehaviour
 
     public void DrawCard()
     {
-        HandCard.Clear();
+        if(HandCard.Count > 0)
+            return;
         for(int i = 0; i < 5; i++)
         {
             HandCard.AddFirst(MyCard.First.Value);
@@ -112,6 +112,7 @@ public class Knight : MonoBehaviour
            TrashCard.AddFirst(HandCard.First.Value);
            HandCard.RemoveFirst();
         }
+        HandCard.Clear();
         Destroy(showCard);
     }
 
