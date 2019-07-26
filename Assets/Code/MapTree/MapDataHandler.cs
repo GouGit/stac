@@ -50,41 +50,19 @@ public static class MapDataHandler
     /// <summary>
     /// 맵을 저장합니다.
     /// </summary>
-    /// <param name="spot">제일 첫 spot</param>
-    /// <param name="filePath">XML파일의 위치</param>
-    public static void SaveMap(Spot spot, string filePath)
+    /// <param name="spot">저장할 맵의 제일 첫 spot</param>
+    /// <param name="fileName">JSON 파일의 이름</param>
+
+    public static void SaveMap(Spot spot, string fileName)
     {
         int spotCount = SetID(spot);
 
-        XmlDocument document = new XmlDocument();
-        document.AppendChild(document.CreateXmlDeclaration("1.0", "utf-8", "yes"));
-
-        XmlElement root = document.CreateElement("Stage_Test");
-        document.AppendChild(root);
-
-        XmlElement child = document.CreateElement("Spots");
-        child.SetAttribute("SpotCount", spotCount.ToString());
-        root.AppendChild(child);
-
-        SaveMap(spot, document, child);
-
-        ResetSpot(spot);
-
-        document.Save(filePath);
-        UnityEditor.AssetDatabase.Refresh();
-        // document.
-    }
-
-    public static void SaveMapJson(Spot spot, string fileName)
-    {
-        int spotCount = SetID(spot);
-       
         JObject stage = new JObject();
         JObject spots = new JObject();
         JArray jarray = new JArray();
 
-        SaveMapJson(spot, jarray);
-        
+        SaveMap(spot, jarray);
+
         spots.Add("spots", jarray);
 
         stage.Add(fileName, spots);
@@ -97,58 +75,7 @@ public static class MapDataHandler
         UnityEditor.AssetDatabase.Refresh();
     }
 
-    private static void SaveMap(Spot spot, XmlDocument document, XmlNode root)
-    {
-        if (spot.isTraversal)
-        {// 이미 지나간 Spot 입니다. (트리의 노드가 이어지는 부분 입니다.)
-            XmlElement nextSpot = document.CreateElement("nextSpot");
-            nextSpot.InnerText = spot.ID.ToString();
-            root.AppendChild(nextSpot);
-
-            return;
-        }
-
-        XmlElement wow = document.CreateElement("spot");
-
-        XmlElement IDcount = document.CreateElement("ID");
-        IDcount.InnerText = spot.ID.ToString();
-        wow.AppendChild(IDcount);
-
-        XmlElement position = document.CreateElement("position");
-        position.InnerText = spot.transform.position.ToString();
-        wow.AppendChild(position);
-
-        XmlElement type = document.CreateElement("type");
-        type.InnerText = ((int)spot.sceneOption.type).ToString();
-        wow.AppendChild(type);
-
-        XmlElement clear = document.CreateElement("clear");
-        clear.InnerText = spot.isClear.ToString().ToLower();
-        wow.AppendChild(clear);
-
-        XmlElement prefabs = document.CreateElement("prefabs");
-        prefabs.SetAttribute("PrefabCount", spot.sceneOption.objectList.Count.ToString());
-
-        foreach (GameObject prefabObject in spot.sceneOption.objectList)
-        {
-            XmlElement prefab = document.CreateElement("prefab");
-            prefab.InnerText = prefabObject.name;
-            prefabs.AppendChild(prefab);
-        }
-
-        wow.AppendChild(prefabs);
-
-        spot.isTraversal = true;
-
-        int count = spot.nextSpots.Count;
-        for (int i = 0; i < count; i++)
-        {
-            SaveMap(spot.nextSpots[i], document, wow);
-        }
-        root.AppendChild(wow);
-    }
-
-    private static void SaveMapJson(Spot spot, JArray spotArray)
+    private static void SaveMap(Spot spot, JArray spotArray)
     {
         JObject childSpot = new JObject();
 
@@ -180,7 +107,7 @@ public static class MapDataHandler
                 if (next.isTraversal)
                     childSpot.Add("nextSpot", next.ID);
                 else
-                    SaveMapJson(next, jarray);
+                    SaveMap(next, jarray);
             }
             childSpot.Add("spots", jarray);
         }
@@ -190,60 +117,10 @@ public static class MapDataHandler
 
 
     /// <summary>
-    /// 맵을 불러옵니다.
+    /// JSON파일을 이용하여 맵을 구성하고 제일 처음 spot을 리턴합니다.
     /// </summary>
-    /// <param name="spot">제일 첫 spot</param>
-    /// <param name="filePath">XML파일의 위치</param>
-    public static void LoadProgress(Spot spot, string filePath)
-    {
-        TextAsset textAsset = (TextAsset)Resources.Load(filePath);
-        XmlDocument document = new XmlDocument();
-
-        document.LoadXml(textAsset.text);
-
-        XmlNode root = document.SelectSingleNode("Stage_Test/Spots/spot");
-
-        LoadProgress(spot, document, root);
-    }
-
-
-    private static void LoadProgress(Spot spot, XmlDocument document, XmlNode root)
-    {
-        // spot.transform.position = root.SelectSingleNode("position").InnerText.;
-
-        if (!spot.isTraversal)
-        {
-            spot.isTraversal = true;
-            XmlNodeList list = root.SelectNodes("spot");
-            int count = spot.nextSpots.Count;
-            for (int i = 0; i < count; i++)
-            {
-                LoadProgress(spot.nextSpots[i], document, list[i]);
-            }
-        }
-    }
-
-    /// <summary>
-    /// XML파일을 이용하여 맵을 구성하고 제일 처음 spot을 리턴합니다.
-    /// </summary>
-    /// <param name="filePath">XML파일의 위치</param>
-    public static Spot CreateMap(string filePath)
-    {
-        TextAsset textAsset = (TextAsset)Resources.Load(filePath);
-        XmlDocument document = new XmlDocument();
-
-        document.LoadXml(textAsset.text);
-
-        XmlNode spots = document.SelectSingleNode("Stage_Test/Spots");
-        int count = (spots as XmlElement).GetAttribute("SpotCount").ToInt();
-
-        List<Spot> spotList = new List<Spot>();
-
-        XmlNode root = spots.SelectSingleNode("spot");
-        return CreateMap(document, root, spotList);
-    }
-    
-    public static Spot LoadMapJson(string fileName)
+    /// <param name="fileName">JSON 파일의 이름</param>
+    public static Spot LoadMap(string fileName)
     {
         UnityEditor.AssetDatabase.Refresh();
 
@@ -253,52 +130,11 @@ public static class MapDataHandler
 
         List<Spot> spotList = new List<Spot>();
 
-        return CreateMapJson((JObject)spots[0], spotList);
+        return LoadMap((JObject)spots[0], spotList);
     }
 
-    private static Spot CreateMap(XmlDocument document, XmlNode root, List<Spot> spotList)
-    {
-        int ID = root.SelectSingleNode("ID").InnerText.ToInt();
-        Vector3 position = root.SelectSingleNode("position").InnerText.ToVector3();
 
-        int type = root.SelectSingleNode("type").InnerText.ToInt();
-        bool isClear = bool.Parse(root.SelectSingleNode("clear").InnerText);
-
-        XmlNodeList nextSpotList = root.SelectNodes("nextSpot");
-
-        Spot spot = (GameObject.Instantiate(Resources.Load("Spot"), position, Quaternion.identity) as GameObject).GetComponent<Spot>();
-        spot.ID = ID;
-        spot.sceneOption.type = (SceneOption.Type)type;
-        spot.isClear = isClear;
-
-        XmlNodeList prefabList = root.SelectNodes("prefabs");
-        for (int i = 0; i < prefabList.Count; i++)
-        {
-            string name = prefabList[i].InnerText;
-            if (!name.Equals(""))
-                spot.sceneOption.objectList.Add(Resources.Load(name) as GameObject);
-
-        }
-
-        spotList.Add(spot);
-
-        for (int i = 0; i < nextSpotList.Count; i++)
-        {
-            Debug.Log(nextSpotList[i].InnerText.ToInt());
-            spot.nextSpots.Add(spotList[nextSpotList[i].InnerText.ToInt()]);
-        }
-
-        XmlNodeList list = root.SelectNodes("spot");
-        int count = list.Count;
-        for (int i = 0; i < count; i++)
-        {
-            spot.nextSpots.Add(CreateMap(document, list[i], spotList));
-        }
-
-        return spot;
-    }
-
-    private static Spot CreateMapJson(JObject root, List<Spot> spotList)
+    private static Spot LoadMap(JObject root, List<Spot> spotList)
     {
         int ID = root["ID"].ToInt();
         Vector3 position = root["position"].ToVector3();
@@ -309,13 +145,11 @@ public static class MapDataHandler
         spot.ID = ID;
         spot.sceneOption.type = type;
 
-        Debug.Log(ID);
-
         JToken prefabsValue;
-        if(root.TryGetValue("prefabs", out prefabsValue))
+        if (root.TryGetValue("prefabs", out prefabsValue))
         {
             JArray prefabList = (JArray)prefabsValue;
-            
+
             for (int i = 0; i < prefabList.Count; i++)
             {
                 string name = prefabList[i].ToString();
@@ -327,21 +161,260 @@ public static class MapDataHandler
         spotList.Add(spot);
 
         JToken nextSpotValue;
-        if(root.TryGetValue("nextSpot", out nextSpotValue))
+        if (root.TryGetValue("nextSpot", out nextSpotValue))
         {
             spot.nextSpots.Add(spotList[nextSpotValue.ToInt()]);
         }
 
         JToken spotsValue;
-        if(root.TryGetValue("spots", out spotsValue))
+        if (root.TryGetValue("spots", out spotsValue))
         {
             JArray list = (JArray)spotsValue;
             int count = list.Count;
             for (int i = 0; i < count; i++)
             {
-                spot.nextSpots.Add(CreateMapJson((JObject)list[i], spotList));
+                spot.nextSpots.Add(LoadMap((JObject)list[i], spotList));
             }
         }
         return spot;
     }
+
+    /// <summary>
+    /// 맵의 진행도를 저장합니다.
+    /// </summary>
+    /// <param name="spot">진행도를 저장할 맵의 제일 첫 spot</param>
+    /// <param name="fileName">저장할 JSON파일의 이름</param>
+    public static void SaveProgress(Spot spot, string fileName)
+    {
+        JObject stage = new JObject();
+        JObject spots = new JObject();
+        JArray jarray = new JArray();
+
+        SaveProgress(spot, jarray);
+
+        spots.Add("spots", jarray);
+
+        stage.Add(fileName, spots);
+
+        ResetSpot(spot);
+
+        File.WriteAllText("./Assets/Resources/TemporaryFiles/" + fileName + "_progress.json", stage.ToString());
+
+        UnityEditor.AssetDatabase.Refresh();
+    }
+
+    private static void SaveProgress(Spot spot, JArray spotArray)
+    {
+        JObject childSpot = new JObject();
+
+        childSpot.Add("ID", spot.ID);
+        childSpot.Add("clear", spot.isClear.ToString().ToLower());
+
+        // 무언가 저장할 데이터가 늘었다면 여기서 추가 하면 됩니다.
+        // 주의 : 이곳에서는 spot의 속성만 저장하여야 합니다.
+
+        spot.isTraversal = true;
+        int count = spot.nextSpots.Count;
+        if (count != 0)
+        {
+            JArray jarray = new JArray();
+            for (int i = 0; i < count; i++)
+            {
+                Spot next = spot.nextSpots[i];
+
+                if(next.isClear)
+                {
+                    if (next.isTraversal)
+                        childSpot.Add("nextSpot", next.ID);
+                    else
+                        SaveProgress(next, jarray);
+                }
+            }
+            childSpot.Add("spots", jarray);
+        }
+        spotArray.Add(childSpot);
+    }
+
+    /// <summary>
+    /// 맵의 진행도를 불러옵니다.
+    /// </summary>
+    /// <param name="spot">진행도를 불러올 맵의 첫spot</param>
+    /// <param name="fileName">불러올 JSON파일의 이름</param>
+    public static void LoadProgress(Spot spot, string fileName)
+    {
+        UnityEditor.AssetDatabase.Refresh();
+
+        string jsonData = File.ReadAllText("./Assets/Resources/TemporaryFiles/" + fileName + "_progress.json");
+        JObject stage = (JObject)JObject.Parse(jsonData)[fileName];
+        JArray spots = (JArray)stage["spots"];
+
+        List<Spot> spotList = new List<Spot>();
+
+        LoadProgress(spot ,(JObject)spots[0]);
+    }
+
+    private static void LoadProgress(Spot spot, JObject root)
+    {
+        int ID = root["ID"].ToInt();
+
+        bool isClear = root["clear"].ToBool();
+
+        if(spot.ID == ID)
+        {
+            spot.isClear = isClear;
+        }
+        else
+        {
+            // 저장파일 훼손 가능성 있음
+        }
+
+        JToken spotsValue;
+        if (root.TryGetValue("spots", out spotsValue))
+        {
+            JArray list = (JArray)spotsValue;
+            int count = list.Count;
+            for (int i = 0; i < count; i++)
+            {
+                LoadProgress(spot.nextSpots[i], (JObject)list[i]);
+            }
+        }
+    }
+
+
+    /////////////////////////////////////////////////////////////////
+    // 아래 부터는 이전에 사용하던 XML코드임.  혹시몰라서 일단은 남겨둠 //
+    /////////////////////////////////////////////////////////////////
+
+
+    // private static Spot CreateMap(XmlDocument document, XmlNode root, List<Spot> spotList)
+    // {
+    //     int ID = root.SelectSingleNode("ID").InnerText.ToInt();
+    //     Vector3 position = root.SelectSingleNode("position").InnerText.ToVector3();
+
+    //     int type = root.SelectSingleNode("type").InnerText.ToInt();
+    //     bool isClear = bool.Parse(root.SelectSingleNode("clear").InnerText);
+
+    //     XmlNodeList nextSpotList = root.SelectNodes("nextSpot");
+
+    //     Spot spot = (GameObject.Instantiate(Resources.Load("Spot"), position, Quaternion.identity) as GameObject).GetComponent<Spot>();
+    //     spot.ID = ID;
+    //     spot.sceneOption.type = (SceneOption.Type)type;
+    //     spot.isClear = isClear;
+
+    //     XmlNodeList prefabList = root.SelectNodes("prefabs");
+    //     for (int i = 0; i < prefabList.Count; i++)
+    //     {
+    //         string name = prefabList[i].InnerText;
+    //         if (!name.Equals(""))
+    //             spot.sceneOption.objectList.Add(Resources.Load(name) as GameObject);
+
+    //     }
+
+    //     spotList.Add(spot);
+
+    //     for (int i = 0; i < nextSpotList.Count; i++)
+    //     {
+    //         Debug.Log(nextSpotList[i].InnerText.ToInt());
+    //         spot.nextSpots.Add(spotList[nextSpotList[i].InnerText.ToInt()]);
+    //     }
+
+    //     XmlNodeList list = root.SelectNodes("spot");
+    //     int count = list.Count;
+    //     for (int i = 0; i < count; i++)
+    //     {
+    //         spot.nextSpots.Add(CreateMap(document, list[i], spotList));
+    //     }
+
+    //     return spot;
+    // }
+
+    // public static Spot CreateMap(string filePath)
+    // {
+    //     TextAsset textAsset = (TextAsset)Resources.Load(filePath);
+    //     XmlDocument document = new XmlDocument();
+
+    //     document.LoadXml(textAsset.text);
+
+    //     XmlNode spots = document.SelectSingleNode("Stage_Test/Spots");
+    //     int count = (spots as XmlElement).GetAttribute("SpotCount").ToInt();
+
+    //     List<Spot> spotList = new List<Spot>();
+
+    //     XmlNode root = spots.SelectSingleNode("spot");
+    //     return CreateMap(document, root, spotList);
+    // }
+
+    // private static void SaveMap(Spot spot, XmlDocument document, XmlNode root)
+    // {
+    //     if (spot.isTraversal)
+    //     {// 이미 지나간 Spot 입니다. (트리의 노드가 이어지는 부분 입니다.)
+    //         XmlElement nextSpot = document.CreateElement("nextSpot");
+    //         nextSpot.InnerText = spot.ID.ToString();
+    //         root.AppendChild(nextSpot);
+
+    //         return;
+    //     }
+
+    //     XmlElement wow = document.CreateElement("spot");
+
+    //     XmlElement IDcount = document.CreateElement("ID");
+    //     IDcount.InnerText = spot.ID.ToString();
+    //     wow.AppendChild(IDcount);
+
+    //     XmlElement position = document.CreateElement("position");
+    //     position.InnerText = spot.transform.position.ToString();
+    //     wow.AppendChild(position);
+
+    //     XmlElement type = document.CreateElement("type");
+    //     type.InnerText = ((int)spot.sceneOption.type).ToString();
+    //     wow.AppendChild(type);
+
+    //     XmlElement clear = document.CreateElement("clear");
+    //     clear.InnerText = spot.isClear.ToString().ToLower();
+    //     wow.AppendChild(clear);
+
+    //     XmlElement prefabs = document.CreateElement("prefabs");
+    //     prefabs.SetAttribute("PrefabCount", spot.sceneOption.objectList.Count.ToString());
+
+    //     foreach (GameObject prefabObject in spot.sceneOption.objectList)
+    //     {
+    //         XmlElement prefab = document.CreateElement("prefab");
+    //         prefab.InnerText = prefabObject.name;
+    //         prefabs.AppendChild(prefab);
+    //     }
+
+    //     wow.AppendChild(prefabs);
+
+    //     spot.isTraversal = true;
+
+    //     int count = spot.nextSpots.Count;
+    //     for (int i = 0; i < count; i++)
+    //     {
+    //         SaveMap(spot.nextSpots[i], document, wow);
+    //     }
+    //     root.AppendChild(wow);
+    // }
+
+    // public static void SaveMap(Spot spot, string filePath)
+    // {
+    //     int spotCount = SetID(spot);
+
+    //     XmlDocument document = new XmlDocument();
+    //     document.AppendChild(document.CreateXmlDeclaration("1.0", "utf-8", "yes"));
+
+    //     XmlElement root = document.CreateElement("Stage_Test");
+    //     document.AppendChild(root);
+
+    //     XmlElement child = document.CreateElement("Spots");
+    //     child.SetAttribute("SpotCount", spotCount.ToString());
+    //     root.AppendChild(child);
+
+    //     SaveMap(spot, document, child);
+
+    //     ResetSpot(spot);
+
+    //     document.Save(filePath);
+    //     UnityEditor.AssetDatabase.Refresh();
+    //     // document.
+    // }
 }

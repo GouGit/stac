@@ -1,0 +1,22 @@
+{
+  "Test": {
+    "spots": [
+      {
+        "ID": 0,
+        "clear": "true",
+        "spots": [
+          {
+            "ID": 1,
+            "clear": "true",
+            "spots": [
+              {
+                "ID": 2,
+                "clear": "true"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

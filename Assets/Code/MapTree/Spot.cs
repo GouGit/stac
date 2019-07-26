@@ -120,7 +120,7 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
     {
         isClear = true;
 
-        MapDataHandler.SaveMap(GetFirstSpot(), "./Assets/Resources/Test_Progress.xml");
+        MapDataHandler.SaveProgress(GetFirstSpot(), "Test");
 
         SceneLoader.LoadScene("BattleScene", sceneOption);
     }

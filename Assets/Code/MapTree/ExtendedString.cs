@@ -44,4 +44,8 @@ public static class ExtendedString
         return token.ToString().ToVector3();
     }
 
+    public static bool ToBool(this JToken token)
+    {
+        return bool.Parse(token.ToString().ToLower());
+    }
 }
