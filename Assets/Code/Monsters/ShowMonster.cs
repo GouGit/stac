@@ -165,7 +165,6 @@ public abstract class ShowMonster : MonoBehaviour
     void OnDisable()
     {
         GameManager.instance.monsterOption.Remove();
-        Debug.Log(GameManager.instance.monsterOption.AllMonsters.Count);
         if(GameManager.instance.monsterOption.AllMonsters.Count == 0)
         {
             GameManager.instance.monsterOption.AllMonsters.Clear();
