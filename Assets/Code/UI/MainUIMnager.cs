@@ -8,8 +8,8 @@ using UnityEngine.UI;
 
 public class MainUIMnager : MonoBehaviour
 {
-    private MainUIMnager instance;
-    public MainUIMnager Instance
+    private static MainUIMnager instance;
+    public static MainUIMnager Instance
     {
         get
         {
@@ -38,23 +38,25 @@ public class MainUIMnager : MonoBehaviour
 
     // Text
     public Text GoldText;
+    public Text TopazText;
     public Text RubyText;
     public Text SapphireText;
-    public Text TopazText;
     public Text DiamondText;
 
     private void Awake()
     {
+        Debug.Log("asdf");
         instance = this;
         GameObject Images = GameObject.Find("Images");
-        GameObject GoldImg = Images?.transform?.GetChild(0)?.gameObject;
-        GameObject MaterialImg = Images?.transform?.GetChild(0)?.gameObject;
+        // GameObject GoldImg = Images?.transform?.GetChild(0)?.gameObject;
+        // GameObject MaterialImg = Images?.transform?.GetChild(0)?.gameObject;
 
-        GoldText = GoldImg?.transform?.GetChild(0)?.GetComponent<Text>();
-        RubyText = MaterialImg?.transform?.GetChild(0)?.GetComponent<Text>();
-        SapphireText = MaterialImg?.transform?.GetChild(1)?.GetComponent<Text>();
-        TopazText = MaterialImg?.transform?.GetChild(2)?.GetComponent<Text>();
-        DiamondText = MaterialImg?.transform?.GetChild(3)?.GetComponent<Text>();
+        // GoldText = GoldImg?.transform?.GetChild(0)?.GetComponent<Text>();
+
+        // RubyText = MaterialImg?.transform?.GetChild(0)?.GetComponent<Text>();
+        // SapphireText = MaterialImg?.transform?.GetChild(1)?.GetComponent<Text>();
+        // TopazText = MaterialImg?.transform?.GetChild(2)?.GetComponent<Text>();
+        // DiamondText = MaterialImg?.transform?.GetChild(3)?.GetComponent<Text>();
     }
 
     public void VolumeControl()
@@ -103,5 +105,15 @@ public class MainUIMnager : MonoBehaviour
 #elif UNITY_ANDROID
         Application.Quit();
 #endif
+    }
+
+    public void SetText()
+    {
+        GoldText.text = GameManager.instance.goldCount.ToString();
+        
+        TopazText.text = GameManager.instance.topazCount.ToString();
+        RubyText.text = GameManager.instance.rubyCount.ToString();
+        SapphireText.text = GameManager.instance.sapphireCount.ToString();
+        DiamondText.text = GameManager.instance.diamondCount.ToString();
     }
 }

@@ -22,9 +22,10 @@ public class GameManager : MonoBehaviour
     public List<GameObject> AllCards = new List<GameObject>();
     public int cost = 3;
 
+    public int goldCount = 0;
+    public int topazCount = 0;
     public int rubyCount = 0;
     public int sapphireCount = 0;
-    public int topazCount = 0;
     public int diamondCount = 0;
     
     public ResultWindow ResultWindowPrefab;
@@ -76,9 +77,34 @@ public class GameManager : MonoBehaviour
 
     void AutoReset(Scene scene, LoadSceneMode mode)
     {
-        if (string.Equals(scene.name, "Title"))
+        SaveGemCount();
+        switch (scene.name)
         {
-            isFirstStart = true;
+            case "Title":
+                isFirstStart = true;
+                LoadGemCount();
+                MainUIMnager.Instance.SetText();
+            break;
         }
+    }
+
+    public void LoadGemCount()
+    {
+        goldCount= PlayerPrefs.GetInt("goldCount");
+        
+        topazCount = PlayerPrefs.GetInt("topazCount");
+        rubyCount = PlayerPrefs.GetInt("rubyCount");
+        sapphireCount = PlayerPrefs.GetInt("sapphireCount");
+        diamondCount = PlayerPrefs.GetInt("diamondCount");
+    }
+
+    public void SaveGemCount()
+    {
+        PlayerPrefs.SetInt("goldCount", goldCount);
+        
+        PlayerPrefs.SetInt("topazCount", topazCount);
+        PlayerPrefs.SetInt("rubyCount", rubyCount);
+        PlayerPrefs.SetInt("sapphireCount", sapphireCount);
+        PlayerPrefs.SetInt("diamondCount", diamondCount);
     }
 }
