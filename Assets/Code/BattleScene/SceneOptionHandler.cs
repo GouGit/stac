@@ -14,31 +14,26 @@ public class SceneOptionHandler : MonoBehaviour
         SceneOptionTransporter transporter = GameObject.FindObjectOfType<SceneOptionTransporter>(); 
         if(transporter == null)
         {
-            Debug.LogError("SceneOptionTransporter를 찾을 수 없습니다.");
+            SceneOption option = new SceneOption();
+            option.type = SceneOption.Type.Battle;
+            option.objectList.Add(Resources.Load("Skeleton") as GameObject);
+
+            Debug.Log("SceneOptionTransporter를 찾을 수 없습니다.\n테스트를 위하여 Skeleton을 소환합니다.");
             return;
         }
-
-        CreateBattleScene(transporter.sceneOption);
-        //코드를 엎어서 수정할때까지 시간이 걸릴듯함 //
-        // Player.inst.gameObject.SetActive(true);
-        // Player.inst.DefensUI = GameObject.Find("StateUI").transform.GetChild(5).GetComponent<OnDefens>();
-        // GameObject.Find("end").GetComponent<Button>().onClick.AddListener(Player.inst.EndTurn);
-
-        // GameObject StateUI = GameObject.Find("StateUI");
-        // StateUI.transform.GetChild(1).transform.GetChild(1).GetComponent<Hpbar>().myObject = Player.inst;
+        else
+        {
+            CreateBattleScene(transporter.sceneOption);
+        }
     }
 
     public void CreateBattleScene(SceneOption option)
     {
         for(int i = 0; i < option.objectList.Count; i++)
         {
-            Instantiate(option.objectList[i]);
+            GameManager.instance.monsterOption.CreateMonster(option.objectList[i]);
         }
-    }
-
-    void OnDestroy()
-    {
-        // Player.inst.gameObject.SetActive(false);
-        // Player.inst.DefensUI = null;
+        
+        GameManager.instance.monsterOption.SetMonsterPosition();
     }
 }

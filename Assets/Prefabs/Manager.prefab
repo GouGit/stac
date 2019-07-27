@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4415034640395396350}
   - component: {fileID: 4415034640395396349}
+  - component: {fileID: 4937305813203759339}
   m_Layer: 0
-  m_Name: Manager 1
+  m_Name: Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,7 +57,24 @@ MonoBehaviour:
   - {fileID: 8198993514602083125, guid: ae45f6969f26508429c4d69cd0843aa4, type: 3}
   - {fileID: 8198993514602083125, guid: ae45f6969f26508429c4d69cd0843aa4, type: 3}
   cost: 3
+  rubyCount: 0
+  sapphireCount: 0
+  topazCount: 0
+  diamondCount: 0
   ResultWindowPrefab: {fileID: 1353063834063852120, guid: 3916c3e33bb40224c8fcb344b7accb46,
     type: 3}
   mapName: 
   isFirstStart: 1
+  monsterOption: {fileID: 0}
+--- !u!114 &4937305813203759339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4415034640395396348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2a4a1b9a6c024045a486f58e072ced4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

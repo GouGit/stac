@@ -6,6 +6,8 @@
         "position": "(0.1, -4.0, 0.0)",
         "type": 1,
         "prefabs": [
+          "Skeleton",
+          "Skeleton",
           "Skeleton"
         ],
         "spots": [
