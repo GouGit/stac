@@ -55,6 +55,7 @@ public class MonsterManager : MonoBehaviour
         {
             if(!node.Value.activeSelf)
             {
+                Debug.Log("check");
                 AllMonsters.Remove(node);
             }
         }

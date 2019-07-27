@@ -4,7 +4,13 @@
       {
         "ID": 0,
         "clear": "true",
-        "spots": []
+        "spots": [
+          {
+            "ID": 1,
+            "clear": "true",
+            "spots": []
+          }
+        ]
       }
     ]
   }

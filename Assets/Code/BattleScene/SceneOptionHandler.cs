@@ -33,7 +33,6 @@ public class SceneOptionHandler : MonoBehaviour
         {
             GameManager.instance.monsterOption.CreateMonster(option.objectList[i]);
         }
-        
         GameManager.instance.monsterOption.SetMonsterPosition();
     }
 }
