@@ -20,10 +20,7 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
 
     public List<Sprite> spriteList;
 
-    public void test()
-    {
-        Debug.Log("와!!!");
-    }
+    public static Spot nowSpot;
 
     void Start()
     {
@@ -118,10 +115,25 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if(isClear)
+            return;
+
         isClear = true;
+
+        nowSpot = this;
 
         MapDataHandler.SaveProgress(GetFirstSpot(), "Test");
 
         SceneLoader.LoadScene("BattleScene", sceneOption);
+    }
+
+    public static void ViewNextSpot()
+    {
+        // for(int i = 0; i < nowSpot.nextSpots.Count; i++)
+        // {
+        //     RoutePicker picker = Instantiate(routePicker);
+        //     picker.SetOption(this, nowSpot.nextSpots[i]);
+        //     picker.transform.SetParent(canvas.transform.GetChild(0).transform);
+        // }
     }
 }

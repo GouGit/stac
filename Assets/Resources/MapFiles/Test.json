@@ -16,7 +16,8 @@
             "position": "(-2.2, -1.6, 0.0)",
             "type": 1,
             "prefabs": [
-              "Skeleton"
+              "Skeleton",
+              "Gagoil"
             ],
             "spots": [
               {
@@ -24,7 +25,9 @@
                 "position": "(0.0, 1.8, 0.0)",
                 "type": 0,
                 "prefabs": [
-                  "Skeleton"
+                  "Gagoil",
+                  "Gagoil",
+                  "Gagoil"
                 ]
               }
             ]

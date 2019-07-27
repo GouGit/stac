@@ -122,6 +122,7 @@ MonoBehaviour:
   mon: {fileID: 11400000, guid: 2af57eb0beb209c43813af165a5d5a13, type: 2}
   uiCanvas: {fileID: 7608126801259923349, guid: 6e699f014d47c114cb63ce36384a1f87,
     type: 3}
+  type: 2
   hp: 0
   attackPower: 0
   defensPower: 0

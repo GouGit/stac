@@ -45,7 +45,6 @@ public class MainUIMnager : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("asdf");
         instance = this;
         GameObject Images = GameObject.Find("Images");
         // GameObject GoldImg = Images?.transform?.GetChild(0)?.gameObject;
@@ -110,7 +109,7 @@ public class MainUIMnager : MonoBehaviour
     public void SetText()
     {
         GoldText.text = GameManager.instance.goldCount.ToString();
-        
+
         TopazText.text = GameManager.instance.topazCount.ToString();
         RubyText.text = GameManager.instance.rubyCount.ToString();
         SapphireText.text = GameManager.instance.sapphireCount.ToString();
