@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        MapDataHandler.LoadGemCont(out goldCount, out topazCount, out rubyCount, out sapphireCount, out diamondCount);
     }
 
     void Start()
@@ -67,7 +69,7 @@ public class GameManager : MonoBehaviour
             ShowMonster monster = gameObj.GetComponent<ShowMonster>();
             if (monster != null)
             {
-                switch (monster.type)
+                switch (monster.mon.type)
                 {
                     case Type.TYPE.RUBY:
                         rubyCount += Random.Range(1, 4);
@@ -103,46 +105,43 @@ public class GameManager : MonoBehaviour
         if(instance == this)
         {
             SceneManager.sceneLoaded -= AutoReset;
-            Debug.Log("파-킨");
         }
     }
 
     void AutoReset(Scene scene, LoadSceneMode mode)
     {
-        SaveGemCount();
+        MapDataHandler.SaveGemCount(goldCount, topazCount, rubyCount, sapphireCount, diamondCount);
      
         switch (scene.name)
         {
             case "Title":
                 isFirstStart = true;
-                LoadGemCount();
+                MapDataHandler.LoadGemCont(out goldCount, out topazCount, out rubyCount, out sapphireCount, out diamondCount);
                 MainUIMnager.Instance.SetText();
             break;
         }
     }
 
-    public void LoadGemCount()
-    {
-        goldCount= PlayerPrefs.GetInt("goldCount");
+    // public void LoadGemCount()
+    // {
+    //     goldCount= PlayerPrefs.GetInt("goldCount");
         
-        topazCount = PlayerPrefs.GetInt("topazCount");
-        rubyCount = PlayerPrefs.GetInt("rubyCount");
-        sapphireCount = PlayerPrefs.GetInt("sapphireCount");
-        diamondCount = PlayerPrefs.GetInt("diamondCount");
+    //     topazCount = PlayerPrefs.GetInt("topazCount");
+    //     rubyCount = PlayerPrefs.GetInt("rubyCount");
+    //     sapphireCount = PlayerPrefs.GetInt("sapphireCount");
+    //     diamondCount = PlayerPrefs.GetInt("diamondCount");
+    // }
 
-        PlayerPrefs.Save();
-    }
+    // public void SaveGemCount()
+    // {
+    //     Debug.Log("Save!");
+    //     PlayerPrefs.SetInt("goldCount", goldCount);
 
-    public void SaveGemCount()
-    {
-        Debug.Log("Save!");
-        PlayerPrefs.SetInt("goldCount", goldCount);
+    //     PlayerPrefs.SetInt("topazCount", topazCount);
+    //     PlayerPrefs.SetInt("rubyCount", rubyCount);
+    //     PlayerPrefs.SetInt("sapphireCount", sapphireCount);
+    //     PlayerPrefs.SetInt("diamondCount", diamondCount);
 
-        PlayerPrefs.SetInt("topazCount", topazCount);
-        PlayerPrefs.SetInt("rubyCount", rubyCount);
-        PlayerPrefs.SetInt("sapphireCount", sapphireCount);
-        PlayerPrefs.SetInt("diamondCount", diamondCount);
-
-        PlayerPrefs.Save();
-    }
+    //     PlayerPrefs.Save();
+    // }
 }

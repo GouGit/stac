@@ -280,6 +280,51 @@ public static class MapDataHandler
         }
     }
 
+    public static void SaveGemCount(int goldCount, int topazCount, int rubyCount, int sapphireCount, int diamondCount)
+    {
+        JObject gemCount = new JObject();
+
+        gemCount.Add("goldCount", goldCount);
+        gemCount.Add("topazCount", topazCount);
+        gemCount.Add("rubyCount", rubyCount);
+        gemCount.Add("sapphireCount", sapphireCount);
+        gemCount.Add("diamondCount", diamondCount);
+
+        File.WriteAllText("./Assets/Resources/TemporaryFiles/GemCount.json", gemCount.ToString());
+
+        UnityEditor.AssetDatabase.Refresh();
+    }
+
+    public static void LoadGemCont(out int goldCount, out int topazCount, out int rubyCount, out int sapphireCount, out int diamondCount)
+    {
+        UnityEditor.AssetDatabase.Refresh();
+        
+        string jsonData;
+
+        try
+        {
+            jsonData = File.ReadAllText("./Assets/Resources/TemporaryFiles/GemCount.json");
+        }
+        catch (FileNotFoundException)
+        {
+            goldCount = 0;
+            topazCount = 0;
+            rubyCount = 0;
+            sapphireCount = 0;
+            diamondCount = 0;
+            return;
+        }
+
+
+        JObject getCount = (JObject)JObject.Parse(jsonData);
+
+        goldCount = getCount["goldCount"].ToInt();
+        topazCount = getCount["topazCount"].ToInt();
+        rubyCount = getCount["rubyCount"].ToInt();
+        sapphireCount = getCount["sapphireCount"].ToInt();
+        diamondCount = getCount["diamondCount"].ToInt();
+    }
+
 
     /////////////////////////////////////////////////////////////////
     // 아래 부터는 이전에 사용하던 XML코드임.  혹시몰라서 일단은 남겨둠 //
