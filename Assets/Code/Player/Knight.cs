@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Knight : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class Knight : MonoBehaviour
     private  LinkedList<GameObject> MyCard = new LinkedList<GameObject>();
     private LinkedList<GameObject> HandCard = new LinkedList<GameObject>();
     private LinkedList<GameObject> TrashCard = new LinkedList<GameObject>();
-    private GameObject showCard;
+    private GameObject showCard, defensUI;
+    private Image hpbar;
     private int hp, maxhp;
     private string playerName;
     private FadeUI hitUI;
@@ -39,7 +41,9 @@ public class Knight : MonoBehaviour
         playerUI.worldCamera = Camera.main;
         GameObject temp = Instantiate(playerUI.gameObject, Vector3.zero, Quaternion.identity);
         temp.SetActive(true);
-        hitUI = temp.transform.GetChild(0).gameObject.GetComponent<FadeUI>();
+        hitUI = temp.transform.GetChild(2).gameObject.GetComponent<FadeUI>();
+        hpbar = temp.transform.GetChild(0).GetChild(0).GetComponent<Image>();
+        defensUI = temp.transform.GetChild(1).gameObject;
         
         for(int i = 0; i < GameManager.instance.AllCards.Count; i++)
         {
@@ -128,6 +132,14 @@ public class Knight : MonoBehaviour
 
     private void MyTurn()
     {
+        if(defensPower > 0)
+        {
+            defensUI.SetActive(true);
+        }
+        else
+        {
+            defensUI.SetActive(false);
+        }
         Vector3 scale = new Vector3(1,1,1);
         transform.localScale = scale;
     }
@@ -138,6 +150,11 @@ public class Knight : MonoBehaviour
         DropCard();
         Vector3 scale = new Vector3(0.8f,0.8f,1);
         transform.localScale = scale;
+    }
+
+    public int ReturnHP()
+    {
+        return hp;
     }
 
     public void LoseHp(int damage)
@@ -159,8 +176,11 @@ public class Knight : MonoBehaviour
 
         if(hp <= 0)
         {
+            hp = 0;
             Debug.Log("die");
         }
+
+        hpbar.fillAmount = (float)hp/maxhp;
     }
 
     void Update()
