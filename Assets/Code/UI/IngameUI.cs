@@ -9,7 +9,9 @@ public class IngameUI : MonoBehaviour
     {
         USING,        
         USED,
-        COST
+        COST,
+        HP,
+        DEFENS
     }
     public UIType type;
     private Text text;
@@ -31,6 +33,12 @@ public class IngameUI : MonoBehaviour
             break;
             case UIType.COST:
             text.text = "" + GameManager.instance.cost;
+            break;
+            case UIType.HP:
+            text.text = "HP:"+Knight.instance.ReturnHP();
+            break;
+            case UIType.DEFENS:
+            text.text = ""+Knight.instance.defensPower;
             break;
         }
     }
