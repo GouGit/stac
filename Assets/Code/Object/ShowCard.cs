@@ -84,6 +84,10 @@ public class ShowCard : MonoBehaviour
                 transform.position = origin;
             }
         }
+        else
+        {
+            transform.position = origin;
+        }
     }
 
     private void UseCard()

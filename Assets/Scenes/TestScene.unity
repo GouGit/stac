@@ -521,9 +521,10 @@ MonoBehaviour:
   - {fileID: 8245376767212650857, guid: 78182d0bbaec61d4186a912e5dee446e, type: 3}
   - {fileID: 8245376767212650857, guid: 78182d0bbaec61d4186a912e5dee446e, type: 3}
   cost: 3
+  goldCount: 0
+  topazCount: 0
   rubyCount: 0
   sapphireCount: 0
-  topazCount: 0
   diamondCount: 0
   ResultWindowPrefab: {fileID: 1353063834063852120, guid: 3916c3e33bb40224c8fcb344b7accb46,
     type: 3}
