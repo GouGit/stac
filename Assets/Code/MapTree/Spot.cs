@@ -122,7 +122,7 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
 
         nowSpot = this;
 
-        MapDataHandler.SaveProgress(GetFirstSpot(), "Test");
+        GameDataHandler.SaveProgress(GetFirstSpot(), "Test");
 
         SceneLoader.LoadScene("BattleScene", sceneOption);
     }

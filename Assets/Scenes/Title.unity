@@ -1827,6 +1827,71 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4415034640395396349, guid: e6b758cf1365c6d4d85a6b1c55ab082a,
+        type: 3}
+      propertyPath: AllCards.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415034640395396349, guid: e6b758cf1365c6d4d85a6b1c55ab082a,
+        type: 3}
+      propertyPath: AllCards.Array.data[0].showCard
+      value: 
+      objectReference: {fileID: 534210945925966834, guid: f9c52a617455c7940aafa6f1a201b2cb,
+        type: 3}
+    - target: {fileID: 4415034640395396349, guid: e6b758cf1365c6d4d85a6b1c55ab082a,
+        type: 3}
+      propertyPath: AllCards.Array.data[1].showCard
+      value: 
+      objectReference: {fileID: 534210945925966834, guid: f9c52a617455c7940aafa6f1a201b2cb,
+        type: 3}
+    - target: {fileID: 4415034640395396349, guid: e6b758cf1365c6d4d85a6b1c55ab082a,
+        type: 3}
+      propertyPath: AllCards.Array.data[2].showCard
+      value: 
+      objectReference: {fileID: 8245376767212650836, guid: 78182d0bbaec61d4186a912e5dee446e,
+        type: 3}
+    - target: {fileID: 4415034640395396349, guid: e6b758cf1365c6d4d85a6b1c55ab082a,
+        type: 3}
+      propertyPath: AllCards.Array.data[3].showCard
+      value: 
+      objectReference: {fileID: 8245376767212650836, guid: 78182d0bbaec61d4186a912e5dee446e,
+        type: 3}
+    - target: {fileID: 4415034640395396349, guid: e6b758cf1365c6d4d85a6b1c55ab082a,
+        type: 3}
+      propertyPath: AllCards.Array.data[4].showCard
+      value: 
+      objectReference: {fileID: 8198993514602083080, guid: ae45f6969f26508429c4d69cd0843aa4,
+        type: 3}
+    - target: {fileID: 4415034640395396349, guid: e6b758cf1365c6d4d85a6b1c55ab082a,
+        type: 3}
+      propertyPath: AllCards.Array.data[5].showCard
+      value: 
+      objectReference: {fileID: 8198993514602083080, guid: ae45f6969f26508429c4d69cd0843aa4,
+        type: 3}
+    - target: {fileID: 4415034640395396349, guid: e6b758cf1365c6d4d85a6b1c55ab082a,
+        type: 3}
+      propertyPath: AllCards.Array.data[6].showCard
+      value: 
+      objectReference: {fileID: 8198993514602083080, guid: ae45f6969f26508429c4d69cd0843aa4,
+        type: 3}
+    - target: {fileID: 4415034640395396349, guid: e6b758cf1365c6d4d85a6b1c55ab082a,
+        type: 3}
+      propertyPath: AllCards.Array.data[7].showCard
+      value: 
+      objectReference: {fileID: 8198993514602083080, guid: ae45f6969f26508429c4d69cd0843aa4,
+        type: 3}
+    - target: {fileID: 4415034640395396349, guid: e6b758cf1365c6d4d85a6b1c55ab082a,
+        type: 3}
+      propertyPath: AllCards.Array.data[8].showCard
+      value: 
+      objectReference: {fileID: 8198993514602083080, guid: ae45f6969f26508429c4d69cd0843aa4,
+        type: 3}
+    - target: {fileID: 4415034640395396349, guid: e6b758cf1365c6d4d85a6b1c55ab082a,
+        type: 3}
+      propertyPath: AllCards.Array.data[9].showCard
+      value: 
+      objectReference: {fileID: 8198993514602083080, guid: ae45f6969f26508429c4d69cd0843aa4,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6b758cf1365c6d4d85a6b1c55ab082a, type: 3}
 --- !u!1 &718074300
@@ -3028,12 +3093,14 @@ MonoBehaviour:
   SlideObjectSpeed: 3000
   VolumeController: {fileID: 1816129048}
   VibrationController: {fileID: 2121909579}
+  UpgradePrefab: {fileID: 4373501636032261508, guid: 53d6f4ebb1cbccd4591d99363757850b,
+    type: 3}
   ShopPrefab: {fileID: 4373501636032261508, guid: 2f8bd11a6fadccf4791a80134952a453,
     type: 3}
   GoldText: {fileID: 1259354470}
+  TopazText: {fileID: 1893132199}
   RubyText: {fileID: 2077107784}
   SapphireText: {fileID: 1394159516}
-  TopazText: {fileID: 1893132199}
   DiamondText: {fileID: 1778708720}
 --- !u!4 &1008701410
 Transform:
@@ -4213,7 +4280,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1008701409}
-        m_MethodName: OpenShopPrefab
+        m_MethodName: OpenUpgradePrefab
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

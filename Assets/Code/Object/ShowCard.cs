@@ -2,13 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public struct CardSet
+{
+    public ShowCard showCard;
+    public int upgradeLevel;
+
+    public CardSet(ShowCard showCard, int upgradeLevel)
+    {
+        this.showCard = showCard;
+        this.upgradeLevel = upgradeLevel;
+    }
+}
+
 public class ShowCard : MonoBehaviour
 {
     public Card card;
     private new string name;
     private int cost;
-    private int attackPower;
-    private int defensPower;
+    public int attackPower;
+    public int defensPower;
     private Vector3 scale, origin;
     private BoxCollider2D myBox;
     private Type.TYPE type, monsterType;

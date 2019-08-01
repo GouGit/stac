@@ -36,14 +36,14 @@ public class Test : MonoBehaviour
         {
             // traveler.nowSpot = MapDataHandler.CreateMap("Test");
             // MapDataHandler.SaveMapJson(traveler.nowSpot, "Test");
-            traveler.nowSpot = Spot.nowSpot = MapDataHandler.LoadMap("Test");
+            traveler.nowSpot = Spot.nowSpot = GameDataHandler.LoadMap("Test");
             GameManager.instance.isFirstStart = false;
             Spot.SetParent();
         }
         else
         {
-            Spot firstSpot = MapDataHandler.LoadMap("Test");
-            MapDataHandler.LoadProgress(firstSpot, "Test");
+            Spot firstSpot = GameDataHandler.LoadMap("Test");
+            GameDataHandler.LoadProgress(firstSpot, "Test");
             traveler.nowSpot = Spot.nowSpot = Spot.GetProgressSpot();
             Spot.SetParent();
         }

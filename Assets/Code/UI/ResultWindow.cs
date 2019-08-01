@@ -8,6 +8,8 @@ public class ResultWindow : MonoBehaviour
 {
     public Button TitleButton;
 
+    public CardPicker cardPicker;
+
     [SerializeField]    
     Text GoldText;
     [SerializeField]
@@ -23,6 +25,8 @@ public class ResultWindow : MonoBehaviour
     HorizontalLayoutGroup cardLayout;
     
     public List<ShowCard> cardPrefabList;
+
+    public bool isSelected = false;
 
 
     void Start()
@@ -60,9 +64,20 @@ public class ResultWindow : MonoBehaviour
         for(int i = 0; i < 3 ; i++)
         {
             int randomIndex = Random.Range(0, cardPrefabList.Count);
-            ShowCard additionalCard =  Instantiate(cardPrefabList[randomIndex]);
 
-            additionalCard.transform.SetParent(cardLayout.transform);
+            ShowCard additionalCard = cardPrefabList[randomIndex];
+            CardPicker picker = Instantiate(cardPicker); 
+
+            picker.SetOption(additionalCard, (cardpicker) => {
+                if(!this.isSelected)
+                {
+                    GameManager.instance.AllCards.Add(new CardSet(additionalCard, 0));
+                    cardpicker.image.sprite = null;
+                    this.isSelected = true;
+                }
+            });
+            
+            picker.transform.SetParent(cardLayout.transform);
         }
     }
 

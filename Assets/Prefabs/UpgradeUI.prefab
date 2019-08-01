@@ -536,8 +536,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4373501636032261509}
   - component: {fileID: 9064071078127209405}
+  - component: {fileID: 7830276153881816174}
   m_Layer: 0
-  m_Name: ShopUI
+  m_Name: UpgradeUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -573,6 +574,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DestroyDelay: -1
   m_isDestroySelf: 1
+--- !u!114 &7830276153881816174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4373501636032261508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29739198b3a644e4fb7976f62e147f8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layoutGroup: {fileID: 3521751379943754716}
+  pickerPrefab: {fileID: 3238399032419983198, guid: 76266f64418e977498fa4438801c60fc,
+    type: 3}
 --- !u!1 &5955896253206227653
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,8 +743,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1941319180137049796}
   m_HandleRect: {fileID: 2231293382912928555}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.40983605
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

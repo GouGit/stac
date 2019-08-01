@@ -1,0 +1,44 @@
+{
+  "CardList": [
+    {
+      "name": "Defens",
+      "upgradeLevel": 0
+    },
+    {
+      "name": "Defens",
+      "upgradeLevel": 0
+    },
+    {
+      "name": "DoubleAttack",
+      "upgradeLevel": 0
+    },
+    {
+      "name": "DoubleAttack",
+      "upgradeLevel": 0
+    },
+    {
+      "name": "NomalAttack",
+      "upgradeLevel": 0
+    },
+    {
+      "name": "NomalAttack",
+      "upgradeLevel": 0
+    },
+    {
+      "name": "NomalAttack",
+      "upgradeLevel": 0
+    },
+    {
+      "name": "NomalAttack",
+      "upgradeLevel": 0
+    },
+    {
+      "name": "NomalAttack",
+      "upgradeLevel": 0
+    },
+    {
+      "name": "NomalAttack",
+      "upgradeLevel": 0
+    }
+  ]
+}

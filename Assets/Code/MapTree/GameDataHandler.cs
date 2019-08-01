@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 using System.Xml;
 using System.IO;
 
-public static class MapDataHandler
+public static class GameDataHandler
 {
     private static void ResetSpot(Spot spot)
     {//  모든 Spot에 지나갔던 흔적을 지웁니다.
@@ -295,7 +295,7 @@ public static class MapDataHandler
         UnityEditor.AssetDatabase.Refresh();
     }
 
-    public static void LoadGemCont(out int goldCount, out int topazCount, out int rubyCount, out int sapphireCount, out int diamondCount)
+    public static void LoadGemCount(out int goldCount, out int topazCount, out int rubyCount, out int sapphireCount, out int diamondCount)
     {
         UnityEditor.AssetDatabase.Refresh();
         
@@ -324,6 +324,53 @@ public static class MapDataHandler
         sapphireCount = getCount["sapphireCount"].ToInt();
         diamondCount = getCount["diamondCount"].ToInt();
     }
+
+    public static void SaveCards(List<CardSet> cardList)
+    {
+        JObject list = new JObject();
+
+        JArray cards = new JArray();
+        foreach(CardSet set in cardList)
+        {
+            JObject card = new JObject();
+            
+            ShowCard cardObj = set.showCard;
+
+            card.Add("name", cardObj.name);
+            card.Add("upgradeLevel",set.upgradeLevel);
+
+            cards.Add(card);
+        }
+
+        list.Add("CardList", cards);
+
+        File.WriteAllText("./Assets/Resources/TemporaryFiles/CardList.json", list.ToString());
+
+        UnityEditor.AssetDatabase.Refresh();
+    }
+
+    public static List<CardSet> LoadCards()
+    {
+        UnityEditor.AssetDatabase.Refresh();
+                
+        List<CardSet> cardList = new List<CardSet>();
+
+        string jsonData = File.ReadAllText("./Assets/Resources/TemporaryFiles/CardList.json");
+        JObject list = JObject.Parse(jsonData);
+
+        JArray cards = (JArray)list["CardList"];
+
+        foreach(JObject card in cards)
+        {
+            ShowCard cardObj = (Resources.Load(card["name"].ToString()) as GameObject).GetComponent<ShowCard>();
+            int upgradeLevel = card["upgradeLevel"].ToInt();
+
+            cardList.Add(new CardSet(cardObj, upgradeLevel));
+        }
+
+        return cardList;
+    }
+
 
 
     /////////////////////////////////////////////////////////////////

@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
     public bool isPlayerTurn = true;
-    public List<GameObject> AllCards = new List<GameObject>();
+    public List<CardSet> AllCards = new List<CardSet>();
     public int cost = 3;
 
     public int goldCount = 0;
@@ -46,7 +46,9 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        MapDataHandler.LoadGemCont(out goldCount, out topazCount, out rubyCount, out sapphireCount, out diamondCount);
+        GameDataHandler.LoadGemCount(out goldCount, out topazCount, out rubyCount, out sapphireCount, out diamondCount);
+        AllCards = GameDataHandler.LoadCards();
+        // GameDataHandler.SaveCards(AllCards);
     }
 
     void Start()
@@ -110,13 +112,13 @@ public class GameManager : MonoBehaviour
 
     void AutoReset(Scene scene, LoadSceneMode mode)
     {
-        MapDataHandler.SaveGemCount(goldCount, topazCount, rubyCount, sapphireCount, diamondCount);
+        GameDataHandler.SaveGemCount(goldCount, topazCount, rubyCount, sapphireCount, diamondCount);
      
         switch (scene.name)
         {
             case "Title":
                 isFirstStart = true;
-                MapDataHandler.LoadGemCont(out goldCount, out topazCount, out rubyCount, out sapphireCount, out diamondCount);
+                GameDataHandler.LoadGemCount(out goldCount, out topazCount, out rubyCount, out sapphireCount, out diamondCount);
                 MainUIMnager.Instance.SetText();
             break;
         }

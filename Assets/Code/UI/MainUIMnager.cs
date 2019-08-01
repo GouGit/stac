@@ -33,6 +33,9 @@ public class MainUIMnager : MonoBehaviour
     private bool isVibrationControl = false;
     private Coroutine VibrationCoroutine = null;
 
+    // Upgrade
+    public GameObject UpgradePrefab;
+
     // Shop
     public GameObject ShopPrefab;
 
@@ -90,6 +93,11 @@ public class MainUIMnager : MonoBehaviour
             yield return null;
         }
         obj.localPosition = pos;
+    }
+
+    public void OpenUpgradePrefab()
+    {
+        Instantiate(UpgradePrefab);
     }
 
     public void OpenShopPrefab()

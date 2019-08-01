@@ -419,6 +419,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TitleButton: {fileID: 1353063832827098530}
+  cardPicker: {fileID: 3238399032419983198, guid: 76266f64418e977498fa4438801c60fc,
+    type: 3}
   GoldText: {fileID: 1895773293501097120}
   TopazText: {fileID: 5139256886569168563}
   RubyText: {fileID: 7886427742872396486}
@@ -429,6 +431,7 @@ MonoBehaviour:
   - {fileID: 534210945925966834, guid: f9c52a617455c7940aafa6f1a201b2cb, type: 3}
   - {fileID: 8245376767212650836, guid: 78182d0bbaec61d4186a912e5dee446e, type: 3}
   - {fileID: 8198993514602083080, guid: ae45f6969f26508429c4d69cd0843aa4, type: 3}
+  isSelected: 0
 --- !u!1 &1353063834094421037
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,7 +798,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 3
-  m_Spacing: 0
+  m_Spacing: 100
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
