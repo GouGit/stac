@@ -14,12 +14,11 @@ public class SceneOptionHandler : MonoBehaviour
         SceneOptionTransporter transporter = GameObject.FindObjectOfType<SceneOptionTransporter>(); 
         if(transporter == null)
         {
-            SceneOption option = new SceneOption();
-            option.type = SceneOption.Type.Battle;
+            SceneOption option = new SceneOption(SceneOption.Type.Battle);
             option.objectList.Add(Resources.Load("Skeleton") as GameObject);
 
             Debug.Log("SceneOptionTransporter를 찾을 수 없습니다.\n테스트를 위하여 Skeleton을 소환합니다.");
-            return;
+            CreateBattleScene(option);
         }
         else
         {
@@ -31,6 +30,9 @@ public class SceneOptionHandler : MonoBehaviour
     {
         for(int i = 0; i < option.objectList.Count; i++)
         {
+            Debug.Log(option.objectList[i].name);
+            Debug.Log(GameManager.instance);
+            Debug.Log(GameManager.instance.monsterOption);
             GameManager.instance.monsterOption.CreateMonster(option.objectList[i]);
         }
         GameManager.instance.monsterOption.SetMonsterPosition();

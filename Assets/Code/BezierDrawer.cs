@@ -5,8 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public class BezierDrawer : MonoBehaviour
 {
-    private BezierDrawer instance = null;
-    public BezierDrawer Instance
+    private static BezierDrawer instance = null;
+    public static BezierDrawer Instance
     {
         get
         {
@@ -24,7 +24,7 @@ public class BezierDrawer : MonoBehaviour
     public int curveNum = 10;
     public float flowSpeed = -4f;
 
-    private Vector3 startPosition;
+    public Vector3 startPosition;
 
     void Awake()
     {
@@ -36,6 +36,7 @@ public class BezierDrawer : MonoBehaviour
         else
         {
             instance = this;
+            instance.gameObject.SetActive(false);
         }
     }
 
@@ -48,8 +49,8 @@ public class BezierDrawer : MonoBehaviour
 
     void OnEnable()
     {
-        //startPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        startPosition = transform.position;
+        startPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        // startPosition = transform.position;
         startPosition.z = 0;
         points[0] = startPosition;
         if (arrowSprite != null)

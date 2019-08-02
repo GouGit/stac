@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public struct CardSet
+public class CardSet
 {
     public ShowCard showCard;
     public int upgradeLevel;
@@ -127,6 +127,11 @@ public class ShowCard : MonoBehaviour
     void OnMouseDown()
     {
         transform.localScale = scale * 1.25f;
+        if(attackPower > 0)
+        {
+            BezierDrawer.Instance.gameObject.SetActive(true);
+            BezierDrawer.Instance.startPosition = gameObject.transform.position; 
+        }
     }
 
     void OnMouseDrag()
@@ -145,6 +150,7 @@ public class ShowCard : MonoBehaviour
         if(attackPower > 0)
         {
             UseCard();
+            BezierDrawer.Instance.gameObject.SetActive(false);
         }
         else
         {

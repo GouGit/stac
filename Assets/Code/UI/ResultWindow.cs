@@ -74,6 +74,7 @@ public class ResultWindow : MonoBehaviour
                     GameManager.instance.AllCards.Add(new CardSet(additionalCard, 0));
                     cardpicker.image.sprite = null;
                     this.isSelected = true;
+                    GameDataHandler.SaveCards(GameManager.instance.AllCards);
                 }
             });
             

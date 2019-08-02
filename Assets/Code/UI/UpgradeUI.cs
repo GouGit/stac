@@ -11,13 +11,19 @@ public class UpgradeUI : MonoBehaviour
 
     void Awake()
     {
-        foreach(CardSet cardSet in GameManager.instance.AllCards)
+        int cardCount = GameManager.instance.AllCards.Count;
+        for(int i = 0; i < cardCount; i++)
         {
+            CardSet cardSet = GameManager.instance.AllCards[i];
+            
             CardPicker picker = Instantiate(pickerPrefab);
-            picker.SetOption(cardSet.showCard, (cardPicker) => {
-                Debug.Log("업그레이드 했다!!");
-            });
             picker.transform.SetParent(layoutGroup.transform);
+            
+            picker.SetOption(cardSet.showCard, (cardPicker) => {
+                // Debug.Log("올림");
+                cardSet.upgradeLevel++;
+                GameDataHandler.SaveCards(GameManager.instance.AllCards);
+            });
         }
     }
 }
