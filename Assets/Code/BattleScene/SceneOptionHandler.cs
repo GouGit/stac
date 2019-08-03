@@ -30,9 +30,6 @@ public class SceneOptionHandler : MonoBehaviour
     {
         for(int i = 0; i < option.objectList.Count; i++)
         {
-            Debug.Log(option.objectList[i].name);
-            Debug.Log(GameManager.instance);
-            Debug.Log(GameManager.instance.monsterOption);
             GameManager.instance.monsterOption.CreateMonster(option.objectList[i]);
         }
         GameManager.instance.monsterOption.SetMonsterPosition();

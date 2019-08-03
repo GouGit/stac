@@ -64,7 +64,7 @@ public class Knight : MonoBehaviour
             GameObject temp;
             temp = Instantiate(node.Value, new Vector3(i * 2, -3.0f, 0), Quaternion.identity);
             temp.gameObject.SetActive(true);
-            temp.transform.position = temp.transform.position + new Vector3(0, 0, -i);
+            temp.transform.position = temp.transform.position + new Vector3(0, 0, -i + 10);
             temp.transform.SetParent(showCard.transform);
             i += 1;
         }
@@ -79,7 +79,7 @@ public class Knight : MonoBehaviour
             result.Add(node.Value);
         }
 
-        for(int i= 0; i<result.Count; i++)
+        for(int i= 0; i < result.Count; i++)
         {
             GameObject temp = result[i];
             int index = Random.Range(0,MyCard.Count);

@@ -47,6 +47,14 @@
     {
       "name": "Defens",
       "upgradeLevel": 1
+    },
+    {
+      "name": "DoubleAttack",
+      "upgradeLevel": 1
+    },
+    {
+      "name": "DoubleAttack",
+      "upgradeLevel": 4
     }
   ]
 }

@@ -175,16 +175,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7608126801259923348}
     m_Modifications:
-    - target: {fileID: 9066249232545809985, guid: 23122680269486643a0c4144ddab5026,
-        type: 3}
-      propertyPath: m_Name
-      value: MonsterDefens
-      objectReference: {fileID: 0}
-    - target: {fileID: 9066249232545809985, guid: 23122680269486643a0c4144ddab5026,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9066249232545809984, guid: 23122680269486643a0c4144ddab5026,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -290,6 +280,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 9066249232545809985, guid: 23122680269486643a0c4144ddab5026,
+        type: 3}
+      propertyPath: m_Name
+      value: MonsterDefens
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066249232545809985, guid: 23122680269486643a0c4144ddab5026,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23122680269486643a0c4144ddab5026, type: 3}
 --- !u!1 &1460492979472460853 stripped
@@ -311,16 +311,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7608126801259923348}
     m_Modifications:
-    - target: {fileID: 101704967582715320, guid: c4fcb184b279a79478b8ed12548ae067,
-        type: 3}
-      propertyPath: m_Name
-      value: attackUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 101704967582715320, guid: c4fcb184b279a79478b8ed12548ae067,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 101704967582715323, guid: c4fcb184b279a79478b8ed12548ae067,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -426,6 +416,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 101704967582715320, guid: c4fcb184b279a79478b8ed12548ae067,
+        type: 3}
+      propertyPath: m_Name
+      value: attackUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 101704967582715320, guid: c4fcb184b279a79478b8ed12548ae067,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4fcb184b279a79478b8ed12548ae067, type: 3}
 --- !u!1 &7564968912891238086 stripped
@@ -447,16 +447,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7608126801259923348}
     m_Modifications:
-    - target: {fileID: 9113089942836146082, guid: fe2212c0ead70ce4caab51b4a02915c7,
-        type: 3}
-      propertyPath: m_Name
-      value: MonsterHp
-      objectReference: {fileID: 0}
-    - target: {fileID: 9113089942836146082, guid: fe2212c0ead70ce4caab51b4a02915c7,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9113089942836146083, guid: fe2212c0ead70ce4caab51b4a02915c7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -562,6 +552,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 9113089942836146082, guid: fe2212c0ead70ce4caab51b4a02915c7,
+        type: 3}
+      propertyPath: m_Name
+      value: MonsterHp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113089942836146082, guid: fe2212c0ead70ce4caab51b4a02915c7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9113089942615118751, guid: fe2212c0ead70ce4caab51b4a02915c7,
         type: 3}
       propertyPath: m_FillAmount
@@ -588,16 +588,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7608126801259923348}
     m_Modifications:
-    - target: {fileID: 7090445953194928573, guid: d2cef70e577db8548821a729cc444cdc,
-        type: 3}
-      propertyPath: m_Name
-      value: defensUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 7090445953194928573, guid: d2cef70e577db8548821a729cc444cdc,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7090445953194928572, guid: d2cef70e577db8548821a729cc444cdc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -702,6 +692,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7090445953194928573, guid: d2cef70e577db8548821a729cc444cdc,
+        type: 3}
+      propertyPath: m_Name
+      value: defensUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 7090445953194928573, guid: d2cef70e577db8548821a729cc444cdc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2cef70e577db8548821a729cc444cdc, type: 3}

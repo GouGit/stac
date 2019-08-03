@@ -30,16 +30,16 @@ public class MonsterManager : MonoBehaviour
         switch (AllMonsters.Count)
         {
         case 1:
-            posistions.Add(new Vector3(0,2.75f,0));
+            posistions.Add(new Vector3(0, 2.75f, 1));
             break;
         case 2:
-            posistions.Add(new Vector3(-2.25f,2.75f,0));
-            posistions.Add(new Vector3(2.25f,2.75f,0));
+            posistions.Add(new Vector3(-2.25f, 2.75f, 1));
+            posistions.Add(new Vector3(2.25f, 2.75f, 1));
             break;
         case 3:
-            posistions.Add(new Vector3(-4.5f,2.75f,0));
-            posistions.Add(new Vector3(0,2.75f,0));
-            posistions.Add(new Vector3(4.5f,2.75f,0));
+            posistions.Add(new Vector3(-4.5f, 2.75f, 1));
+            posistions.Add(new Vector3(0, 2.75f, 1));
+            posistions.Add(new Vector3(4.5f, 2.75f, 1));
             break;
         }
     }
