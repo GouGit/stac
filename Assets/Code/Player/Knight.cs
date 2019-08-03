@@ -8,6 +8,7 @@ public class Knight : MonoBehaviour
     public Player player;
     public static Knight instance = null;
     public Canvas playerUI;
+    public int bCnt, fCnt, pCnt; //화상, 매혹, 석화
     public int defensPower;
     public int usingCard, usedCard;
     private  LinkedList<GameObject> MyCard = new LinkedList<GameObject>();
@@ -51,6 +52,7 @@ public class Knight : MonoBehaviour
         }
         Shuffle();
         DrawCard();
+        MyTurn();
     }
 
     void Show()
@@ -130,7 +132,16 @@ public class Knight : MonoBehaviour
         Shuffle();   
     }
 
-    private void MyTurn()
+    private void StateCheck()
+    {
+        if(bCnt > 0)
+        {
+            LoseHp(bCnt);
+            bCnt--;
+        }
+    }
+
+    public void MyTurn()
     {
         if(defensPower > 0)
         {
@@ -142,6 +153,7 @@ public class Knight : MonoBehaviour
         }
         Vector3 scale = new Vector3(1,1,1);
         transform.localScale = scale;
+        StateCheck();
     }
 
     public void EndTurn()
@@ -165,7 +177,7 @@ public class Knight : MonoBehaviour
             defensPower = defens;
             if(defensPower < 0)
             {
-                hp -= defensPower;
+                hp += defensPower;
             }
         }
         else
@@ -181,15 +193,5 @@ public class Knight : MonoBehaviour
         }
 
         hpbar.fillAmount = (float)hp/maxhp;
-    }
-
-    void Update()
-    {
-        if(!GameManager.instance.isPlayerTurn)
-            return;
-        else
-        {
-            MyTurn();
-        }
     }
 }

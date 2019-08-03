@@ -15,7 +15,8 @@ public abstract class ShowMonster : MonoBehaviour
         END
     }
     public Canvas uiCanvas;
-    private GameObject ui;
+
+    protected GameObject ui;
     protected GameObject hpUI, attackUI, defensUI, defensOnUI;
     public Type.TYPE type;
     protected ACTION action;
@@ -93,13 +94,14 @@ public abstract class ShowMonster : MonoBehaviour
         action = ACTION.NONE;
         GameManager.instance.isPlayerTurn = true;
         GameManager.instance.cost = 3;
+        Knight.instance.MyTurn();
         Knight.instance.defensPower = 0;
         Knight.instance.DrawCard();
         Vector3 scale = new Vector3(0.8f,0.8f,1);
         transform.localScale = scale;
     }
 
-    void Shake()
+    protected void Shake()
     {
         if(shaking)
         {
@@ -120,7 +122,7 @@ public abstract class ShowMonster : MonoBehaviour
         }
     }
 
-    IEnumerator Shaking()
+    protected IEnumerator Shaking()
     {
         Vector3 origin = transform.position;
 
@@ -135,7 +137,7 @@ public abstract class ShowMonster : MonoBehaviour
         transform.position = origin;
     }
 
-    public void LoseHp(int damage)
+    public virtual void LoseHp(int damage)
     {
         if(ondefensPower > 0)
         {

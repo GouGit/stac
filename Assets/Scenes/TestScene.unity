@@ -510,16 +510,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayerTurn: 1
   AllCards:
-  - {fileID: 534210945925966799, guid: f9c52a617455c7940aafa6f1a201b2cb, type: 3}
-  - {fileID: 534210945925966799, guid: f9c52a617455c7940aafa6f1a201b2cb, type: 3}
-  - {fileID: 8198993514602083125, guid: ae45f6969f26508429c4d69cd0843aa4, type: 3}
-  - {fileID: 8198993514602083125, guid: ae45f6969f26508429c4d69cd0843aa4, type: 3}
-  - {fileID: 8198993514602083125, guid: ae45f6969f26508429c4d69cd0843aa4, type: 3}
-  - {fileID: 8198993514602083125, guid: ae45f6969f26508429c4d69cd0843aa4, type: 3}
-  - {fileID: 534210945925966799, guid: f9c52a617455c7940aafa6f1a201b2cb, type: 3}
-  - {fileID: 534210945925966799, guid: f9c52a617455c7940aafa6f1a201b2cb, type: 3}
-  - {fileID: 8245376767212650857, guid: 78182d0bbaec61d4186a912e5dee446e, type: 3}
-  - {fileID: 8245376767212650857, guid: 78182d0bbaec61d4186a912e5dee446e, type: 3}
+  - showCard: {fileID: 0}
+    upgradeLevel: 0
+  - showCard: {fileID: 0}
+    upgradeLevel: 0
+  - showCard: {fileID: 0}
+    upgradeLevel: 0
+  - showCard: {fileID: 0}
+    upgradeLevel: 0
+  - showCard: {fileID: 0}
+    upgradeLevel: 0
+  - showCard: {fileID: 0}
+    upgradeLevel: 0
+  - showCard: {fileID: 0}
+    upgradeLevel: 0
+  - showCard: {fileID: 0}
+    upgradeLevel: 0
+  - showCard: {fileID: 0}
+    upgradeLevel: 0
+  - showCard: {fileID: 0}
+    upgradeLevel: 0
   cost: 3
   goldCount: 0
   topazCount: 0

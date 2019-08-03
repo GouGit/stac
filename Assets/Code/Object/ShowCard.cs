@@ -42,34 +42,34 @@ public class ShowCard : MonoBehaviour
 
     private void AddPower()
     {
-        switch (type)
+        switch (monsterType)
         {
         case Type.TYPE.RUBY:
-            if(monsterType == Type.TYPE.SAPPHIRE) // 불리
+            if(type == Type.TYPE.SAPPHIRE) // 불리
             {
                 attackPower /= 2;
             }
-            else if(monsterType == Type.TYPE.TOPAZ) // 유리
+            else if(type == Type.TYPE.TOPAZ) // 유리
             {
                 attackPower *=2;
             }
             break;
         case Type.TYPE.SAPPHIRE:
-            if(monsterType == Type.TYPE.TOPAZ)
+            if(type == Type.TYPE.TOPAZ)
             {
                 attackPower /= 2;
             }
-            else if(monsterType == Type.TYPE.RUBY)
+            else if(type == Type.TYPE.RUBY)
             {
                 attackPower *=2;
             }
             break;
         case Type.TYPE.TOPAZ:
-            if(monsterType == Type.TYPE.RUBY)
+            if(type == Type.TYPE.RUBY)
             {
                 attackPower /= 2;
             }
-            else if(monsterType == Type.TYPE.SAPPHIRE)
+            else if(type == Type.TYPE.SAPPHIRE)
             {
                 attackPower *=2;
             }
@@ -129,6 +129,10 @@ public class ShowCard : MonoBehaviour
         transform.localScale = scale * 1.25f;
         if(attackPower > 0)
         {
+            if(Knight.instance.bCnt > 0)
+            {
+                attackPower = attackPower/2;
+            }
             BezierDrawer.Instance.gameObject.SetActive(true);
             BezierDrawer.Instance.startPosition = gameObject.transform.position; 
         }
