@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6d2f6c7a35aed4fa0e171c10083df3, type: 3}
   m_Name: Defens
   m_EditorClassIdentifier: 
-  name: Defens
+  name: "\uC218\uBE44"
   cost: 1
   attackPower: 0
   defensPower: 5
-  image: {fileID: 21300000, guid: 9c6c88956da486240abe7438baf659f6, type: 3}
+  image: {fileID: 813796157681362143, guid: 584b70a59f587624eab9d22dec2101a3, type: 3}
+  type: 0

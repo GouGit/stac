@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6d2f6c7a35aed4fa0e171c10083df3, type: 3}
   m_Name: DoubleAttack
   m_EditorClassIdentifier: 
-  name: DoubleAttack
+  name: "\uC774\uC911\uD0C0\uACA9"
   cost: 1
   attackPower: 6
   defensPower: 0
-  image: {fileID: 21300000, guid: e484168ce8781da47943b0864677d98c, type: 3}
+  image: {fileID: 3416448150482796686, guid: 584b70a59f587624eab9d22dec2101a3, type: 3}
   type: 3
