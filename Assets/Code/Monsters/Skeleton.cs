@@ -10,14 +10,4 @@ public class Skeleton : ShowMonster
         base.Start();
     }
 
-    protected override void Attack()
-    {
-        Knight.instance.LoseHp(attackPower);
-    }
-
-    protected override void Defens()
-    {
-        ondefensPower += defensPower;
-    }
-
 }

@@ -8,7 +8,9 @@ public class TestSceneLoad : MonoBehaviour
     {
         // GameManager.instance.monsterOption.CreateMonster(Resources.Load("Skeleton") as GameObject);
         // GameManager.instance.monsterOption.CreateMonster(Resources.Load("Gagoil") as GameObject);
-        GameManager.instance.monsterOption.CreateMonster(Resources.Load("Dragon") as GameObject);
+        //GameManager.instance.monsterOption.CreateMonster(Resources.Load("Dragon") as GameObject);
+        //GameManager.instance.monsterOption.CreateMonster(Resources.Load("Ork") as GameObject);
+        GameManager.instance.monsterOption.CreateMonster(Resources.Load("Frankenstein") as GameObject);
         GameManager.instance.monsterOption.SetMonsterPosition();
     }
 

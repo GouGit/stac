@@ -13,11 +13,11 @@ public class MonsterUI : MonoBehaviour
         SHELID
     }
     public TYPE type;
+    public float maxHp;
     private ShowMonster mon;
     private SetMonster set;
     private Text text;
     private Image image;
-    private float maxHp;
 
     void Start()
     {

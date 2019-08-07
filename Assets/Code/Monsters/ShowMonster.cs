@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -71,16 +71,7 @@ public abstract class ShowMonster : MonoBehaviour
 
     void MyTurn()
     {
-        if(isAttack)
-        {
-            action = ACTION.ATTACK;
-        }
-        else
-        {
-            action = ACTION.DEFENS;
-        }
-        isAttack = !isAttack;
-        
+        ChangeState();
         attackUI.SetActive(isAttack);
         defensUI.SetActive(!isAttack);
 
@@ -89,7 +80,7 @@ public abstract class ShowMonster : MonoBehaviour
         transform.localScale = scale;
     }
 
-    void EndTurn()
+    protected virtual void EndTurn()
     {
         action = ACTION.NONE;
         GameManager.instance.isPlayerTurn = true;
@@ -174,14 +165,27 @@ public abstract class ShowMonster : MonoBehaviour
         }
     }
 
+    protected virtual void ChangeState()
+    {
+        if(isAttack)
+        {
+            action = ACTION.ATTACK;
+        }
+        else
+        {
+            action = ACTION.DEFENS;
+        }
+        isAttack = !isAttack;
+    }
+
     protected virtual void Attack()
     {
-
+        Knight.instance.LoseHp(attackPower);
     }
 
     protected virtual void Defens()
     {
-
+        ondefensPower += defensPower;
     }
 
     void Update()

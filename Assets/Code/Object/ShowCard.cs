@@ -45,33 +45,33 @@ public class ShowCard : MonoBehaviour
         switch (monsterType)
         {
         case Type.TYPE.RUBY:
-            if(type == Type.TYPE.SAPPHIRE) // 불리
+            if(type == Type.TYPE.SAPPHIRE)
             {
-                attackPower /= 2;
+                attackPower *= 2;
             }
-            else if(type == Type.TYPE.TOPAZ) // 유리
+            else if(type == Type.TYPE.TOPAZ)
             {
-                attackPower *=2;
+                attackPower /=2;
             }
             break;
         case Type.TYPE.SAPPHIRE:
             if(type == Type.TYPE.TOPAZ)
             {
-                attackPower /= 2;
+                attackPower *= 2;
             }
             else if(type == Type.TYPE.RUBY)
             {
-                attackPower *=2;
+                attackPower /=2;
             }
             break;
         case Type.TYPE.TOPAZ:
             if(type == Type.TYPE.RUBY)
             {
-                attackPower /= 2;
+                attackPower *= 2;
             }
             else if(type == Type.TYPE.SAPPHIRE)
             {
-                attackPower *=2;
+                attackPower /=2;
             }
             break;
         case Type.TYPE.DIAMOND:

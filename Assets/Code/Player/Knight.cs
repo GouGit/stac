@@ -153,13 +153,13 @@ public class Knight : MonoBehaviour
         }
         Vector3 scale = new Vector3(1,1,1);
         transform.localScale = scale;
-        StateCheck();
     }
 
     public void EndTurn()
     {
         GameManager.instance.isPlayerTurn = false;
         DropCard();
+        StateCheck();
         Vector3 scale = new Vector3(0.8f,0.8f,1);
         transform.localScale = scale;
     }

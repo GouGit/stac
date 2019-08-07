@@ -68,9 +68,4 @@ public class Dragon : ShowMonster
         }
     }
 
-    protected override void Defens()
-    {
-        ondefensPower += defensPower;
-    }
-
 }
