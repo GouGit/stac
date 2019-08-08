@@ -110,18 +110,33 @@ public class ShowCard : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(mousePos, transform.forward, 0.0f, 1<<8);
         if(hit.collider != null)
         {
-            if(GameManager.instance.cost >= cost)
-            {
-                GameManager.instance.cost -= cost;
-                ShowMonster monster = hit.collider.gameObject.GetComponent<ShowMonster>();
-                monsterType = monster.mon.type;
-                AddPower();
-                monster.LoseHp(attackPower);
-                Knight.instance.defensPower += defensPower;
-                gameObject.SetActive(false);
-            }
+            Using(hit.collider.gameObject);
         }
         myBox.enabled = true;
+    }
+
+    void Using(GameObject ob)
+    {
+        if(Knight.instance.bCnt > 0)
+        {
+            attackPower = attackPower/2;
+        }
+        if(GameManager.instance.cost >= cost)
+        {
+            GameManager.instance.cost -= cost;
+            if(Knight.instance.fCnt > 0)
+            {
+                Knight.instance.LoseHp(attackPower);
+                gameObject.SetActive(false);
+                return;
+            }
+            ShowMonster monster = ob.GetComponent<ShowMonster>();
+            monsterType = monster.mon.type;
+            AddPower();
+            monster.LoseHp(attackPower);
+            Knight.instance.defensPower += defensPower;
+            gameObject.SetActive(false);
+        }
     }
 
     void OnMouseDown()
@@ -129,10 +144,6 @@ public class ShowCard : MonoBehaviour
         transform.localScale = scale * 1.25f;
         if(attackPower > 0)
         {
-            if(Knight.instance.bCnt > 0)
-            {
-                attackPower = attackPower/2;
-            }
             BezierDrawer.Instance.gameObject.SetActive(true);
             BezierDrawer.Instance.startPosition = gameObject.transform.position; 
         }

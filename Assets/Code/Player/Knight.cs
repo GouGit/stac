@@ -139,6 +139,14 @@ public class Knight : MonoBehaviour
             LoseHp(bCnt);
             bCnt--;
         }
+        if(fCnt > 0)
+        {
+            fCnt--;
+        }
+        if(pCnt > 0)
+        {
+            pCnt--;
+        }
     }
 
     public void MyTurn()
@@ -193,5 +201,15 @@ public class Knight : MonoBehaviour
         }
 
         hpbar.fillAmount = (float)hp/maxhp;
+    }
+
+    void FixedUpdate()
+    {
+        if(!GameManager.instance.isPlayerTurn)
+            return;
+        else
+        {
+            MyTurn();
+        }
     }
 }

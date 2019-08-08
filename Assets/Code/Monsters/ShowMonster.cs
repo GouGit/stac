@@ -85,7 +85,6 @@ public abstract class ShowMonster : MonoBehaviour
         action = ACTION.NONE;
         GameManager.instance.isPlayerTurn = true;
         GameManager.instance.cost = 3;
-        Knight.instance.MyTurn();
         Knight.instance.defensPower = 0;
         Knight.instance.DrawCard();
         Vector3 scale = new Vector3(0.8f,0.8f,1);
