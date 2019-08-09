@@ -5340,7 +5340,11 @@ MonoBehaviour:
   m_BGMVoslume: 0
   m_BGMClips:
   - {fileID: 8300000, guid: 1a43f72419453ea409447c0eb599ed03, type: 3}
-  m_SFXClips: []
+  m_SFXClips:
+  - {fileID: 8300000, guid: 0ea27337807dca44991c555986796c90, type: 3}
+  - {fileID: 8300000, guid: c36dfd7f7709a2b4b8fda4987a0d8746, type: 3}
+  - {fileID: 8300000, guid: bc9a62a028d834c47b0b5b20469848fb, type: 3}
+  - {fileID: 8300000, guid: 93fa81eea9b7e2c4481460b2e7cacb23, type: 3}
 --- !u!4 &1909398539
 Transform:
   m_ObjectHideFlags: 0

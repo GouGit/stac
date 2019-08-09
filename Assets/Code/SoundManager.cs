@@ -52,7 +52,10 @@ public class SoundManager : MonoBehaviour
 
     public enum SFXList
     {
-        NONE
+        KNIFE_1,
+        MONSTER_DAMAGE,
+        MONSTER_DEATH,
+        UI_TOUCH,
     }
 
     #region STATIC_FUNCTION

@@ -146,6 +146,7 @@ public abstract class ShowMonster : MonoBehaviour
             hp -= damage;
             StartCoroutine(Shaking());
         }
+        SoundManager.Instance.PlaySFX(SoundManager.SFXList.MONSTER_DAMAGE);
         
         if(hp <= 0)
         {

@@ -134,6 +134,7 @@ public class ShowCard : MonoBehaviour
             monsterType = monster.mon.type;
             AddPower();
             monster.LoseHp(attackPower);
+            SoundManager.Instance.PlaySFX(SoundManager.SFXList.KNIFE_1);
             Knight.instance.defensPower += defensPower;
             gameObject.SetActive(false);
         }

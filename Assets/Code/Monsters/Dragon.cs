@@ -37,8 +37,9 @@ public class Dragon : ShowMonster
             hp -= damage;
             StartCoroutine(Shaking());
         }
-        
-        if(hp <= 0)
+        SoundManager.Instance.PlaySFX(SoundManager.SFXList.MONSTER_DAMAGE);
+
+        if (hp <= 0)
         {
             ui.gameObject.SetActive(false);
             gameObject.SetActive(false);
