@@ -15,8 +15,7 @@ public abstract class ShowMonster : MonoBehaviour
         END
     }
     public Canvas uiCanvas;
-
-    protected GameObject ui;
+    public GameObject ui;
     protected GameObject hpUI, attackUI, defensUI, defensOnUI;
     public Type.TYPE type;
     protected ACTION action;
@@ -29,6 +28,7 @@ public abstract class ShowMonster : MonoBehaviour
     protected bool shaking = false;
     protected float shakePower;
     public UnityEvent OnMonsterDead;
+    private Vector3 origin;
 
     protected virtual void Start()
     {
@@ -40,6 +40,7 @@ public abstract class ShowMonster : MonoBehaviour
         type = mon.type;
         action = ACTION.NONE;
         isAttack = true;
+        origin = transform.position;
 
         uiCanvas.worldCamera = Camera.main;
         SetMonster set = uiCanvas.GetComponent<SetMonster>();
@@ -60,10 +61,13 @@ public abstract class ShowMonster : MonoBehaviour
         attackUI.SetActive(isAttack);
         defensUI.SetActive(!isAttack);
 
+        Vector3 scale = new Vector3(0.8f,0.8f,1);
+        transform.localScale = scale;
+
         OnMonsterDead.AddListener(GameManager.instance.OnGameEnd);
     }
 
-    IEnumerator WaitTime()
+    protected IEnumerator WaitTime()
     {
         yield return new WaitForSeconds(0.5f);
         EndTurn();
@@ -114,8 +118,6 @@ public abstract class ShowMonster : MonoBehaviour
 
     protected IEnumerator Shaking()
     {
-        Vector3 origin = transform.position;
-
         if(!shaking)
         {
             shaking = true;
@@ -155,11 +157,16 @@ public abstract class ShowMonster : MonoBehaviour
         }
     }
 
+    void OnEnable()
+    {
+        shaking = false;
+    }
+
     void OnDisable()
     {
-        GameManager.instance.monsterOption.Remove();
         if(GameManager.instance.monsterOption.AllMonsters.Count == 0)
         {
+            GameManager.instance.monsterOption.Remove();
             GameManager.instance.monsterOption.AllMonsters.Clear();
             OnMonsterDead?.Invoke();
         }

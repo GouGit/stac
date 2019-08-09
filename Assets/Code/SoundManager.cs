@@ -94,8 +94,12 @@ public class SoundManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this);
         }
+        
+        if (SceneLoader.GetNowSceneIndex() == 0)
+        {
+            m_VolumeText = GameObject.Find("VolumeText").GetComponent<UnityEngine.UI.Text>();
+        }
 
-        m_VolumeText = GameObject.Find("VolumeText").GetComponent<UnityEngine.UI.Text>();
         // 데이터가 저장되어있지 않으면 기본값 (1)로 설정
         float volume = PlayerPrefs.GetFloat(PlayerPrefsKey, -1);
         if (volume == -1)
