@@ -49,14 +49,23 @@ public class MonsterManager : MonoBehaviour
         return posistions[number];
     }
 
-    public void Remove()
+    public bool IsEnd()
     {
+        int deadCnt = 0;
         for(var node = AllMonsters.First; node != null; node = node.Next)
         {
             if(!node.Value.activeSelf)
             {
-                AllMonsters.Remove(node);
+                deadCnt++;
             }
+        }
+        if(deadCnt == AllMonsters.Count)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

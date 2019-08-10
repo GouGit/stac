@@ -29,9 +29,11 @@ public abstract class ShowMonster : MonoBehaviour
     protected float shakePower;
     public UnityEvent OnMonsterDead;
     private Vector3 origin;
+    protected GameObject hitParticle, hitTemp;
 
     protected virtual void Start()
     {
+        hitParticle = Resources.Load("HitParticleSystem") as GameObject;
         GetComponent<SpriteRenderer>().sprite = mon.image;
         name = mon.name;
         hp = mon.hp;
@@ -63,6 +65,9 @@ public abstract class ShowMonster : MonoBehaviour
 
         Vector3 scale = new Vector3(0.8f,0.8f,1);
         transform.localScale = scale;
+
+        hitTemp = Instantiate(hitParticle, transform.position, Quaternion.identity);
+        hitTemp.SetActive(false);
 
         OnMonsterDead.AddListener(GameManager.instance.OnGameEnd);
     }
@@ -122,10 +127,12 @@ public abstract class ShowMonster : MonoBehaviour
         {
             shaking = true;
         }
+        hitTemp.SetActive(true);
 
         yield return new WaitForSeconds(0.5f);
 
         shaking = false;
+        hitTemp.SetActive(false);
         transform.position = origin;
     }
 
@@ -164,11 +171,11 @@ public abstract class ShowMonster : MonoBehaviour
 
     void OnDisable()
     {
-        if(GameManager.instance.monsterOption.AllMonsters.Count == 0)
+        if(GameManager.instance.monsterOption.IsEnd())
         {
-            GameManager.instance.monsterOption.Remove();
             GameManager.instance.monsterOption.AllMonsters.Clear();
             OnMonsterDead?.Invoke();
+            Debug.Log("end");
         }
     }
 

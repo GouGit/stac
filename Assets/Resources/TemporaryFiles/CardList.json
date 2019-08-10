@@ -55,6 +55,14 @@
     {
       "name": "DoubleAttack",
       "upgradeLevel": 4
+    },
+    {
+      "name": "NomalAttack",
+      "upgradeLevel": 0
+    },
+    {
+      "name": "Defens",
+      "upgradeLevel": 0
     }
   ]
 }

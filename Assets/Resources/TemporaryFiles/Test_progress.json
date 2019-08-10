@@ -3,14 +3,8 @@
     "spots": [
       {
         "ID": 0,
-        "clear": "false",
-        "spots": [
-          {
-            "ID": 1,
-            "clear": "true",
-            "spots": []
-          }
-        ]
+        "clear": "true",
+        "spots": []
       }
     ]
   }

@@ -9,6 +9,7 @@ public class Knight : MonoBehaviour
     public static Knight instance = null;
     public Canvas playerUI;
     public int bCnt, fCnt, pCnt; //화상, 매혹, 석화
+    public bool isPetrification = false;
     public int defensPower;
     public int usingCard, usedCard;
     private  LinkedList<GameObject> MyCard = new LinkedList<GameObject>();
@@ -143,9 +144,13 @@ public class Knight : MonoBehaviour
         {
             fCnt--;
         }
-        if(pCnt > 0)
+        if(isPetrification)
         {
-            pCnt--;
+            pCnt++;
+            if(pCnt >= 3)
+            {
+                LoseHp(hp);
+            }
         }
     }
 
