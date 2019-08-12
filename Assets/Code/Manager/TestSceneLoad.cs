@@ -15,7 +15,9 @@ public class TestSceneLoad : MonoBehaviour
         //GameManager.instance.monsterOption.CreateMonster(Resources.Load("Vampire") as GameObject);
         //GameManager.instance.monsterOption.CreateMonster(Resources.Load("Reaper") as GameObject);
         //GameManager.instance.monsterOption.CreateMonster(Resources.Load("Rich") as GameObject);  
-        GameManager.instance.monsterOption.CreateMonster(Resources.Load("Medusa") as GameObject);  
+        //GameManager.instance.monsterOption.CreateMonster(Resources.Load("Medusa") as GameObject);
+        //GameManager.instance.monsterOption.CreateMonster(Resources.Load("Kraken") as GameObject);
+        GameManager.instance.monsterOption.CreateMonster(Resources.Load("DeathWorm") as GameObject);
         GameManager.instance.monsterOption.SetMonsterPosition();
     }
 

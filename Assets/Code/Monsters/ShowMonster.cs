@@ -175,7 +175,6 @@ public abstract class ShowMonster : MonoBehaviour
         {
             GameManager.instance.monsterOption.AllMonsters.Clear();
             OnMonsterDead?.Invoke();
-            Debug.Log("end");
         }
     }
 

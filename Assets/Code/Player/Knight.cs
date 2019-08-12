@@ -190,7 +190,9 @@ public class Knight : MonoBehaviour
             defensPower = defens;
             if(defensPower < 0)
             {
+                defensUI.SetActive(false);
                 hp += defensPower;
+                hitUI.FadeOut(1.0f, new Color(1,1,1,(1 - hp/maxhp)));
             }
         }
         else
