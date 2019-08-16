@@ -16,5 +16,5 @@ MonoBehaviour:
   hp: 40
   attackPower: 4
   defensPower: 6
-  image: {fileID: 21300022, guid: 31a6359c96acbae4d9578d291de12995, type: 3}
+  image: {fileID: -4491697800043306815, guid: 31a6359c96acbae4d9578d291de12995, type: 3}
   type: 2

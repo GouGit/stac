@@ -16,13 +16,5 @@ MonoBehaviour:
   hp: 40
   attackPower: 5
   defensPower: 5
-  image: {fileID: 21300014, guid: 31a6359c96acbae4d9578d291de12995, type: 3}
+  image: {fileID: 5580213392679395797, guid: 31a6359c96acbae4d9578d291de12995, type: 3}
   type: 1
-  renderCanvas: {fileID: 2845783988113334434, guid: 827738f91605fa042842beabc6b9ecfb,
-    type: 3}
-  hpUI: {fileID: 9113089942836146082, guid: fe2212c0ead70ce4caab51b4a02915c7, type: 3}
-  attackUI: {fileID: 101704967582715320, guid: c4fcb184b279a79478b8ed12548ae067, type: 3}
-  defensUI: {fileID: 7090445953194928573, guid: d2cef70e577db8548821a729cc444cdc,
-    type: 3}
-  defensOnUI: {fileID: 9066249232545809985, guid: 23122680269486643a0c4144ddab5026,
-    type: 3}
