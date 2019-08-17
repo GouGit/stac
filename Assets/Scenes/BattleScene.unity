@@ -2116,8 +2116,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blendMode: 3
-  intensity: 0.5
-  texture: {fileID: 2800000, guid: 87825b105c7a7d642918e96e9afdcd56, type: 3}
+  intensity: 0.4
+  texture: {fileID: 2800000, guid: aa5230e5d0a00e44ba313ba34a1233a2, type: 3}
   overlayShader: {fileID: 4800000, guid: 8c81db0e527d24acc9bcec04e87781bd, type: 3}
 --- !u!1 &1666823671
 GameObject:
