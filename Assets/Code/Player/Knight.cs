@@ -59,7 +59,7 @@ public class Knight : MonoBehaviour
     void Show()
     {
         showCard = new GameObject("Card");
-        int i = -2;
+        int i = -HandCard.Count/2;
         for(var node = HandCard.First; node != null; node = node.Next)
         {
             GameObject temp;

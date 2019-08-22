@@ -16,5 +16,5 @@ MonoBehaviour:
   cost: 1
   attackPower: 0
   defensPower: 5
-  image: {fileID: 813796157681362143, guid: 584b70a59f587624eab9d22dec2101a3, type: 3}
+  image: {fileID: -225262636045133025, guid: cd5ccf687db9d4943af85c6c95e3c439, type: 3}
   type: 0

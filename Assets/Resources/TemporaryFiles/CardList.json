@@ -2,15 +2,15 @@
   "CardList": [
     {
       "name": "Defens",
-      "upgradeLevel": 0
+      "upgradeLevel": 10
     },
     {
       "name": "Defens",
-      "upgradeLevel": 0
+      "upgradeLevel": 2
     },
     {
       "name": "DoubleAttack",
-      "upgradeLevel": 0
+      "upgradeLevel": 1
     },
     {
       "name": "DoubleAttack",

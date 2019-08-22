@@ -42,6 +42,12 @@ public class ShowCard : MonoBehaviour
 
     private void AddPower()
     {
+        if(type == Type.TYPE.DIAMOND)
+        {
+            attackPower *= 2;
+            return;
+        }
+        
         switch (monsterType)
         {
         case Type.TYPE.RUBY:
