@@ -25,6 +25,11 @@ public class SkillCard : ShowCard
         BezierDrawer.Instance.startPosition = gameObject.transform.position; 
     }
 
+    protected override void OnMouseDrag()
+    {
+        return;
+    }
+
     protected override void OnMouseUp()
     {
         transform.localScale = scale;
@@ -52,5 +57,6 @@ public class SkillCard : ShowCard
             monster.poision *= 2;
             break;
         }
+        gameObject.SetActive(false);
     }
 }
