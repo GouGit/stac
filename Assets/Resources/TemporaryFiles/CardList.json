@@ -1,67 +1,63 @@
 {
   "CardList": [
     {
-      "name": "Defens",
-      "upgradeLevel": 10
-    },
-    {
-      "name": "Defens",
-      "upgradeLevel": 2
-    },
-    {
-      "name": "DoubleAttack",
-      "upgradeLevel": 1
-    },
-    {
-      "name": "DoubleAttack",
-      "upgradeLevel": 0
-    },
-    {
-      "name": "NomalAttack",
-      "upgradeLevel": 0
-    },
-    {
-      "name": "NomalAttack",
-      "upgradeLevel": 0
-    },
-    {
-      "name": "NomalAttack",
-      "upgradeLevel": 0
-    },
-    {
-      "name": "NomalAttack",
-      "upgradeLevel": 0
-    },
-    {
-      "name": "NomalAttack",
-      "upgradeLevel": 0
-    },
-    {
-      "name": "NomalAttack",
-      "upgradeLevel": 0
-    },
-    {
-      "name": "DoubleAttack",
-      "upgradeLevel": 10
-    },
-    {
-      "name": "Defens",
-      "upgradeLevel": 1
-    },
-    {
-      "name": "DoubleAttack",
-      "upgradeLevel": 1
-    },
-    {
-      "name": "DoubleAttack",
-      "upgradeLevel": 4
-    },
-    {
-      "name": "NomalAttack",
+      "name": "Debuff",
       "upgradeLevel": 0
     },
     {
       "name": "Defens",
+      "upgradeLevel": 0
+    },
+    {
+      "name": "DefensDraw",
+      "upgradeLevel": 0
+    },
+    {
+      "name": "DoubleAttack",
+      "upgradeLevel": 0
+    },
+    {
+      "name": "Draw",
+      "upgradeLevel": 0
+    },
+    {
+      "name": "Fire",
+      "upgradeLevel": 0
+    },
+    {
+      "name": "Gamble",
+      "upgradeLevel": 0
+    },
+    {
+      "name": "IronWall",
+      "upgradeLevel": 0
+    },
+    {
+      "name": "Lighting",
+      "upgradeLevel": 0
+    },
+    {
+      "name": "NomalAttack",
+      "upgradeLevel": 0
+    },
+    {
+      "name": "Pill",
+      "upgradeLevel": 0
+    },
+    {
+      "name": "Poision",
+      "upgradeLevel": 0
+    },
+    {
+      "name": "PowerUp",
+      "upgradeLevel": 0
+    },
+    {
+      "name": "Saving",
+      "upgradeLevel": 0
+    },
+    {
+      "name": "NomalAttack",
       "upgradeLevel": 0
     }
   ]
