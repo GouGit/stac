@@ -39,24 +39,28 @@ public class SkillCard : ShowCard
 
     protected override void Using(GameObject ob)
     {
-        ShowMonster monster = ob.GetComponent<ShowMonster>();
-        switch (skill)
+        if(GameManager.instance.cost >= cost)
         {
-        case SkILL.FIRE:
-            monster.fire = 2;
-            break;
-        case SkILL.POISION:
-            monster.poision = 4;
-            break;
-        case SkILL.LIGHTING:
-            monster.lighting = 2;
-            break;
-        case SkILL.DEBUFF:
-            monster.fire *= 2;
-            monster.lighting *= 2;
-            monster.poision *= 2;
-            break;
+            GameManager.instance.cost -= cost;
+            ShowMonster monster = ob.GetComponent<ShowMonster>();
+            switch (skill)
+            {
+            case SkILL.FIRE:
+                monster.fire = 2;
+                break;
+            case SkILL.POISION:
+                monster.poision = 4;
+                break;
+            case SkILL.LIGHTING:
+                monster.lighting = 2;
+                break;
+            case SkILL.DEBUFF:
+                monster.fire *= 2;
+                monster.lighting *= 2;
+                monster.poision *= 2;
+                break;
+            }
+            gameObject.SetActive(false);   
         }
-        gameObject.SetActive(false);
     }
 }
