@@ -24,12 +24,14 @@ public abstract class ShowMonster : MonoBehaviour
     public int attackPower;
     public int defensPower;
     public int ondefensPower = 0;
+    public int fire, poision, lighting;
     protected bool isAttack;
     protected bool shaking = false;
     protected float shakePower;
     public UnityEvent OnMonsterDead;
     private Vector3 origin;
     protected GameObject hitParticle, hitTemp;
+    protected int temPower;
 
     protected virtual void Start()
     {
@@ -37,7 +39,7 @@ public abstract class ShowMonster : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = mon.image;
         name = mon.name;
         hp = mon.hp;
-        attackPower = mon.attackPower;
+        attackPower = temPower = mon.attackPower;
         defensPower = mon.defensPower;
         type = mon.type;
         action = ACTION.NONE;
@@ -87,13 +89,44 @@ public abstract class ShowMonster : MonoBehaviour
         ondefensPower = 0;
         Vector3 scale = new Vector3(1,1,1);
         transform.localScale = scale;
+        if(lighting != 0)
+        {
+            if(Random.Range(0,10) < 5)
+            {
+                StartCoroutine(WaitTime());
+                action = ACTION.END;
+            }
+            lighting--;
+        }
+        if(fire!=0)
+        {
+            attackPower = temPower/2;
+        }
+        else
+        {
+            attackPower = temPower;
+        }
     }
 
     protected virtual void EndTurn()
     {
+        if(fire != 0)
+        {
+            LoseHp(fire);
+            fire--;
+        }
+        if(poision != 0)
+        {
+            int defens = ondefensPower;
+            ondefensPower = 0;
+            LoseHp(poision);
+            poision--;
+            ondefensPower = defens;
+        }
         action = ACTION.NONE;
         GameManager.instance.isPlayerTurn = true;
-        GameManager.instance.cost = 3;
+        GameManager.instance.cost = 3 + GameManager.instance.savingCost;
+        GameManager.instance.savingCost = 0;
         Knight.instance.defensPower = 0;
         Knight.instance.DrawCard();
         Vector3 scale = new Vector3(0.8f,0.8f,1);

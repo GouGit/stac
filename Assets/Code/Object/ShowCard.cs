@@ -19,15 +19,15 @@ public class ShowCard : MonoBehaviour
 {
     public Card card;
     private new string name;
-    private int cost;
+    protected int cost;
     public int attackPower;
     public int defensPower;
-    private Vector3 scale, origin;
-    private BoxCollider2D myBox;
-    private Type.TYPE type, monsterType;
+    protected Vector3 scale, origin;
+    protected BoxCollider2D myBox;
+    protected Type.TYPE type, monsterType;
 
 
-    void Start()
+    protected virtual void Start()
     {
         GetComponent<SpriteRenderer>().sprite = card.image;
         name = card.name;
@@ -40,7 +40,7 @@ public class ShowCard : MonoBehaviour
         myBox = GetComponent<BoxCollider2D>();
     }
 
-    private void AddPower()
+    protected virtual void AddPower()
     {
         if(type == Type.TYPE.DIAMOND)
         {
@@ -88,7 +88,7 @@ public class ShowCard : MonoBehaviour
         }       
     }
 
-    private void OnlyDefens()
+    protected virtual void OnlyDefens()
     {
         if(origin.y + 2 <= transform.position.y)
         {
@@ -109,7 +109,7 @@ public class ShowCard : MonoBehaviour
         }
     }
 
-    private void UseCard()
+    protected virtual void UseCard()
     {
         myBox.enabled = false;
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -117,11 +117,12 @@ public class ShowCard : MonoBehaviour
         if(hit.collider != null)
         {
             Using(hit.collider.gameObject);
+            attackPower = attackPower + Knight.instance.attackPower;
         }
         myBox.enabled = true;
     }
 
-    void Using(GameObject ob)
+    protected virtual void Using(GameObject ob)
     {
         if(Knight.instance.bCnt > 0)
         {
@@ -146,7 +147,7 @@ public class ShowCard : MonoBehaviour
         }
     }
 
-    void OnMouseDown()
+    protected virtual void OnMouseDown()
     {
         transform.localScale = scale * 1.25f;
         if(attackPower > 0)
@@ -156,7 +157,7 @@ public class ShowCard : MonoBehaviour
         }
     }
 
-    void OnMouseDrag()
+    protected virtual void OnMouseDrag()
     {
         if(attackPower <= 0)
         {
@@ -166,7 +167,7 @@ public class ShowCard : MonoBehaviour
         } 
     }
 
-    void OnMouseUp()
+    protected virtual void OnMouseUp()
     {
         transform.localScale = scale;
         if(attackPower > 0)

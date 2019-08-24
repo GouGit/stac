@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public bool isPlayerTurn = true;
     public List<CardSet> AllCards = new List<CardSet>();
     public int cost = 3;
+    public int savingCost = 0;
 
     public int goldCount = 0;
     public int topazCount = 0;

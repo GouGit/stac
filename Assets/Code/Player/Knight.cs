@@ -10,7 +10,7 @@ public class Knight : MonoBehaviour
     public Canvas playerUI;
     public int bCnt, fCnt, pCnt; //화상, 매혹, 석화
     public bool isPetrification = false;
-    public int defensPower;
+    public int defensPower, attackPower;
     public int usingCard, usedCard;
     private  LinkedList<GameObject> MyCard = new LinkedList<GameObject>();
     private LinkedList<GameObject> HandCard = new LinkedList<GameObject>();
@@ -93,6 +93,21 @@ public class Knight : MonoBehaviour
         {
             MyCard.AddLast(result[i]);
         }
+    }
+
+    public void Draw(int num)
+    {
+        for(int i = 0; i<num; i++)
+        {
+            HandCard.AddFirst(MyCard.First.Value);
+            MyCard.RemoveFirst();
+
+            if(MyCard.Count == 0)
+                ReBulid();
+        }
+        usingCard = MyCard.Count;
+        usedCard = TrashCard.Count;
+        Show();
     }
 
     public void DrawCard()
