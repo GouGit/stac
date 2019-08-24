@@ -97,6 +97,7 @@ public class ShowCard : MonoBehaviour
                 GameManager.instance.cost -= cost;
                 Knight.instance.defensPower += defensPower;
                 gameObject.SetActive(false);
+                Knight.instance.Sort();
             }
             else
             {
@@ -135,6 +136,7 @@ public class ShowCard : MonoBehaviour
             {
                 Knight.instance.LoseHp(attackPower);
                 gameObject.SetActive(false);
+                Knight.instance.Sort();
                 return;
             }
             ShowMonster monster = ob.GetComponent<ShowMonster>();
@@ -144,6 +146,7 @@ public class ShowCard : MonoBehaviour
             SoundManager.Instance.PlaySFX(SoundManager.SFXList.KNIFE_1);
             Knight.instance.defensPower += defensPower;
             gameObject.SetActive(false);
+            Knight.instance.Sort();
         }
     }
 

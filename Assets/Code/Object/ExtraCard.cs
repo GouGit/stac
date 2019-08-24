@@ -42,6 +42,7 @@ public class ExtraCard : ShowCard
                     break;
                 }
                 gameObject.SetActive(false);
+                Knight.instance.Sort();
             }
             else
             {

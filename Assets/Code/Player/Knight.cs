@@ -71,6 +71,29 @@ public class Knight : MonoBehaviour
         }
     }
 
+    public void Sort()
+    {
+        int num = 0;
+        int onActive = 0;
+        for(int i = 0; i<showCard.transform.childCount; i++)
+        {
+            if(showCard.transform.GetChild(i).gameObject.activeSelf)
+            {
+                num++;
+            }
+        }
+        
+        num = num*-1;
+        for(int i = 0; i<showCard.transform.childCount; i++)
+        {
+            if(showCard.transform.GetChild(i).gameObject.activeSelf)
+            {
+                showCard.transform.GetChild(i).localPosition = new Vector3(num + 2*onActive, -3.0f, -i);
+                onActive++;   
+            }
+        }
+    }
+
     void Shuffle()
     {
         List<GameObject> result = new List<GameObject>();
@@ -97,14 +120,13 @@ public class Knight : MonoBehaviour
 
     public void Draw(int num)
     {
-        float pos = showCard.transform.GetChild(0).transform.position.x;
-
         for(int i = 1; i<=num; i++)
         {
             HandCard.AddFirst(MyCard.First.Value);
 
             GameObject temp;
-            temp = Instantiate(MyCard.First.Value, new Vector3(pos + 2*num, -3.0f, 0), Quaternion.identity);
+            temp = Instantiate(MyCard.First.Value, new Vector3(0, -3.0f, 0), Quaternion.identity);
+            temp.SetActive(true);
             temp.transform.SetParent(showCard.transform);
 
             MyCard.RemoveFirst();

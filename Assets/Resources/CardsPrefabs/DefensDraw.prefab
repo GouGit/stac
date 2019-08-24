@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bfbbb85c9d4974409f367d8b4afcd24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 11400000, guid: 8bd549b99f6dacd4f94315cd41c32ebb, type: 2}
+  card: {fileID: 11400000, guid: 07701fd6bdfe9c246912815817edd448, type: 2}
   attackPower: 0
   defensPower: 0
   skill: 1

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -61,6 +61,7 @@ public class SkillCard : ShowCard
                 break;
             }
             gameObject.SetActive(false);   
+            Knight.instance.Sort();
         }
     }
 }

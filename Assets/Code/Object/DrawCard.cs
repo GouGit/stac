@@ -36,6 +36,7 @@ public class DrawCard : ShowCard
                 Knight.instance.Draw(drawNum);
                 Knight.instance.defensPower += defensPower;
                 gameObject.SetActive(false);
+                Knight.instance.Sort();
             }
             else
             {
