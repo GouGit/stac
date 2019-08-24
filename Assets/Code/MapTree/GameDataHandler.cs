@@ -152,7 +152,7 @@ public static class GameDataHandler
 
             for (int i = 0; i < prefabList.Count; i++)
             {
-                string name = prefabList[i].ToString();
+                string name = "MonsterPrefabs/" + prefabList[i].ToString();
                 if (!name.Equals(""))
                     spot.sceneOption.objectList.Add(Resources.Load(name) as GameObject);
             }
@@ -362,7 +362,7 @@ public static class GameDataHandler
 
         foreach(JObject card in cards)
         {
-            ShowCard cardObj = (Resources.Load(card["name"].ToString()) as GameObject).GetComponent<ShowCard>();
+            ShowCard cardObj = (Resources.Load("CardsPrefabs/" + card["name"].ToString()) as GameObject).GetComponent<ShowCard>();
             int upgradeLevel = card["upgradeLevel"].ToInt();
 
             cardList.Add(new CardSet(cardObj, upgradeLevel));
