@@ -13,20 +13,44 @@ public class AttackCard : ShowCard
         HOLY_SWORD
     }
     public SKILL skill;
+    private int holyCnt;
+    private int doubleCnt;
    
     protected override void Start()
     {
         base.Start();
+        holyCnt = 0;
+        doubleCnt = 2;
     }
 
-    IEnumerator DoubleAttack()
+    IEnumerator DoubleAttack(ShowMonster mon)
     {
+        mon.LoseHp(attackPower);
+        doubleCnt--;
         yield return new WaitForSeconds(0.5f);
+        if(doubleCnt<=0)
+        {
+            StopCoroutine(DoubleAttack(mon));
+        }
+        else
+        {
+            StartCoroutine(DoubleAttack(mon));
+        }
     }
 
-     IEnumerator Roll(int num)
+     IEnumerator Roll(ShowMonster mon,int num)
     {
+        mon.LoseHp(attackPower);
+        num--;
         yield return new WaitForSeconds(0.5f);
+        if(num<=0)
+        {
+            StopCoroutine(Roll(mon,num));
+        }
+        else
+        {
+            StartCoroutine(Roll(mon,num));
+        }
     }
 
     protected override void Using(GameObject ob)
@@ -50,18 +74,26 @@ public class AttackCard : ShowCard
             switch (skill)
             {
             case SKILL.DOUBLE_ATTACK:
-                StartCoroutine(DoubleAttack());
+                StartCoroutine(DoubleAttack(monster));
                 break;
             case SKILL.POWER_ATTACK:
                 monster.LoseHp(attackPower);
                 Knight.instance.LoseHp(3);
                 break;
             case SKILL.DOUBLE_SWORD:
-                //Knight.instance
+                monster.LoseHp(Knight.instance.defensPower*2);
+                Knight.instance.defensPower = 0;
                 break;
             case SKILL.ROLL:
+                StartCoroutine(Roll(monster ,GameManager.instance.cost));
+                GameManager.instance.cost -= GameManager.instance.cost;
                 break;
             case SKILL.HOLY_SWORD:
+                holyCnt++;
+                if(holyCnt >= 3)
+                {
+                    monster.LoseHp(monster.hp);
+                }
                 break;
             }
             monster.LoseHp(attackPower);

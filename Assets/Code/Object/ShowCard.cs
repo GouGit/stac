@@ -117,8 +117,8 @@ public class ShowCard : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(mousePos, transform.forward, 0.0f, 1<<8);
         if(hit.collider != null)
         {
-            Using(hit.collider.gameObject);
             attackPower = attackPower + Knight.instance.attackPower;
+            Using(hit.collider.gameObject);
         }
         myBox.enabled = true;
     }

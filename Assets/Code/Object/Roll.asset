@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab6d2f6c7a35aed4fa0e171c10083df3, type: 3}
-  m_Name: DoubleAttack
+  m_Name: Roll
   m_EditorClassIdentifier: 
-  name: "\uC774\uC911\uD0C0\uACA9"
-  cost: 1
-  attackPower: 3
+  name: "\uC5F0\uD0C0"
+  cost: 0
+  attackPower: 1
   defensPower: 0
-  image: {fileID: -5547768843037689371, guid: ae3b64002de1f114ba38accfd7043c95, type: 3}
-  type: 3
+  image: {fileID: 872953442308802742, guid: ae3b64002de1f114ba38accfd7043c95, type: 3}
+  type: 4
