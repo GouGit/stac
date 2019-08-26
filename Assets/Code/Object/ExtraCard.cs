@@ -9,7 +9,8 @@ public class ExtraCard : ShowCard
         POWERUP,
         GAMBLE,
         PILL,
-        SAVING
+        SAVING,
+        REFLECT
     }
     public SKILL skill;
     protected override void Start()
@@ -39,6 +40,10 @@ public class ExtraCard : ShowCard
                     break;
                 case SKILL.SAVING:
                     GameManager.instance.savingCost = 2;
+                    break;
+                case SKILL.REFLECT:
+                    Knight.instance.isReflect = true;
+                    Knight.instance.defensPower += defensPower;
                     break;
                 }
                 gameObject.SetActive(false);

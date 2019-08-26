@@ -32,6 +32,10 @@ public class Succubus : ShowMonster
             actionCount = 0;
             isAttack = false;
         }
+        if(Knight.instance.isReflect)
+        {
+            LoseHp(attackPower);
+        }
         Knight.instance.LoseHp(attackPower);
     }
 

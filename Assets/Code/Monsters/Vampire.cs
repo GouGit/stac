@@ -14,6 +14,10 @@ public class Vampire : ShowMonster
 
     protected override void Attack()
     {
+        if(Knight.instance.isReflect)
+        {
+            LoseHp(attackPower);
+        }
         int beforeHp = Knight.instance.ReturnHP();
         Knight.instance.LoseHp(attackPower);
         int playerHp = beforeHp - Knight.instance.ReturnHP();

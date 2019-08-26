@@ -81,16 +81,20 @@ public class Kraken : ShowMonster
         randomAction = Random.Range(0, 10);
         if(randomAction <= 5)
         {
-            isAttack = false;
+            isAttack = true;
         }
         else
         {
-            isAttack = true;
+            isAttack = false;
         }
     }
 
     protected override void Attack()
     {
+        if(Knight.instance.isReflect)
+        {
+            LoseHp(attackPower * legNum);
+        }
         Knight.instance.LoseHp(attackPower * legNum);
     }
     

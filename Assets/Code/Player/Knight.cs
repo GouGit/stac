@@ -9,7 +9,7 @@ public class Knight : MonoBehaviour
     public static Knight instance = null;
     public Canvas playerUI;
     public int bCnt, fCnt, pCnt; //화상, 매혹, 석화
-    public bool isPetrification = false;
+    public bool isPetrification = false, isReflect = false;
     public int defensPower, attackPower;
     public int usingCard, usedCard;
     private  LinkedList<GameObject> MyCard = new LinkedList<GameObject>();

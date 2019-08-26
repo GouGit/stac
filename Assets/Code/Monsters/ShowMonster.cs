@@ -22,9 +22,10 @@ public abstract class ShowMonster : MonoBehaviour
     protected new string name;
     public int hp;
     public int attackPower;
-    public int defensPower;
+    public int defensPower, tempDefens;
     public int ondefensPower = 0;
     public int fire, poision, lighting;
+    public bool isDont = false;
     protected bool isAttack;
     protected bool shaking = false;
     protected float shakePower;
@@ -40,7 +41,7 @@ public abstract class ShowMonster : MonoBehaviour
         name = mon.name;
         hp = mon.hp;
         attackPower = temPower = mon.attackPower;
-        defensPower = mon.defensPower;
+        defensPower = tempDefens = mon.defensPower;
         type = mon.type;
         action = ACTION.NONE;
         isAttack = true;
@@ -106,6 +107,11 @@ public abstract class ShowMonster : MonoBehaviour
         {
             attackPower = temPower;
         }
+
+        if(isDont)
+        {
+            defensPower = 0;
+        }
     }
 
     protected virtual void EndTurn()
@@ -124,10 +130,13 @@ public abstract class ShowMonster : MonoBehaviour
             ondefensPower = defens;
         }
         action = ACTION.NONE;
+        isDont = false;
+        defensPower = tempDefens;
         GameManager.instance.isPlayerTurn = true;
         GameManager.instance.cost = 3 + GameManager.instance.savingCost;
         GameManager.instance.savingCost = 0;
         Knight.instance.defensPower = 0;
+        Knight.instance.isReflect = false;
         Knight.instance.DrawCard();
         Vector3 scale = new Vector3(0.8f,0.8f,1);
         transform.localScale = scale;
@@ -226,6 +235,10 @@ public abstract class ShowMonster : MonoBehaviour
 
     protected virtual void Attack()
     {
+        if(Knight.instance.isReflect)
+        {
+            LoseHp(attackPower);
+        }
         Knight.instance.LoseHp(attackPower);
     }
 

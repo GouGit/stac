@@ -55,6 +55,10 @@ public class Medusa : ShowMonster
         {
             Knight.instance.isPetrification = true;
         }
+        if(Knight.instance.isReflect)
+        {
+            LoseHp(attackPower);
+        }
         Knight.instance.LoseHp(attackPower);
     }
 }

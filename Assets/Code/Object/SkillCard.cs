@@ -9,7 +9,8 @@ public class SkillCard : ShowCard
         FIRE,
         LIGHTING,
         POISION,
-        DEBUFF
+        DEBUFF,
+        DONT
     }
     public SkILL skill;
 
@@ -58,6 +59,9 @@ public class SkillCard : ShowCard
                 monster.fire *= 2;
                 monster.lighting *= 2;
                 monster.poision *= 2;
+                break;
+            case SkILL.DONT:
+                monster.isDont = true;
                 break;
             }
             gameObject.SetActive(false);   

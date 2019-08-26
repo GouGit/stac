@@ -56,7 +56,11 @@ public class Dragon : ShowMonster
             attackPower = tempPower;
         }
         else
-        {    
+        {   
+            if(Knight.instance.isReflect)
+            {
+                LoseHp(attackPower);
+            }
             Knight.instance.LoseHp(attackPower);
             Knight.instance.bCnt = 1;
             actionCnt++;
