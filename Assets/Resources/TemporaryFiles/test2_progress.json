@@ -1,5 +1,5 @@
 {
-  "Test": {
+  "test2": {
     "spots": [
       {
         "ID": 0,
@@ -8,7 +8,13 @@
           {
             "ID": 1,
             "clear": "true",
-            "spots": []
+            "spots": [
+              {
+                "ID": 2,
+                "clear": "true",
+                "spots": []
+              }
+            ]
           }
         ]
       }

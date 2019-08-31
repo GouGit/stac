@@ -15,7 +15,7 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
     public bool isTraversal = false;    // 맵 트리를 순회할때 중복순회를 막기위해 사용됩니다.
     [HideInInspector]
     public int ID;                      // 맵을 저장하고 불러올때 사용될 변수 입니다. 코드상에서 절대로 건들면 안됩니다.
-    // [HideInInspector]
+    [HideInInspector]
     public bool isClear = false;        // 맵의 진행도를 저장하고 불러올때 사용할 변수 입니다. 해당 Spot에 도달 했었는지를 나타냅니다.
 
     public List<Sprite> spriteList;
@@ -118,13 +118,19 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
         if(isClear)
             return;
 
-        isClear = true;
+        foreach (Spot spot in Spot.nowSpot.nextSpots)
+        {
+            if(spot == this)
+            {
+                isClear = true;
 
-        nowSpot = this;
+                nowSpot = this;
 
-        GameDataHandler.SaveProgress(GetFirstSpot(), "Test");
+                GameDataHandler.SaveProgress(GetFirstSpot(), "test2");
 
-        SceneLoader.LoadScene("BattleScene", sceneOption);
+                SceneLoader.LoadScene("BattleScene", sceneOption);
+            }
+        }
     }
 
     public static void ViewNextSpot()

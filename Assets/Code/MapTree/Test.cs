@@ -7,28 +7,6 @@ public class Test : MonoBehaviour
     public Traveler traveler;
     public SceneOption option = new SceneOption();
 
-    public void Change()
-    {
-
-    }
-
-    public void GoStart()
-    {
-
-    }
-
-    public void GoEnd()
-    {
-        Spot nowSpot = traveler.nowSpot;
-        if(nowSpot.nextSpots.Count > 0)
-        {
-            traveler.ChangeSpot(nowSpot.nextSpots[0]);
-        }
-        else
-        {
-            
-        }
-    }
 
     void Awake()
     {
@@ -36,15 +14,15 @@ public class Test : MonoBehaviour
         {
             // traveler.nowSpot = MapDataHandler.CreateMap("Test");
             // MapDataHandler.SaveMapJson(traveler.nowSpot, "Test");
-            traveler.nowSpot = Spot.nowSpot = GameDataHandler.LoadMap("Test");
+            Spot.nowSpot = GameDataHandler.LoadMap("test2");
             GameManager.instance.isFirstStart = false;
             Spot.SetParent();
         }
         else
         {
-            Spot firstSpot = GameDataHandler.LoadMap("Test");
-            GameDataHandler.LoadProgress(firstSpot, "Test");
-            traveler.nowSpot = Spot.nowSpot = Spot.GetProgressSpot();
+            Spot firstSpot = GameDataHandler.LoadMap("test2");
+            GameDataHandler.LoadProgress(firstSpot, "test2");
+            Spot.nowSpot = Spot.GetProgressSpot();
             Spot.SetParent();
         }
     }

@@ -1522,7 +1522,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1955658397}
-  - component: {fileID: 1955658395}
   - component: {fileID: 1955658398}
   m_Layer: 0
   m_Name: GunBox
@@ -1531,49 +1530,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1955658395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1955658394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 440a2b769d6adf34fb712e1ba71a48a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nowSpot: {fileID: 0}
-  OnSpotChange:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnMoveStart:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnMoveEnd:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1955658395}
-        m_MethodName: ViewRoutes
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  moveSpeed: 10
-  teleport: 0
-  routePicker: {fileID: 5248349272065976491, guid: 6ddae8093c1164f4da7e11f60e8a5175,
-    type: 3}
 --- !u!4 &1955658397
 Transform:
   m_ObjectHideFlags: 0
@@ -1600,7 +1556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c16746747d57608409f89859c3c9a43c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  traveler: {fileID: 1955658395}
+  traveler: {fileID: 0}
   option:
     type: 0
     objectList: []
