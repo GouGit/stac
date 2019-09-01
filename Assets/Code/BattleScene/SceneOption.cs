@@ -8,7 +8,7 @@ public struct SceneOption
 {
     public enum Type
     { 
-        Boss, Battle, Event, Rest, MAX
+        Boss, Battle, Event, Rest, Start, MAX
     };
 
     [Tooltip("다음씬의 타입")]

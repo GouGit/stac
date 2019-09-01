@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     public int diamondCount = 0;
     
     public ResultWindow ResultWindowPrefab;
+    public int stage_count = 0;// 현재 층
     public string mapName;// 현재 맵의 이름 (나중에 사용할 예정)
     public bool isFirstStart = true;// 해당맵이 처음 시작되는것 인지 맵이 바뀔때 마다 true로 해주어야 합니다.
 
@@ -49,6 +50,8 @@ public class GameManager : MonoBehaviour
 
         GameDataHandler.LoadGemCount(out goldCount, out topazCount, out rubyCount, out sapphireCount, out diamondCount);
         AllCards = GameDataHandler.LoadCards();
+        stage_count = GameDataHandler.LoadStageCount();
+        mapName = "Stage" + stage_count;
         // GameDataHandler.SaveCards(AllCards);
     }
 
@@ -123,6 +126,19 @@ public class GameManager : MonoBehaviour
                 MainUIMnager.Instance.SetText();
             break;
         }
+    }
+
+    public void OnStageClear()
+    {
+        stage_count++;
+        GameDataHandler.SaveStageCount(stage_count);
+        isFirstStart = true;
+        mapName = "Stage" + stage_count;
+    }
+
+    public void SaveProgress()
+    {
+        GameDataHandler.SaveProgress(Spot.GetFirstSpot(), mapName);
     }
 
     // public void LoadGemCount()
