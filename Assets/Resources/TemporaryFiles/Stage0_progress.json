@@ -1,0 +1,28 @@
+{
+  "Stage0": {
+    "spots": [
+      {
+        "ID": 0,
+        "clear": "false",
+        "spots": [
+          {
+            "ID": 1,
+            "clear": "true",
+            "spots": [
+              {
+                "ID": 2,
+                "clear": "true",
+                "spots": [
+                  {
+                    "ID": 3,
+                    "clear": "true"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

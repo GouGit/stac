@@ -63,6 +63,18 @@
     {
       "name": "NomalAttack",
       "upgradeLevel": 0
+    },
+    {
+      "name": "Defens",
+      "upgradeLevel": 1
+    },
+    {
+      "name": "Defens",
+      "upgradeLevel": 0
+    },
+    {
+      "name": "Defens",
+      "upgradeLevel": 0
     }
   ]
 }

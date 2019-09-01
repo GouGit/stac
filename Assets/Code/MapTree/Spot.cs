@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class Spot : MonoBehaviour,  IPointerClickHandler
 {
@@ -42,8 +43,14 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
         if(isClear)
         {
             Color color = render.color;
-            color.a = 0.3f;
+            color.a = 0.2f;
             render.color = color;
+
+            if(sceneOption.type == SceneOption.Type.Boss)
+            {
+                GameManager.instance.OnStageClear();
+                SceneLoader.Instance.LoadSceneWithDelay(SceneLoader.GetNowSceneName(), 2.0f);
+            }
         }
     }
 
@@ -123,10 +130,9 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
             if(spot == this)
             {
                 isClear = true;
-
                 nowSpot = this;
 
-                GameDataHandler.SaveProgress(GetFirstSpot(), "test2");
+                GameManager.instance.SaveProgress();
 
                 SceneLoader.LoadScene("BattleScene", sceneOption);
             }

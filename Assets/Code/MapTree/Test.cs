@@ -10,18 +10,19 @@ public class Test : MonoBehaviour
 
     void Awake()
     {
+        string mapName = GameManager.instance.mapName;
         if(GameManager.instance.isFirstStart)
         {
             // traveler.nowSpot = MapDataHandler.CreateMap("Test");
             // MapDataHandler.SaveMapJson(traveler.nowSpot, "Test");
-            Spot.nowSpot = GameDataHandler.LoadMap("test2");
+            Spot.nowSpot = GameDataHandler.LoadMap(mapName);
             GameManager.instance.isFirstStart = false;
             Spot.SetParent();
         }
         else
         {
-            Spot firstSpot = GameDataHandler.LoadMap("test2");
-            GameDataHandler.LoadProgress(firstSpot, "test2");
+            Spot firstSpot = GameDataHandler.LoadMap(mapName);
+            GameDataHandler.LoadProgress(firstSpot, mapName);
             Spot.nowSpot = Spot.GetProgressSpot();
             Spot.SetParent();
         }
