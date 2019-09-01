@@ -46,8 +46,12 @@ public class MainUIMnager : MonoBehaviour
     public Text SapphireText;
     public Text DiamondText;
 
+    public WindowUI window;
+
     private void Awake()
     {
+        WindowUI win = Instantiate(window);
+        win.GetComponent<ChooseWindowUI>().SetWindow("aaa", "YES", "NO", () => Destroy(win.gameObject), () => Destroy(win.gameObject));
         instance = this;
         GameObject Images = GameObject.Find("Images");
         // GameObject GoldImg = Images?.transform?.GetChild(0)?.gameObject;
