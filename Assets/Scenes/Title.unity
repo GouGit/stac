@@ -3198,6 +3198,7 @@ MonoBehaviour:
   RubyText: {fileID: 2077107784}
   SapphireText: {fileID: 1394159516}
   DiamondText: {fileID: 1778708720}
+  window: {fileID: 5719425269829439987, guid: 305118bfbe291a74d8112443943fa02c, type: 3}
 --- !u!4 &1008701410
 Transform:
   m_ObjectHideFlags: 0

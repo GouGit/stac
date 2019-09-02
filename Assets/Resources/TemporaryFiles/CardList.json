@@ -75,6 +75,10 @@
     {
       "name": "Defens",
       "upgradeLevel": 0
+    },
+    {
+      "name": "NomalAttack",
+      "upgradeLevel": 0
     }
   ]
 }
