@@ -5,16 +5,66 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    public static void LoadScene(int index)
+    private static SceneLoader instance;
+    public static SceneLoader Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new GameObject("SceneLoader").AddComponent<SceneLoader>();
+            }
+            return instance;
+        }
+    }
+
+    private void Awake()
+    {
+        if (instance != null)
+        { Destroy(this); return; }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+    }
+
+    public static void LoadScene(int index, float delay = 0)
     {
         Time.timeScale = 1;
+        if (delay != 0)
+        {
+            Instance.LoadSceneWithDelay(index, delay);
+            return;
+        }
         SceneManager.LoadScene(index);
     }
 
-    public static void LoadScene(string name)
+    public static void LoadScene(string name, float delay = 0)
     {
         Time.timeScale = 1;
+        if(delay != 0)
+        {
+            Instance.LoadSceneWithDelay(name, delay);
+            return;
+        }
         SceneManager.LoadScene(name);
+    }
+
+    public void LoadSceneWithDelay(int index, float delay)
+    {
+        StartCoroutine(CO_LoadSceneWithDelay(delay, () => LoadScene(index)));
+    }
+
+    public void LoadSceneWithDelay(string name, float delay)
+    {
+        StartCoroutine(CO_LoadSceneWithDelay(delay, () => LoadScene(name)));
+    }
+
+    public static IEnumerator CO_LoadSceneWithDelay(float delay, UnityEngine.Events.UnityAction action)
+    {
+        yield return new WaitForSeconds(delay);
+        action?.Invoke();
     }
 
     public static void LoadScene(string name, SceneOption option)

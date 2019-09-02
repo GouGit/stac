@@ -10,7 +10,7 @@
     },
     {
       "name": "DefensDraw",
-      "upgradeLevel": 0
+      "upgradeLevel": 1
     },
     {
       "name": "DoubleAttack",
@@ -22,15 +22,15 @@
     },
     {
       "name": "Fire",
-      "upgradeLevel": 0
+      "upgradeLevel": 1
     },
     {
       "name": "Gamble",
-      "upgradeLevel": 0
+      "upgradeLevel": 2
     },
     {
       "name": "IronWall",
-      "upgradeLevel": 0
+      "upgradeLevel": 3
     },
     {
       "name": "Lighting",
@@ -46,18 +46,34 @@
     },
     {
       "name": "Poision",
-      "upgradeLevel": 0
+      "upgradeLevel": 1
     },
     {
       "name": "PowerUp",
-      "upgradeLevel": 0
+      "upgradeLevel": 16
     },
     {
       "name": "Saving",
-      "upgradeLevel": 0
+      "upgradeLevel": 2
     },
     {
       "name": "NomalAttack",
+      "upgradeLevel": 1
+    },
+    {
+      "name": "NomalAttack",
+      "upgradeLevel": 0
+    },
+    {
+      "name": "Defens",
+      "upgradeLevel": 1
+    },
+    {
+      "name": "Defens",
+      "upgradeLevel": 0
+    },
+    {
+      "name": "Defens",
       "upgradeLevel": 0
     }
   ]

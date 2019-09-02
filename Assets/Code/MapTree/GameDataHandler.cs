@@ -122,6 +122,7 @@ public static class GameDataHandler
     /// <param name="fileName">JSON 파일의 이름</param>
     public static Spot LoadMap(string fileName)
     {
+        Debug.Log(fileName);
         UnityEditor.AssetDatabase.Refresh();
 
         string jsonData = File.ReadAllText("./Assets/Resources/MapFiles/" + fileName + ".json");
@@ -369,6 +370,37 @@ public static class GameDataHandler
         }
 
         return cardList;
+    }
+
+    public static void SaveStageCount(int count)
+    {
+        JObject stageCount = new JObject();
+
+        stageCount.Add("stage_count", count);
+
+        File.WriteAllText("./Assets/Resources/TemporaryFiles/StageCount.json", stageCount.ToString());
+        UnityEditor.AssetDatabase.Refresh();
+    }
+
+    public static int LoadStageCount()
+    {
+        UnityEditor.AssetDatabase.Refresh();
+        
+        int count = 0;
+        string jsonData = "";
+        try
+        {
+            jsonData = File.ReadAllText("./Assets/Resources/TemporaryFiles/StageCount.json");
+
+            JObject jObject = JObject.Parse(jsonData);
+            count = jObject["stage_count"].ToInt();
+        }
+        catch (FileNotFoundException)
+        {
+
+        }
+
+        return count;
     }
 
 
