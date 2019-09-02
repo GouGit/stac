@@ -14,7 +14,7 @@ public class CardPicker : MonoBehaviour
     public void SetOption(ShowCard card, UnityAction<CardPicker> action)
     {
         this.card = card;
-        image.sprite = card.card.image;
+        image.sprite = this.card.card.image;
         GetComponent<Button>().onClick.AddListener(delegate{action(this);});
     }
 }
