@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SetTarget : MonoBehaviour
 {
-    protected ShowMonster monster;
+    public ShowMonster monster;
 
-    public void Set(ShowMonster mon)
+    public virtual void Set(ShowMonster mon)
     {
         monster = mon;
     }

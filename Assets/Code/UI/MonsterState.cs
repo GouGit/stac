@@ -14,13 +14,10 @@ public class MonsterState : SetTarget
     public STATE state;
     private Text text;
 
-    void Start()
-    {
-        text = GetComponent<Text>();
-    }
-
     void OnEnable()
     {
+        text = GetComponent<Text>();
+        base.monster = transform.parent.parent.GetComponent<SetTarget>().monster;
         ShowState();
     }
 
