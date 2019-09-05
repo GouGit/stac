@@ -16,7 +16,7 @@ public abstract class ShowMonster : MonoBehaviour
     }
     public Canvas uiCanvas;
     public GameObject ui;
-    protected GameObject hpUI, attackUI, defensUI, defensOnUI;
+    protected GameObject hpUI, attackUI, defensUI, defensOnUI, stateUI;
     public Type.TYPE type;
     protected ACTION action;
     protected new string name;
@@ -27,6 +27,7 @@ public abstract class ShowMonster : MonoBehaviour
     public int fire, poision, lighting;
     public bool isDont = false;
     protected bool isAttack;
+    protected bool isDown;
     protected bool shaking = false;
     protected float shakePower;
     public UnityEvent OnMonsterDead;
@@ -61,6 +62,7 @@ public abstract class ShowMonster : MonoBehaviour
         attackUI.transform.position = transform.position + Vector3.down*2f + Vector3.right*1.5f;
         defensUI = ui.transform.GetChild(3).gameObject;
         defensUI.transform.position = transform.position + Vector3.down*2f + Vector3.right*1.5f;
+        stateUI = ui.transform.GetChild(4).gameObject;
 
         hpUI.SetActive(true);
         attackUI.SetActive(isAttack);
@@ -71,6 +73,9 @@ public abstract class ShowMonster : MonoBehaviour
 
         hitTemp = Instantiate(hitParticle, transform.position, Quaternion.identity);
         hitTemp.SetActive(false);
+
+        SetTarget setUI = stateUI.GetComponent<SetTarget>();
+        setUI.Set(this);
 
         OnMonsterDead.AddListener(GameManager.instance.OnGameEnd);
     }
@@ -138,6 +143,7 @@ public abstract class ShowMonster : MonoBehaviour
         Knight.instance.defensPower = 0;
         Knight.instance.isReflect = false;
         Knight.instance.DrawCard();
+        Knight.instance.CheckDebuff();
         Vector3 scale = new Vector3(0.8f,0.8f,1);
         transform.localScale = scale;
     }
@@ -245,6 +251,12 @@ public abstract class ShowMonster : MonoBehaviour
     protected virtual void Defens()
     {
         ondefensPower += defensPower;
+    }
+
+    void OnMouseDown()
+    {
+        isDown = !isDown;
+        stateUI.SetActive(isDown);
     }
 
     void Update()

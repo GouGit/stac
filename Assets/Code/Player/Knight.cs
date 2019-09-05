@@ -16,6 +16,7 @@ public class Knight : MonoBehaviour
     private LinkedList<GameObject> HandCard = new LinkedList<GameObject>();
     private LinkedList<GameObject> TrashCard = new LinkedList<GameObject>();
     private GameObject showCard, defensUI;
+    private GameObject stateUI;
     private Image hpbar;
     private int hp, maxhp;
     private string playerName;
@@ -43,9 +44,10 @@ public class Knight : MonoBehaviour
         playerUI.worldCamera = Camera.main;
         GameObject temp = Instantiate(playerUI.gameObject, Vector3.zero, Quaternion.identity);
         temp.SetActive(true);
-        hitUI = temp.transform.GetChild(2).gameObject.GetComponent<FadeUI>();
         hpbar = temp.transform.GetChild(0).GetChild(0).GetComponent<Image>();
         defensUI = temp.transform.GetChild(1).gameObject;
+        stateUI = temp.transform.GetChild(2).gameObject;
+        hitUI = temp.transform.GetChild(3).gameObject.GetComponent<FadeUI>();
         
         for(int i = 0; i < GameManager.instance.AllCards.Count; i++)
         {
@@ -54,6 +56,8 @@ public class Knight : MonoBehaviour
         Shuffle();
         DrawCard();
         MyTurn();
+
+        GameManager.instance.cost = 3;
     }
 
     void Show()
@@ -197,16 +201,50 @@ public class Knight : MonoBehaviour
         }
     }
 
-    public void MyTurn()
+    public void CheckDebuff()
     {
-        if(defensPower > 0)
+        if(bCnt > 0)
         {
-            defensUI.SetActive(true);
+            stateUI.transform.GetChild(0).gameObject.SetActive(true);
         }
         else
         {
+            stateUI.transform.GetChild(0).gameObject.SetActive(false);
+        }
+
+        if(fCnt > 0)
+        {
+            stateUI.transform.GetChild(1).gameObject.SetActive(true);
+        }
+        else
+        {
+            stateUI.transform.GetChild(1).gameObject.SetActive(false);
+        }
+
+        if(isPetrification)
+        {
+            stateUI.transform.GetChild(2).gameObject.SetActive(true);
+        }
+        else
+        {
+            stateUI.transform.GetChild(2).gameObject.SetActive(false);
+        }
+    }
+
+    public void MyTurn()
+    {
+        if(!defensUI.activeSelf)
+        {
+            if(defensPower > 0)
+            {
+                defensUI.SetActive(true);
+            }
+        }
+        if(defensPower <= 0)
+        {
             defensUI.SetActive(false);
         }
+
         Vector3 scale = new Vector3(1,1,1);
         transform.localScale = scale;
     }

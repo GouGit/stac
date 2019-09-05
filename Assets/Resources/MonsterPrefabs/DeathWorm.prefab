@@ -127,7 +127,12 @@ MonoBehaviour:
   hp: 0
   attackPower: 0
   defensPower: 0
+  tempDefens: 0
   ondefensPower: 0
+  fire: 0
+  poision: 0
+  lighting: 0
+  isDont: 0
   OnMonsterDead:
     m_PersistentCalls:
       m_Calls: []

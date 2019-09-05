@@ -8,7 +8,7 @@ public class TestSceneLoad : MonoBehaviour
     {
         // GameManager.instance.monsterOption.CreateMonster(Resources.Load("Skeleton") as GameObject);
         //GameManager.instance.monsterOption.CreateMonster(Resources.Load("Gagoil") as GameObject);
-        //GameManager.instance.monsterOption.CreateMonster(Resources.Load("Dragon") as GameObject);
+        GameManager.instance.monsterOption.CreateMonster(Resources.Load("MonsterPrefabs/Dragon") as GameObject);
         //GameManager.instance.monsterOption.CreateMonster(Resources.Load("Ork") as GameObject);
         //GameManager.instance.monsterOption.CreateMonster(Resources.Load("Frankenstein") as GameObject);
         //GameManager.instance.monsterOption.CreateMonster(Resources.Load("Succbus") as GameObject); 
@@ -17,7 +17,7 @@ public class TestSceneLoad : MonoBehaviour
         //GameManager.instance.monsterOption.CreateMonster(Resources.Load("Rich") as GameObject);  
         //GameManager.instance.monsterOption.CreateMonster(Resources.Load("Medusa") as GameObject);
         //GameManager.instance.monsterOption.CreateMonster(Resources.Load("Kraken") as GameObject);
-        GameManager.instance.monsterOption.CreateMonster(Resources.Load("DeathWorm") as GameObject);
+        //GameManager.instance.monsterOption.CreateMonster(Resources.Load("DeathWorm") as GameObject);
         GameManager.instance.monsterOption.SetMonsterPosition();
     }
 
