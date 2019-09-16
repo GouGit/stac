@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
         if(instance == null)
         {
             instance = this;
+            GameDataHandler.CheckFolder();
             DontDestroyOnLoad(gameObject);
         }    
         else
@@ -49,7 +50,12 @@ public class GameManager : MonoBehaviour
         }
 
         GameDataHandler.LoadGemCount(out goldCount, out topazCount, out rubyCount, out sapphireCount, out diamondCount);
-        AllCards = GameDataHandler.LoadCards();
+        var allcard = GameDataHandler.LoadCards();
+        if(allcard != null)
+        {
+            AllCards = allcard;
+        }
+        //AllCards = GameDataHandler.LoadCards();
         stage_count = GameDataHandler.LoadStageCount();
         mapName = "Stage" + stage_count;
         // GameDataHandler.SaveCards(AllCards);

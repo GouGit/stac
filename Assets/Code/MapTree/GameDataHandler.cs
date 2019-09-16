@@ -9,6 +9,14 @@ using System.IO;
 
 public static class GameDataHandler
 {
+    public static void CheckFolder()
+    {
+        if(!Directory.Exists(Application.persistentDataPath + "/MapFiles"))
+        {
+            Directory.CreateDirectory(Application.persistentDataPath + "/MapFiles");
+        }
+    }
+
     private static void ResetSpot(Spot spot)
     {//  모든 Spot에 지나갔던 흔적을 지웁니다.
         if (!spot.isTraversal)
@@ -70,8 +78,7 @@ public static class GameDataHandler
 
         ResetSpot(spot);
 
-
-        File.WriteAllText("./Assets/Resources/MapFiles/" + fileName + ".json", stage.ToString());
+        File.WriteAllText(Application.persistentDataPath + "/MapFiles/" + fileName + ".json", stage.ToString());
 
 #if UNITY_EDITOR
         UnityEditor.AssetDatabase.Refresh();
@@ -130,7 +137,7 @@ public static class GameDataHandler
         UnityEditor.AssetDatabase.Refresh();
 #endif
 
-        string jsonData = File.ReadAllText("./Assets/Resources/MapFiles/" + fileName + ".json");
+        string jsonData = (Resources.Load("MapFiles/" + fileName) as TextAsset).text;
         JObject stage = (JObject)JObject.Parse(jsonData)[fileName];
         JArray spots = (JArray)stage["spots"];
 
@@ -204,7 +211,7 @@ public static class GameDataHandler
 
         ResetSpot(spot);
 
-        File.WriteAllText("./Assets/Resources/TemporaryFiles/" + fileName + "_progress.json", stage.ToString());
+        File.WriteAllText(Application.persistentDataPath + "/TemporaryFiles/" + fileName + "_progress.json", stage.ToString());
 #if UNITY_EDITOR
         UnityEditor.AssetDatabase.Refresh();
 #endif
@@ -253,7 +260,7 @@ public static class GameDataHandler
         UnityEditor.AssetDatabase.Refresh();
 #endif
 
-        string jsonData = File.ReadAllText("./Assets/Resources/TemporaryFiles/" + fileName + "_progress.json");
+        string jsonData = File.ReadAllText(Application.persistentDataPath + "/TemporaryFiles/" + fileName + "_progress.json");
         JObject stage = (JObject)JObject.Parse(jsonData)[fileName];
         JArray spots = (JArray)stage["spots"];
 
@@ -299,7 +306,7 @@ public static class GameDataHandler
         gemCount.Add("sapphireCount", sapphireCount);
         gemCount.Add("diamondCount", diamondCount);
 
-        File.WriteAllText("./Assets/Resources/TemporaryFiles/GemCount.json", gemCount.ToString());
+        File.WriteAllText(Application.persistentDataPath + "/TemporaryFiles/GemCount.json", gemCount.ToString());
 #if UNITY_EDITOR
         UnityEditor.AssetDatabase.Refresh();
 #endif
@@ -314,7 +321,7 @@ public static class GameDataHandler
 
         try
         {
-            jsonData = File.ReadAllText("./Assets/Resources/TemporaryFiles/GemCount.json");
+            jsonData = File.ReadAllText(Application.persistentDataPath + "/TemporaryFiles/GemCount.json");
         }
         catch (FileNotFoundException)
         {
@@ -355,7 +362,7 @@ public static class GameDataHandler
 
         list.Add("CardList", cards);
 
-        File.WriteAllText("./Assets/Resources/TemporaryFiles/CardList.json", list.ToString());
+        File.WriteAllText(Application.persistentDataPath + "/TemporaryFiles/CardList.json", list.ToString());
 #if UNITY_EDITOR
         UnityEditor.AssetDatabase.Refresh();
 #endif
@@ -367,8 +374,15 @@ public static class GameDataHandler
         UnityEditor.AssetDatabase.Refresh();
 #endif        
         List<CardSet> cardList = new List<CardSet>();
-
-        string jsonData = File.ReadAllText("./Assets/Resources/TemporaryFiles/CardList.json");
+        string jsonData = null;
+        try
+        {
+            jsonData = File.ReadAllText(Application.persistentDataPath + "/TemporaryFiles/CardList.json");
+        }
+        catch (FileNotFoundException)
+        {
+            return null;
+        }
         JObject list = JObject.Parse(jsonData);
 
         JArray cards = (JArray)list["CardList"];
@@ -390,7 +404,7 @@ public static class GameDataHandler
 
         stageCount.Add("stage_count", count);
 
-        File.WriteAllText("./Assets/Resources/TemporaryFiles/StageCount.json", stageCount.ToString());
+        File.WriteAllText(Application.persistentDataPath + "/TemporaryFiles/StageCount.json", stageCount.ToString());
 #if UNITY_EDITOR
         UnityEditor.AssetDatabase.Refresh();
 #endif
@@ -406,155 +420,16 @@ public static class GameDataHandler
         string jsonData = "";
         try
         {
-            jsonData = File.ReadAllText("./Assets/Resources/TemporaryFiles/StageCount.json");
+            jsonData = File.ReadAllText(Application.persistentDataPath + "/TemporaryFiles/StageCount.json");
 
             JObject jObject = JObject.Parse(jsonData);
             count = jObject["stage_count"].ToInt();
         }
         catch (FileNotFoundException)
         {
-
+            count = 0;
         }
 
         return count;
     }
-
-
-
-    /////////////////////////////////////////////////////////////////
-    // 아래 부터는 이전에 사용하던 XML코드임.  혹시몰라서 일단은 남겨둠 //
-    /////////////////////////////////////////////////////////////////
-
-
-    // private static Spot CreateMap(XmlDocument document, XmlNode root, List<Spot> spotList)
-    // {
-    //     int ID = root.SelectSingleNode("ID").InnerText.ToInt();
-    //     Vector3 position = root.SelectSingleNode("position").InnerText.ToVector3();
-
-    //     int type = root.SelectSingleNode("type").InnerText.ToInt();
-    //     bool isClear = bool.Parse(root.SelectSingleNode("clear").InnerText);
-
-    //     XmlNodeList nextSpotList = root.SelectNodes("nextSpot");
-
-    //     Spot spot = (GameObject.Instantiate(Resources.Load("Spot"), position, Quaternion.identity) as GameObject).GetComponent<Spot>();
-    //     spot.ID = ID;
-    //     spot.sceneOption.type = (SceneOption.Type)type;
-    //     spot.isClear = isClear;
-
-    //     XmlNodeList prefabList = root.SelectNodes("prefabs");
-    //     for (int i = 0; i < prefabList.Count; i++)
-    //     {
-    //         string name = prefabList[i].InnerText;
-    //         if (!name.Equals(""))
-    //             spot.sceneOption.objectList.Add(Resources.Load(name) as GameObject);
-
-    //     }
-
-    //     spotList.Add(spot);
-
-    //     for (int i = 0; i < nextSpotList.Count; i++)
-    //     {
-    //         Debug.Log(nextSpotList[i].InnerText.ToInt());
-    //         spot.nextSpots.Add(spotList[nextSpotList[i].InnerText.ToInt()]);
-    //     }
-
-    //     XmlNodeList list = root.SelectNodes("spot");
-    //     int count = list.Count;
-    //     for (int i = 0; i < count; i++)
-    //     {
-    //         spot.nextSpots.Add(CreateMap(document, list[i], spotList));
-    //     }
-
-    //     return spot;
-    // }
-
-    // public static Spot CreateMap(string filePath)
-    // {
-    //     TextAsset textAsset = (TextAsset)Resources.Load(filePath);
-    //     XmlDocument document = new XmlDocument();
-
-    //     document.LoadXml(textAsset.text);
-
-    //     XmlNode spots = document.SelectSingleNode("Stage_Test/Spots");
-    //     int count = (spots as XmlElement).GetAttribute("SpotCount").ToInt();
-
-    //     List<Spot> spotList = new List<Spot>();
-
-    //     XmlNode root = spots.SelectSingleNode("spot");
-    //     return CreateMap(document, root, spotList);
-    // }
-
-    // private static void SaveMap(Spot spot, XmlDocument document, XmlNode root)
-    // {
-    //     if (spot.isTraversal)
-    //     {// 이미 지나간 Spot 입니다. (트리의 노드가 이어지는 부분 입니다.)
-    //         XmlElement nextSpot = document.CreateElement("nextSpot");
-    //         nextSpot.InnerText = spot.ID.ToString();
-    //         root.AppendChild(nextSpot);
-
-    //         return;
-    //     }
-
-    //     XmlElement wow = document.CreateElement("spot");
-
-    //     XmlElement IDcount = document.CreateElement("ID");
-    //     IDcount.InnerText = spot.ID.ToString();
-    //     wow.AppendChild(IDcount);
-
-    //     XmlElement position = document.CreateElement("position");
-    //     position.InnerText = spot.transform.position.ToString();
-    //     wow.AppendChild(position);
-
-    //     XmlElement type = document.CreateElement("type");
-    //     type.InnerText = ((int)spot.sceneOption.type).ToString();
-    //     wow.AppendChild(type);
-
-    //     XmlElement clear = document.CreateElement("clear");
-    //     clear.InnerText = spot.isClear.ToString().ToLower();
-    //     wow.AppendChild(clear);
-
-    //     XmlElement prefabs = document.CreateElement("prefabs");
-    //     prefabs.SetAttribute("PrefabCount", spot.sceneOption.objectList.Count.ToString());
-
-    //     foreach (GameObject prefabObject in spot.sceneOption.objectList)
-    //     {
-    //         XmlElement prefab = document.CreateElement("prefab");
-    //         prefab.InnerText = prefabObject.name;
-    //         prefabs.AppendChild(prefab);
-    //     }
-
-    //     wow.AppendChild(prefabs);
-
-    //     spot.isTraversal = true;
-
-    //     int count = spot.nextSpots.Count;
-    //     for (int i = 0; i < count; i++)
-    //     {
-    //         SaveMap(spot.nextSpots[i], document, wow);
-    //     }
-    //     root.AppendChild(wow);
-    // }
-
-    // public static void SaveMap(Spot spot, string filePath)
-    // {
-    //     int spotCount = SetID(spot);
-
-    //     XmlDocument document = new XmlDocument();
-    //     document.AppendChild(document.CreateXmlDeclaration("1.0", "utf-8", "yes"));
-
-    //     XmlElement root = document.CreateElement("Stage_Test");
-    //     document.AppendChild(root);
-
-    //     XmlElement child = document.CreateElement("Spots");
-    //     child.SetAttribute("SpotCount", spotCount.ToString());
-    //     root.AppendChild(child);
-
-    //     SaveMap(spot, document, child);
-
-    //     ResetSpot(spot);
-
-    //     document.Save(filePath);
-    //     UnityEditor.AssetDatabase.Refresh();
-    //     // document.
-    // }
 }
