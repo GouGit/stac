@@ -22,6 +22,7 @@ public class SkillCard : ShowCard
     protected override void OnMouseDown()
     {
         transform.localScale = scale * 1.25f;
+        origin = transform.position;
         BezierDrawer.Instance.gameObject.SetActive(true);
         BezierDrawer.Instance.startPosition = gameObject.transform.position; 
     }

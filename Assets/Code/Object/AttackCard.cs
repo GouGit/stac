@@ -27,12 +27,12 @@ public class AttackCard : ShowCard
     {
         mon.LoseHp(attackPower);
         doubleCnt--;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         if(doubleCnt<=0)
         {
             StopCoroutine(DoubleAttack(mon));
-            Knight.instance.Sort();
             gameObject.SetActive(false);
+            Knight.instance.Sort();
         }
         else
         {
@@ -44,12 +44,12 @@ public class AttackCard : ShowCard
     {
         mon.LoseHp(attackPower);
         num--;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         if(num<=0)
         {
             StopCoroutine(Roll(mon,num));
-            Knight.instance.Sort();
             gameObject.SetActive(false);
+            Knight.instance.Sort();
         }
         else
         {
@@ -88,6 +88,7 @@ public class AttackCard : ShowCard
             case SKILL.DOUBLE_SWORD:
                 monster.LoseHp(Knight.instance.defensPower*2);
                 Knight.instance.defensPower = 0;
+                gameObject.SetActive(false);
                 break;
             case SKILL.ROLL:
                 StartCoroutine(Roll(monster ,GameManager.instance.cost));
@@ -104,8 +105,8 @@ public class AttackCard : ShowCard
             }
             monster.LoseHp(attackPower);
 
-            SoundManager.Instance.PlaySFX(SoundManager.SFXList.KNIFE_1);
             Knight.instance.defensPower += defensPower;
+            SoundManager.Instance.PlaySFX(SoundManager.SFXList.KNIFE_1);
             Knight.instance.Sort();
         }
     }

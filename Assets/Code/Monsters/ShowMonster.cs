@@ -26,7 +26,6 @@ public abstract class ShowMonster : MonoBehaviour
     public int ondefensPower = 0;
     public bool isDont = false;
     protected bool isAttack;
-    protected bool isDown;
     protected bool shaking = false;
     protected float shakePower;
     public UnityEvent OnMonsterDead;
@@ -72,6 +71,7 @@ public abstract class ShowMonster : MonoBehaviour
         defensUI = ui.transform.GetChild(3).gameObject;
         defensUI.transform.position = transform.position + Vector3.down*2f + Vector3.right*1.5f;
         stateUI = ui.transform.GetChild(4).gameObject;
+        stateUI.transform.position = transform.position;
 
         hpUI.SetActive(true);
         attackUI.SetActive(isAttack);
@@ -289,10 +289,14 @@ public abstract class ShowMonster : MonoBehaviour
         ondefensPower += defensPower;
     }
 
-    void OnMouseDown()
+    void OnMouseEnter()
     {
-        isDown = !isDown;
-        stateUI.SetActive(isDown);
+        stateUI.SetActive(true);
+    }
+
+    void OnMouseExit()
+    {
+        stateUI.SetActive(false);
     }
 
     void Update()

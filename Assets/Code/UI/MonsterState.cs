@@ -14,11 +14,10 @@ public class MonsterState : SetTarget
     public STATE state;
     private Text text;
 
-    void OnEnable()
+    void Start()
     {
         text = GetComponent<Text>();
         base.monster = transform.parent.parent.GetComponent<SetTarget>().monster;
-        ShowState();
     }
 
     void ShowState()
@@ -35,6 +34,11 @@ public class MonsterState : SetTarget
             text.text = "" + monster.Poision;
             break;
         }
+    }
+
+    void FixedUpdate()
+    {
+        ShowState();
     }
 
 }

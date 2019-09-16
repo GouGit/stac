@@ -153,6 +153,7 @@ public class ShowCard : MonoBehaviour
     protected virtual void OnMouseDown()
     {
         transform.localScale = scale * 1.25f;
+        origin = transform.position;
         if(attackPower > 0)
         {
             BezierDrawer.Instance.gameObject.SetActive(true);
