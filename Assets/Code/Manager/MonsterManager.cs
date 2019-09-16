@@ -18,7 +18,7 @@ public class MonsterManager : MonoBehaviour
 
         // 아래 코루틴은 예시이므로 나중에 실행지점을 바꿀것. 
         // 코루틴 종료 지점에 카드 파괴 파티클을 생성하거나 키워드 매개변수로 _Level을 넘겨주는 코루틴을 다시 실행하면 좋은 효과가 나옴.
-        StartCoroutine(CO_DISSOLVE(temp.GetComponent<SpriteRenderer>(), "_Edges", 1));
+        //StartCoroutine(CO_DISSOLVE(temp.GetComponent<SpriteRenderer>(), "_Edges", 1));
         // **********************************************************************************************************************
 
         AllMonsters.AddLast(temp);

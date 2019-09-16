@@ -83,6 +83,10 @@
     {
       "name": "Defens",
       "upgradeLevel": 0
+    },
+    {
+      "name": "DoubleSword",
+      "upgradeLevel": 0
     }
   ]
 }

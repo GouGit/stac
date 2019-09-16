@@ -207,8 +207,9 @@ public abstract class ShowMonster : MonoBehaviour
         
         if(hp <= 0)
         {
+            StartCoroutine(CO_DISSOLVE(GetComponent<SpriteRenderer>(), "_Edges", 1));
             ui.gameObject.SetActive(false);
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         }
     }
 
@@ -219,7 +220,30 @@ public abstract class ShowMonster : MonoBehaviour
 
     void OnDisable()
     {
-        if(GameManager.instance.monsterOption.IsEnd())
+        
+    }
+
+    private IEnumerator CO_DISSOLVE(SpriteRenderer renderer, string keyword, float time)
+    {
+        MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
+        float value = 0.0f;
+        while (value < 1.0f)
+        {
+            value += Time.deltaTime / time;
+            renderer.GetPropertyBlock(_propBlock);
+            _propBlock.SetFloat(keyword, value);
+            renderer.SetPropertyBlock(_propBlock);
+            yield return null;
+        }
+        renderer.material.SetFloat(keyword, 1);
+
+        Instantiate(Resources.Load("Particles/Card Break Particle System") as GameObject).transform.position = transform.position;
+        renderer.enabled = false;
+
+        yield return new WaitForSeconds(1.3f);
+
+        gameObject.SetActive(false);
+        if (GameManager.instance.monsterOption.IsEnd())
         {
             GameManager.instance.monsterOption.AllMonsters.Clear();
             OnMonsterDead?.Invoke();
