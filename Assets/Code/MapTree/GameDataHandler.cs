@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 // using LitJson;
 using Newtonsoft.Json.Linq;
 using System.Xml;
@@ -72,7 +73,9 @@ public static class GameDataHandler
 
         File.WriteAllText("./Assets/Resources/MapFiles/" + fileName + ".json", stage.ToString());
 
+#if UNITY_EDITOR
         UnityEditor.AssetDatabase.Refresh();
+#endif
     }
 
     private static void SaveMap(Spot spot, JArray spotArray)
@@ -123,7 +126,9 @@ public static class GameDataHandler
     public static Spot LoadMap(string fileName)
     {
         Debug.Log(fileName);
+#if UNITY_EDITOR
         UnityEditor.AssetDatabase.Refresh();
+#endif
 
         string jsonData = File.ReadAllText("./Assets/Resources/MapFiles/" + fileName + ".json");
         JObject stage = (JObject)JObject.Parse(jsonData)[fileName];
@@ -200,8 +205,9 @@ public static class GameDataHandler
         ResetSpot(spot);
 
         File.WriteAllText("./Assets/Resources/TemporaryFiles/" + fileName + "_progress.json", stage.ToString());
-
+#if UNITY_EDITOR
         UnityEditor.AssetDatabase.Refresh();
+#endif
     }
 
     private static void SaveProgress(Spot spot, JArray spotArray)
@@ -243,7 +249,9 @@ public static class GameDataHandler
     /// <param name="fileName">불러올 JSON파일의 이름</param>
     public static void LoadProgress(Spot spot, string fileName)
     {
+#if UNITY_EDITOR
         UnityEditor.AssetDatabase.Refresh();
+#endif
 
         string jsonData = File.ReadAllText("./Assets/Resources/TemporaryFiles/" + fileName + "_progress.json");
         JObject stage = (JObject)JObject.Parse(jsonData)[fileName];
@@ -292,14 +300,16 @@ public static class GameDataHandler
         gemCount.Add("diamondCount", diamondCount);
 
         File.WriteAllText("./Assets/Resources/TemporaryFiles/GemCount.json", gemCount.ToString());
-
+#if UNITY_EDITOR
         UnityEditor.AssetDatabase.Refresh();
+#endif
     }
 
     public static void LoadGemCount(out int goldCount, out int topazCount, out int rubyCount, out int sapphireCount, out int diamondCount)
     {
+#if UNITY_EDITOR
         UnityEditor.AssetDatabase.Refresh();
-        
+#endif
         string jsonData;
 
         try
@@ -346,14 +356,16 @@ public static class GameDataHandler
         list.Add("CardList", cards);
 
         File.WriteAllText("./Assets/Resources/TemporaryFiles/CardList.json", list.ToString());
-
+#if UNITY_EDITOR
         UnityEditor.AssetDatabase.Refresh();
+#endif
     }
 
     public static List<CardSet> LoadCards()
     {
+#if UNITY_EDITOR
         UnityEditor.AssetDatabase.Refresh();
-                
+#endif        
         List<CardSet> cardList = new List<CardSet>();
 
         string jsonData = File.ReadAllText("./Assets/Resources/TemporaryFiles/CardList.json");
@@ -379,13 +391,17 @@ public static class GameDataHandler
         stageCount.Add("stage_count", count);
 
         File.WriteAllText("./Assets/Resources/TemporaryFiles/StageCount.json", stageCount.ToString());
+#if UNITY_EDITOR
         UnityEditor.AssetDatabase.Refresh();
+#endif
     }
 
     public static int LoadStageCount()
     {
+#if UNITY_EDITOR
         UnityEditor.AssetDatabase.Refresh();
-        
+#endif
+
         int count = 0;
         string jsonData = "";
         try

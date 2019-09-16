@@ -49,18 +49,27 @@ public class SkillCard : ShowCard
             {
             case SkILL.FIRE:
                 monster.Fire = 2;
-                    monster.fireParticle = Instantiate(Resources.Load("Particles/Fire Particle System") as GameObject).GetComponent<ParticleSystem>();
-                    monster.fireParticle.transform.position = monster.transform.position;
+                    if (monster.fireParticle == null)
+                    {
+                        monster.fireParticle = Instantiate(Resources.Load("Particles/Fire Particle System") as GameObject).GetComponent<ParticleSystem>();
+                        monster.fireParticle.transform.position = monster.transform.position;
+                    }
                     break;
             case SkILL.POISION:
                 monster.Poision = 4;
-                    monster.poisionParticle = Instantiate(Resources.Load("Particles/Toxin Particle System") as GameObject).GetComponent<ParticleSystem>();
-                    monster.poisionParticle.transform.position = monster.transform.position;
+                    if (monster.poisionParticle == null)
+                    {
+                        monster.poisionParticle = Instantiate(Resources.Load("Particles/Toxin Particle System") as GameObject).GetComponent<ParticleSystem>();
+                        monster.poisionParticle.transform.position = monster.transform.position;
+                    }
                     break;
             case SkILL.LIGHTING:
                 monster.Lighting = 2;
-                    monster.lightingParticle = Instantiate(Resources.Load("Particles/Lighting Particle System") as GameObject).GetComponent<ParticleSystem>();
-                    monster.lightingParticle.transform.position = monster.transform.position;
+                    if (monster.lightingParticle == null)
+                    {
+                        monster.lightingParticle = Instantiate(Resources.Load("Particles/Lighting Particle System") as GameObject).GetComponent<ParticleSystem>();
+                        monster.lightingParticle.transform.position = monster.transform.position;
+                    }
                     break;
             case SkILL.DEBUFF:
                 monster.Fire *= 2;

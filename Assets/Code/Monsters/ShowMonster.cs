@@ -35,13 +35,13 @@ public abstract class ShowMonster : MonoBehaviour
     private int lighting;
     private int fire;
     private int poision;
-    public ParticleSystem lightingParticle;
-    public ParticleSystem fireParticle;
-    public ParticleSystem poisionParticle;
+    public ParticleSystem lightingParticle = null;
+    public ParticleSystem fireParticle = null;
+    public ParticleSystem poisionParticle = null;
 
-    public int Fire { get => fire; set { fire = value; if (fire == 0) Destroy(fireParticle); } }
-    public int Poision { get => poision; set { poision = value; if (poision == 0) Destroy(poisionParticle); } }
-    public int Lighting { get => lighting; set { lighting = value; if (lighting == 0) Destroy(lightingParticle); } }
+    public int Fire { get => fire; set { fire = value; if (fire == 0) { Destroy(fireParticle); fireParticle = null; } } }
+    public int Poision { get => poision; set { poision = value; if (poision == 0) { Destroy(poisionParticle); poisionParticle = null; } } }
+    public int Lighting { get => lighting; set { lighting = value; if (lighting == 0) { Destroy(lightingParticle); lightingParticle = null; } } }
 
     protected virtual void Start()
     {
