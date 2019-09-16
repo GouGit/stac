@@ -217,6 +217,9 @@ public abstract class ShowMonster : MonoBehaviour
         if(hp <= 0)
         {
             StartCoroutine(CO_DISSOLVE(GetComponent<SpriteRenderer>(), "_Edges", 1));
+            Destroy(lightingParticle);
+            Destroy(fireParticle);
+            Destroy(poisionParticle);
             ui.gameObject.SetActive(false);
             //gameObject.SetActive(false);
         }
@@ -229,7 +232,7 @@ public abstract class ShowMonster : MonoBehaviour
 
     void OnDisable()
     {
-        
+
     }
 
     private IEnumerator CO_DISSOLVE(SpriteRenderer renderer, string keyword, float time)
