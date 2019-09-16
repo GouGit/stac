@@ -87,6 +87,10 @@
     {
       "name": "DoubleSword",
       "upgradeLevel": 0
+    },
+    {
+      "name": "SheildAttack",
+      "upgradeLevel": 0
     }
   ]
 }

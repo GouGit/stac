@@ -8,13 +8,7 @@
           {
             "ID": 1,
             "clear": "true",
-            "spots": [
-              {
-                "ID": 2,
-                "clear": "true",
-                "spots": []
-              }
-            ]
+            "spots": []
           }
         ]
       }
