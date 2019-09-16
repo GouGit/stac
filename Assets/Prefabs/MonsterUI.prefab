@@ -191,6 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b15270ce9d9fde47a809fd7ec6a9b87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monster: {fileID: 0}
 --- !u!114 &7608126802734478632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,6 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb81f063a1a17584f9ead7f289a57435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monster: {fileID: 0}
   state: 0
 --- !u!1 &2611293177774283837
 GameObject:
@@ -418,6 +420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb81f063a1a17584f9ead7f289a57435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monster: {fileID: 0}
   state: 1
 --- !u!1 &2976280589657205720
 GameObject:
@@ -586,6 +589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb81f063a1a17584f9ead7f289a57435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monster: {fileID: 0}
   state: 2
 --- !u!1 &6958055934681156356
 GameObject:

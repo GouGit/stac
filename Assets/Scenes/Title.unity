@@ -1914,6 +1914,11 @@ PrefabInstance:
       propertyPath: monsterOption
       value: 
       objectReference: {fileID: 1646489382}
+    - target: {fileID: 4937305813203759339, guid: e6b758cf1365c6d4d85a6b1c55ab082a,
+        type: 3}
+      propertyPath: DissolveMat
+      value: 
+      objectReference: {fileID: 2100000, guid: d29961ec81b7d664891e9c51e37098c3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6b758cf1365c6d4d85a6b1c55ab082a, type: 3}
 --- !u!1 &718074300

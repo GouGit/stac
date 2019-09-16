@@ -496,6 +496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2a4a1b9a6c024045a486f58e072ced4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DissolveMat: {fileID: 2100000, guid: d29961ec81b7d664891e9c51e37098c3, type: 2}
 --- !u!114 &333724555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,6 +540,7 @@ MonoBehaviour:
   diamondCount: 0
   ResultWindowPrefab: {fileID: 1353063834063852120, guid: 3916c3e33bb40224c8fcb344b7accb46,
     type: 3}
+  stage_count: 0
   mapName: 
   isFirstStart: 1
   monsterOption: {fileID: 0}

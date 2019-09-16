@@ -23,10 +23,17 @@ public class UpgradeUI : MonoBehaviour
             
             picker.SetOption(cardSet.showCard, (cardPicker) => {
                 // Debug.Log("올림");
-                cardSet.upgradeLevel++;
-                GameObject temp = Instantiate(upParticle, cardPicker.transform.position, Quaternion.identity);
-                Destroy(temp, 3.0f);
-                GameDataHandler.SaveCards(GameManager.instance.AllCards);
+                WindowUI win = Instantiate(MainUIMnager.Instance.window);
+                win.GetComponent<ChooseWindowUI>().SetWindow("카드 강화", "계속 하시겠습니까?\n\n" + 
+                    string.Format("{0} -> {1}", cardSet.upgradeLevel, cardSet.upgradeLevel + 1), "네", "아니요", () =>
+                {
+                    cardSet.upgradeLevel++;
+                    GameObject temp = Instantiate(upParticle, cardPicker.transform.position, Quaternion.identity);
+                    Destroy(temp, 3.0f);
+                    GameDataHandler.SaveCards(GameManager.instance.AllCards);
+                    Destroy(win.gameObject);
+                }, () => Destroy(win.gameObject));
+                
             });
         }
         

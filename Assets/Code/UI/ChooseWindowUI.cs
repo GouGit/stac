@@ -17,9 +17,9 @@ public class ChooseWindowUI : WindowUI
     public override void Awake()
     {
         base.Awake();
-        acceptButton = transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Button>();
+        acceptButton = transform.GetChild(0).GetChild(0).GetChild(2).GetComponent<Button>();
         acceptButtonText = acceptButton.transform.GetComponentInChildren<Text>();
-        declineButton = transform.GetChild(0).GetChild(0).GetChild(2).GetComponent<Button>();
+        declineButton = transform.GetChild(0).GetChild(0).GetChild(3).GetComponent<Button>();
         declineButtonText = declineButton.transform.GetComponentInChildren<Text>();
         OnAcceptButtonClicked = new Button.ButtonClickedEvent();
         OnDeclineButtonClicked = new Button.ButtonClickedEvent();
@@ -27,9 +27,9 @@ public class ChooseWindowUI : WindowUI
         declineButton.onClick = OnDeclineButtonClicked;
     }
 
-    public void SetWindow(string bodyText = "", string acceptText = "확인", string declineText = "취소", UnityAction OnAcceptAction = null, UnityAction OnDeclineAction = null)
+    public void SetWindow(string headText = "", string bodyText = "", string acceptText = "확인", string declineText = "취소", UnityAction OnAcceptAction = null, UnityAction OnDeclineAction = null)
     {
-        base.SetWindow(bodyText);
+        base.SetWindow(headText, bodyText);
         acceptButtonText.text = acceptText;
         declineButtonText.text = declineText;
 
