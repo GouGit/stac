@@ -26,13 +26,13 @@ public class MonsterState : SetTarget
         switch (state)
         {
         case STATE.FIRE:
-            text.text = "" + monster.fire;
+            text.text = "" + monster.Fire;
             break;
         case STATE.LIGHTING:
-            text.text = "" + monster.lighting;
+            text.text = "" + monster.Lighting;
             break;
         case STATE.POISION:
-            text.text = "" + monster.poision;
+            text.text = "" + monster.Poision;
             break;
         }
     }

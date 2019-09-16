@@ -47,18 +47,24 @@ public class SkillCard : ShowCard
             switch (skill)
             {
             case SkILL.FIRE:
-                monster.fire = 2;
-                break;
+                monster.Fire = 2;
+                    monster.fireParticle = Instantiate(Resources.Load("Particles/Fire Particle System") as GameObject).GetComponent<ParticleSystem>();
+                    monster.fireParticle.transform.position = monster.transform.position;
+                    break;
             case SkILL.POISION:
-                monster.poision = 4;
-                break;
+                monster.Poision = 4;
+                    monster.poisionParticle = Instantiate(Resources.Load("Particles/Toxin Particle System") as GameObject).GetComponent<ParticleSystem>();
+                    monster.poisionParticle.transform.position = monster.transform.position;
+                    break;
             case SkILL.LIGHTING:
-                monster.lighting = 2;
-                break;
+                monster.Lighting = 2;
+                    monster.lightingParticle = Instantiate(Resources.Load("Particles/Lighting Particle System") as GameObject).GetComponent<ParticleSystem>();
+                    monster.lightingParticle.transform.position = monster.transform.position;
+                    break;
             case SkILL.DEBUFF:
-                monster.fire *= 2;
-                monster.lighting *= 2;
-                monster.poision *= 2;
+                monster.Fire *= 2;
+                monster.Lighting *= 2;
+                monster.Poision *= 2;
                 break;
             case SkILL.DONT:
                 monster.isDont = true;
