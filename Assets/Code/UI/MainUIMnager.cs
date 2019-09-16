@@ -107,6 +107,16 @@ public class MainUIMnager : MonoBehaviour
         Instantiate(ShopPrefab);
     }
 
+    public void ChangeScene(int index)
+    {
+        SceneLoader.LoadSceneWithFadeStatic(index);
+    }
+
+    public void ChangeScene(string name)
+    {
+        SceneLoader.LoadSceneWithFadeStatic(name);
+    }
+
     public void Exit()
     {
 #if UNITY_EDITOR

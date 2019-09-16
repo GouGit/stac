@@ -89,6 +89,19 @@ public class SceneLoader : MonoBehaviour
         LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public static void LoadSceneWithFadeStatic(int index)
+    {
+        FadeUI[] fadePanels = FindObjectsOfType<FadeUI>();
+        foreach (var fadePanel in fadePanels)
+        {
+            fadePanel.m_OnFadeInEnd += (obj) =>
+            {
+                LoadScene(index);
+            };
+            fadePanel.FadeIn();
+        }
+    }
+
     public static void LoadSceneWithFadeStatic(string name)
     {
         FadeUI[] fadePanels = FindObjectsOfType<FadeUI>();

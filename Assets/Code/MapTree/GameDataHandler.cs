@@ -11,9 +11,9 @@ public static class GameDataHandler
 {
     public static void CheckFolder()
     {
-        if(!Directory.Exists(Application.persistentDataPath + "/MapFiles"))
+        if(!Directory.Exists(Application.persistentDataPath + "/TemporaryFiles"))
         {
-            Directory.CreateDirectory(Application.persistentDataPath + "/MapFiles");
+            Directory.CreateDirectory(Application.persistentDataPath + "/TemporaryFiles");
         }
     }
 
@@ -381,6 +381,7 @@ public static class GameDataHandler
         }
         catch (FileNotFoundException)
         {
+            SaveCards(GameManager.instance.AllCards);
             return null;
         }
         JObject list = JObject.Parse(jsonData);
