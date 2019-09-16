@@ -2,19 +2,19 @@
   "CardList": [
     {
       "name": "Debuff",
-      "upgradeLevel": 1
+      "upgradeLevel": 2
     },
     {
       "name": "Defens",
-      "upgradeLevel": 3
-    },
-    {
-      "name": "DefensDraw",
       "upgradeLevel": 4
     },
     {
+      "name": "DefensDraw",
+      "upgradeLevel": 5
+    },
+    {
       "name": "DoubleAttack",
-      "upgradeLevel": 13
+      "upgradeLevel": 33
     },
     {
       "name": "Draw",
@@ -22,15 +22,15 @@
     },
     {
       "name": "Fire",
-      "upgradeLevel": 2
-    },
-    {
-      "name": "Gamble",
       "upgradeLevel": 3
     },
     {
-      "name": "IronWall",
+      "name": "Gamble",
       "upgradeLevel": 4
+    },
+    {
+      "name": "IronWall",
+      "upgradeLevel": 5
     },
     {
       "name": "Lighting",

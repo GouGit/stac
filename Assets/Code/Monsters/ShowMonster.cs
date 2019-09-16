@@ -24,7 +24,6 @@ public abstract class ShowMonster : MonoBehaviour
     public int attackPower;
     public int defensPower, tempDefens;
     public int ondefensPower = 0;
-    public int fire, poision, lighting;
     public bool isDont = false;
     protected bool isAttack;
     protected bool shaking = false;
@@ -33,6 +32,16 @@ public abstract class ShowMonster : MonoBehaviour
     private Vector3 origin;
     protected GameObject hitParticle, hitTemp;
     protected int temPower;
+    private int lighting;
+    private int fire;
+    private int poision;
+    public ParticleSystem lightingParticle;
+    public ParticleSystem fireParticle;
+    public ParticleSystem poisionParticle;
+
+    public int Fire { get => fire; set { fire = value; if (fire == 0) Destroy(fireParticle); } }
+    public int Poision { get => poision; set { poision = value; if (poision == 0) Destroy(poisionParticle); } }
+    public int Lighting { get => lighting; set { lighting = value; if (lighting == 0) Destroy(lightingParticle); } }
 
     protected virtual void Start()
     {
@@ -95,16 +104,16 @@ public abstract class ShowMonster : MonoBehaviour
         ondefensPower = 0;
         Vector3 scale = new Vector3(1,1,1);
         transform.localScale = scale;
-        if(lighting != 0)
+        if(Lighting != 0)
         {
             if(Random.Range(0,10) < 5)
             {
                 StartCoroutine(WaitTime());
                 action = ACTION.END;
             }
-            lighting--;
+            Lighting--;
         }
-        if(fire!=0)
+        if(Fire!=0)
         {
             attackPower = temPower/2;
         }
@@ -121,17 +130,17 @@ public abstract class ShowMonster : MonoBehaviour
 
     protected virtual void EndTurn()
     {
-        if(fire != 0)
+        if(Fire != 0)
         {
-            LoseHp(fire);
-            fire--;
+            LoseHp(Fire);
+            Fire--;
         }
-        if(poision != 0)
+        if(Poision != 0)
         {
             int defens = ondefensPower;
             ondefensPower = 0;
-            LoseHp(poision);
-            poision--;
+            LoseHp(Poision);
+            Poision--;
             ondefensPower = defens;
         }
         action = ACTION.NONE;
