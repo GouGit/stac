@@ -14,7 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: "\uC2DC\uD310\uC758\uAC80"
   cost: 3
-  attackPower: 1
+  attackPower: 0
   defensPower: 0
+  bonusCount: 0
+  fire: 0
+  poision: 0
+  lighting: 0
+  drawCount: 0
+  plusCost: 0
+  minCost: 0
+  powerUp: 0
   image: {fileID: 4074580308173140578, guid: ae3b64002de1f114ba38accfd7043c95, type: 3}
   type: 4

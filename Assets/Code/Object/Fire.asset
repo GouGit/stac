@@ -16,5 +16,13 @@ MonoBehaviour:
   cost: 1
   attackPower: 0
   defensPower: 0
+  bonusCount: 0
+  fire: 2
+  poision: 0
+  lighting: 0
+  drawCount: 0
+  plusCost: 0
+  minCost: 0
+  powerUp: 0
   image: {fileID: -1007398718557128096, guid: ae3b64002de1f114ba38accfd7043c95, type: 3}
   type: 2
