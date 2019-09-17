@@ -48,7 +48,7 @@ public class SkillCard : ShowCard
             switch (skill)
             {
             case SkILL.FIRE:
-                monster.Fire = 2;
+                monster.Fire += fire;
                     if (monster.fireParticle == null)
                     {
                         monster.fireParticle = Instantiate(Resources.Load("Particles/Fire Particle System") as GameObject).GetComponent<ParticleSystem>();
@@ -56,7 +56,7 @@ public class SkillCard : ShowCard
                     }
                     break;
             case SkILL.POISION:
-                monster.Poision = 4;
+                monster.Poision += poision;
                     if (monster.poisionParticle == null)
                     {
                         monster.poisionParticle = Instantiate(Resources.Load("Particles/Toxin Particle System") as GameObject).GetComponent<ParticleSystem>();
@@ -64,7 +64,7 @@ public class SkillCard : ShowCard
                     }
                     break;
             case SkILL.LIGHTING:
-                monster.Lighting = 2;
+                monster.Lighting += lighting;
                     if (monster.lightingParticle == null)
                     {
                         monster.lightingParticle = Instantiate(Resources.Load("Particles/Lighting Particle System") as GameObject).GetComponent<ParticleSystem>();
@@ -72,12 +72,13 @@ public class SkillCard : ShowCard
                     }
                     break;
             case SkILL.DEBUFF:
-                monster.Fire *= 2;
-                monster.Lighting *= 2;
-                monster.Poision *= 2;
+                monster.Fire = (monster.Fire+poision) * 2;
+                monster.Lighting = (monster.Lighting+lighting) * 2;
+                monster.Poision = (monster.Poision+poision) * 2;
                 break;
             case SkILL.DONT:
                 monster.isDont = true;
+                Knight.instance.defensPower += defensPower;
                 break;
             }
             gameObject.SetActive(false);   

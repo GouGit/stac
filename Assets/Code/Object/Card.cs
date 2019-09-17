@@ -9,6 +9,14 @@ public class Card : ScriptableObject
     public int cost;
     public int attackPower;
     public int defensPower;
+    public int bonusCount;
+    public int fire;
+    public int poision;
+    public int lighting;
+    public int drawCount;
+    public int plusCost;
+    public int minCost;
+    public int powerUp;
     public Sprite image;
     public Type.TYPE type;
 }
