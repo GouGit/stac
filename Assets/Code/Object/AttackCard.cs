@@ -31,13 +31,6 @@ public class AttackCard : ShowCard
         BezierDrawer.Instance.startPosition = gameObject.transform.position;
     }
 
-    protected override void OnMouseDrag()
-    {
-        Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        pos.z = 0;
-        transform.position = pos; 
-    }
-
     protected override void OnMouseUp()
     {
         transform.localScale = scale;
