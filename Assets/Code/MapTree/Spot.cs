@@ -142,15 +142,27 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
 
                 GameManager.instance.SaveProgress();
 
-                if(spot.sceneOption.type == SceneOption.Type.Rest)
+                switch (spot.sceneOption.type)
                 {
+                case SceneOption.Type.Battle:
+                    SceneLoader.LoadScene("BattleScene", sceneOption);
+                    break;
+                case SceneOption.Type.Rest:
                     // 여기에다가 대충 동작 추가
                     GameObject go = Instantiate(Resources.Load("Rest Object", typeof(GameObject)), Vector3.zero, Quaternion.identity) as GameObject;
                     StartCoroutine(CO_RestProcess(go, 3));
-                }
-                else
-                {
-                    SceneLoader.LoadScene("BattleScene", sceneOption);
+                    break;
+                case SceneOption.Type.Event:
+                    int randam = Random.Range(0, 10);
+                    if(randam%2 == 0)
+                        SceneLoader.LoadScene("BattleScene", sceneOption);
+                    else
+                    {
+                        // 여기에다가 대충 동작 추가
+                        GameObject _go = Instantiate(Resources.Load("Rest Object", typeof(GameObject)), Vector3.zero, Quaternion.identity) as GameObject;
+                        StartCoroutine(CO_RestProcess(_go, 3));
+                    }
+                    break;
                 }
             }
         }
