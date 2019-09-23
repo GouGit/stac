@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
     public bool isPlayerTurn = true;
     public List<CardSet> AllCards = new List<CardSet>();
-    public int cost = 3;
+    public int cost = 0;
     public int savingCost = 0;
 
     public int goldCount = 0;

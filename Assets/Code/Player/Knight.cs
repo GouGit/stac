@@ -36,16 +36,12 @@ public class Knight : MonoBehaviour
         }
     }
 
-    void OnEnable()
-    {
-        hp = player.hp;
-        maxhp = hp;
-        defensPower = player.defensPower;
-        playerName = player.name;    
-    }
-
     void Start()
     {
+        hp = player.hp;
+        maxhp = player.maxHp;
+        defensPower = player.defensPower;
+        playerName = player.name;
         playerUI.worldCamera = Camera.main;
         GameObject temp = Instantiate(playerUI.gameObject, Vector3.zero, Quaternion.identity);
         temp.SetActive(true);
@@ -65,6 +61,8 @@ public class Knight : MonoBehaviour
         MyTurn();
 
         GameManager.instance.cost = 3;
+        GameManager.instance.isPlayerTurn = true;
+        hpbar.fillAmount = (float)hp/maxhp;
     }
 
     void Show()

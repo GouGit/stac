@@ -147,9 +147,12 @@ public abstract class ShowMonster : MonoBehaviour
         action = ACTION.NONE;
         isDont = false;
         defensPower = tempDefens;
-        GameManager.instance.isPlayerTurn = true;
         GameManager.instance.cost = 3 + GameManager.instance.savingCost;
-        GameManager.instance.savingCost = 0;
+        if(GameManager.instance.isPlayerTurn || GameManager.instance.monsterOption.AllMonsters.Count == 1)
+        {
+            GameManager.instance.savingCost = 0;
+        }
+        GameManager.instance.isPlayerTurn = true;
         Knight.instance.defensPower = 0;
         Knight.instance.isReflect = false;
         Knight.instance.DrawCard();
@@ -236,6 +239,7 @@ public abstract class ShowMonster : MonoBehaviour
         gameObject.SetActive(false);
         if (GameManager.instance.monsterOption.IsEnd())
         {
+            Knight.instance.player.hp = Knight.instance.HP;
             GameManager.instance.monsterOption.AllMonsters.Clear();
             OnMonsterDead?.Invoke();
         }

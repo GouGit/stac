@@ -3167,6 +3167,7 @@ MonoBehaviour:
   SapphireText: {fileID: 1394159516}
   DiamondText: {fileID: 1778708720}
   window: {fileID: 5719425269829439987, guid: 305118bfbe291a74d8112443943fa02c, type: 3}
+  m_Player: {fileID: 11400000, guid: 762b3b3fd56ba864897697fde9b2facf, type: 2}
 --- !u!4 &1008701410
 Transform:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: NomalPlayer
   m_EditorClassIdentifier: 
   name: user
-  hp: 80
+  hp: 63
+  maxHp: 80
   defensPower: 0
   image: {fileID: 21300000, guid: 0602e257047cda34fb314ba50a2d941f, type: 3}

@@ -7,6 +7,7 @@ public class MapTreeUIManager : MonoBehaviour
 {
     // 플레이어의 HP를 표시할 이미지입니다.
     public Image m_PlayerHPImage;
+    public Player m_Player;
 
     void Start()
     {
@@ -16,7 +17,8 @@ public class MapTreeUIManager : MonoBehaviour
 
     void LateUpdate()
     {
-        if (m_PlayerHPImage != null && Knight.instance != null)
-            m_PlayerHPImage.fillAmount = (float)Knight.instance.HP / (float)Knight.instance.MaxHP;
+        if (m_PlayerHPImage != null && m_Player != null)
+            //m_PlayerHPImage.fillAmount = (float)Knight.instance.HP / Knight.instance.MaxHP;
+            m_PlayerHPImage.fillAmount = (float)m_Player.hp / (float)m_Player.maxHp;
     }
 }

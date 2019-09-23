@@ -49,10 +49,13 @@ public class MainUIMnager : MonoBehaviour
 
     public WindowUI window;
 
+    public Player m_Player;
+
     private void Awake()
     {
         instance = this;
         GameObject Images = GameObject.Find("Images");
+        m_Player.hp = m_Player.maxHp;
         // GameObject GoldImg = Images?.transform?.GetChild(0)?.gameObject;
         // GameObject MaterialImg = Images?.transform?.GetChild(0)?.gameObject;
 

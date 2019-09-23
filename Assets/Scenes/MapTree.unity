@@ -2781,6 +2781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PlayerHPImage: {fileID: 518757513}
+  m_Player: {fileID: 11400000, guid: 762b3b3fd56ba864897697fde9b2facf, type: 2}
 --- !u!4 &1555222086
 Transform:
   m_ObjectHideFlags: 0
