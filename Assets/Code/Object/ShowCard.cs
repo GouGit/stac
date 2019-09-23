@@ -11,9 +11,8 @@ public class CardSet
     public CardSet(ShowCard showCard, int upgradeLevel)
     {
         this.showCard = showCard;
+        // Debug.Log(showCard.level);
         this.upgradeLevel = upgradeLevel;
-
-        showCard.level = this.upgradeLevel;
     }
 }
 

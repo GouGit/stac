@@ -53,7 +53,7 @@ public class Knight : MonoBehaviour
         {
             // var obj = GameManager.instance.AllCards[i].showCard;
             MyCard.AddLast(GameManager.instance.AllCards[i].showCard.gameObject);
-            // Debug.Log(obj.level);
+            // Debug.Log(obj.name + " : " + obj.level);
         }
         Shuffle();
         DrawCard();
