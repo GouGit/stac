@@ -19,4 +19,7 @@ public class Card : ScriptableObject
     public int powerUp;
     public Sprite image;
     public Type.TYPE type;
+    
+    public int upgradeCostPerLevel;
+    public int upgradeGemPerLevel;
 }
