@@ -12,6 +12,8 @@ public class CardSet
     {
         this.showCard = showCard;
         this.upgradeLevel = upgradeLevel;
+
+        this.showCard.level = upgradeLevel;
     }
 }
 
