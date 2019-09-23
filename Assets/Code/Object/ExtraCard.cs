@@ -28,18 +28,19 @@ public class ExtraCard : ShowCard
                 switch (skill)
                 {
                 case SKILL.GAMBLE:
-                    GameManager.instance.cost = Random.Range(1,5);
+                    GameManager.instance.cost = Random.Range(minCost,5);
                     break;
                 case SKILL.POWERUP:
-                    Knight.instance.attackPower += 2;
+                    Knight.instance.attackPower += powerUp;
                     break;
                 case SKILL.PILL:
                     Knight.instance.bCnt = 0;
                     Knight.instance.fCnt = 0;
                     Knight.instance.pCnt = 0;
+                    Knight.instance.defensPower += defensPower;
                     break;
                 case SKILL.SAVING:
-                    GameManager.instance.savingCost = 2;
+                    GameManager.instance.savingCost = plusCost;
                     break;
                 case SKILL.REFLECT:
                     Knight.instance.isReflect = true;

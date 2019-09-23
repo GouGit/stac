@@ -22,6 +22,14 @@ public class ShowCard : MonoBehaviour
     protected int cost;
     public int attackPower;
     public int defensPower;
+    public int bonusCount;
+    public int fire;
+    public int poision;
+    public int lighting;
+    public int drawCount;
+    public int plusCost;
+    public int minCost;
+    public int powerUp;
     protected Vector3 scale, origin;
     protected BoxCollider2D myBox;
     protected Type.TYPE type, monsterType;
@@ -34,8 +42,16 @@ public class ShowCard : MonoBehaviour
         cost = card.cost;
         attackPower = card.attackPower;
         defensPower = card.defensPower;
-        scale = transform.localScale;
+        bonusCount = card.bonusCount;
+        fire = card.fire;
+        poision = card.poision;
+        lighting = card.lighting;
+        drawCount = card.drawCount;
+        plusCost = card.plusCost;
+        minCost = card.minCost;
+        powerUp = card.powerUp;
         type = card.type;
+        scale = transform.localScale;
         origin = transform.position;
         myBox = GetComponent<BoxCollider2D>();
     }

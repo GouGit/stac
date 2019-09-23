@@ -1846,9 +1846,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4415034640395396349, guid: e6b758cf1365c6d4d85a6b1c55ab082a,
         type: 3}
+      propertyPath: AllCards.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415034640395396349, guid: e6b758cf1365c6d4d85a6b1c55ab082a,
+        type: 3}
       propertyPath: monsterOption
       value: 
       objectReference: {fileID: 1646489382}
+    - target: {fileID: 4415034640395396349, guid: e6b758cf1365c6d4d85a6b1c55ab082a,
+        type: 3}
+      propertyPath: AllCards.Array.data[10].showCard
+      value: 
+      objectReference: {fileID: 8400197414888786575, guid: 331993c3f9b72c34c8edfb6fcc907c0a,
+        type: 3}
+    - target: {fileID: 4415034640395396349, guid: e6b758cf1365c6d4d85a6b1c55ab082a,
+        type: 3}
+      propertyPath: AllCards.Array.data[11].showCard
+      value: 
+      objectReference: {fileID: 4047094969545025657, guid: 039f48c2cd01b22489c3f5fde3d99934,
+        type: 3}
     - target: {fileID: 4937305813203759339, guid: e6b758cf1365c6d4d85a6b1c55ab082a,
         type: 3}
       propertyPath: DissolveMat

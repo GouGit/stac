@@ -35,6 +35,7 @@ public abstract class ShowMonster : MonoBehaviour
     private int lighting;
     private int fire;
     private int poision;
+    private bool isDown;
     public ParticleSystem lightingParticle = null;
     public ParticleSystem fireParticle = null;
     public ParticleSystem poisionParticle = null;
@@ -289,13 +290,20 @@ public abstract class ShowMonster : MonoBehaviour
         ondefensPower += defensPower;
     }
 
-    void OnMouseEnter()
+    void OnMouseDown()
     {
-        stateUI.SetActive(true);
+        isDown = true;
+    }
+
+    void OnMouseOver()
+    {
+        if(isDown)
+            stateUI.SetActive(true);
     }
 
     void OnMouseExit()
     {
+        isDown = false;
         stateUI.SetActive(false);
     }
 

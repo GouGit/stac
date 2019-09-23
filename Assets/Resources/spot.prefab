@@ -107,7 +107,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 161e9da12b5a28e4d9341a34d583ab7c, type: 3}
   - {fileID: 21300000, guid: 484d5318fd8585848afac9e80dfa1aa2, type: 3}
   - {fileID: 21300000, guid: 9c2c6bee61b245a4489477b0778da637, type: 3}
-  - {fileID: 21300000, guid: 2aaee73d7d503ab4584b1d9803932f8c, type: 3}
+  - {fileID: 21300000, guid: cc7b6a4196a2c0d43a2fa1a276fc9e36, type: 3}
 --- !u!120 &5275741467283866455
 LineRenderer:
   m_ObjectHideFlags: 0

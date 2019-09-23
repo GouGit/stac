@@ -4,26 +4,9 @@ using UnityEngine;
 
 public class DrawCard : ShowCard
 {
-    public enum SKILL
-    {
-        DRAW,
-        DEFENS_DRAW,
-
-    }
-    public SKILL skill;
-    private int drawNum;
-
     protected override void Start()
     {
         base.Start();
-        if(skill == SKILL.DRAW)
-        {
-            drawNum = 2;
-        }
-        else
-        {
-            drawNum = 1;
-        }
     }
 
     protected override void OnlyDefens()
@@ -33,7 +16,7 @@ public class DrawCard : ShowCard
             if(GameManager.instance.cost >= cost)
             {
                 GameManager.instance.cost -= cost;
-                Knight.instance.Draw(drawNum);
+                Knight.instance.Draw(drawCount);
                 Knight.instance.defensPower += defensPower;
                 gameObject.SetActive(false);
                 Knight.instance.Sort();
