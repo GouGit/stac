@@ -18,5 +18,9 @@ public class CardText : MonoBehaviour
         ShowCard show = transform.parent.GetComponent<ShowCard>();
         if(show.level > 0)
             textMesh.text = "+" + show.level;
+        else
+        {
+            textMesh.text = "";
+        }
     }
 }

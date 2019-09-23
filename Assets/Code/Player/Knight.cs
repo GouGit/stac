@@ -271,6 +271,7 @@ public class Knight : MonoBehaviour
             defensPower = defens;
             if(defensPower < 0)
             {
+                Vibration.Instance.CreateOneShot(50, 255);
                 defensUI.SetActive(false);
                 hp += defensPower;
                 hitUI.FadeOut(1.0f, new Color(1,1,1,(1 - hp/maxhp)));
@@ -279,6 +280,7 @@ public class Knight : MonoBehaviour
         else
         {
             hp -= damage;
+            Vibration.Instance.CreateOneShot(50, 255);
             hitUI.FadeOut(1.0f, new Color(1,1,1,(1 - hp/maxhp)));
         }
 
