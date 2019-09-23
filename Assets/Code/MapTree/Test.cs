@@ -21,6 +21,7 @@ public class Test : MonoBehaviour
         }
         else
         {
+            Debug.Log("a;");
             Spot firstSpot = GameDataHandler.LoadMap(mapName);
             GameDataHandler.LoadProgress(firstSpot, mapName);
             Spot.nowSpot = Spot.GetProgressSpot();

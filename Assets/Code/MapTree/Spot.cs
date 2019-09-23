@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class Spot : MonoBehaviour,  IPointerClickHandler
+public class Spot : MonoBehaviour, IPointerClickHandler
 {
     public LineRenderer liner;
     [Tooltip("이 지점에서 길을 이을 다음 지점 입니다.")]
@@ -28,24 +28,26 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
     void Start()
     {
         liner.positionCount = nextSpots.Count * 2;
-        
+
         int count = nextSpots.Count;
 
-        for(int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++)
         {
             int offset = (i + 1) * 2 - 1;
             liner.SetPosition(offset - 1, transform.position);
             liner.SetPosition(offset, nextSpots[i].transform.position);
         }
-        
-        
+
+
         SpriteRenderer render = GetComponent<SpriteRenderer>();
         render.sprite = spriteList[(int)sceneOption.type];
 
-        if(isClear)
+        if (isClear)
         {
             CheckClear();
         }
+
+        Debug.Log("sex");
     }
 
     public void CheckClear()
@@ -70,10 +72,10 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
     void LateUpdate()
     {
         liner.positionCount = nextSpots.Count * 2;
-        
+
         int count = nextSpots.Count;
 
-        for(int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++)
         {
             int offset = (i + 1) * 2 - 1;
             liner.SetPosition(offset - 1, transform.position);
@@ -84,9 +86,9 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
     public static Spot GetFirstSpot()
     {// Spot 컴포넌트를 가지는 모든 오브젝트를 조회하여 첫 Spot을 찾습니다.
         Spot[] spots = GameObject.FindObjectsOfType<Spot>();
-        foreach(Spot spot in spots)
+        foreach (Spot spot in spots)
         {
-            if(spot.ID == 0)
+            if (spot.ID == 0)
             {
                 return spot;
             }
@@ -98,7 +100,7 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
     public static Spot GetProgressSpot()
     {
         Spot firstSpot = GetFirstSpot();
-        if(firstSpot == null)
+        if (firstSpot == null)
         {// 맵 파일이 잘못 되었습니다.
             return null;
         }
@@ -108,9 +110,9 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
 
     private static Spot GetProgressSpotRecursion(Spot spot)
     {// isClear가 false인 spot을 리턴하기 위한 재귀함수 입니다.
-        foreach(Spot nextSpot in spot.nextSpots)
+        foreach (Spot nextSpot in spot.nextSpots)
         {
-            if(nextSpot.isClear)
+            if (nextSpot.isClear)
                 return GetProgressSpotRecursion(nextSpot);
         }
 
@@ -122,20 +124,20 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
     {
         Spot[] spots = GameObject.FindObjectsOfType<Spot>();
         GameObject map = GameObject.Find("Map");
-        foreach(Spot spot in spots)
+        foreach (Spot spot in spots)
         {
             spot.transform.SetParent(map.transform);
-        }   
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(isClear)
+        if (isClear)
             return;
 
         foreach (Spot spot in Spot.nowSpot.nextSpots)
         {
-            if(spot == this)
+            if (spot == this)
             {
                 isClear = true;
                 nowSpot = this;
@@ -144,25 +146,27 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
 
                 switch (spot.sceneOption.type)
                 {
-                case SceneOption.Type.Battle:
-                    SceneLoader.LoadScene("BattleScene", sceneOption);
-                    break;
-                case SceneOption.Type.Rest:
-                    // 여기에다가 대충 동작 추가
-                    GameObject go = Instantiate(Resources.Load("Rest Object", typeof(GameObject)), Vector3.zero, Quaternion.identity) as GameObject;
-                    StartCoroutine(CO_RestProcess(go, 3));
-                    break;
-                case SceneOption.Type.Event:
-                    int randam = Random.Range(0, 10);
-                    if(randam%2 == 0)
+                    case SceneOption.Type.Battle:
                         SceneLoader.LoadScene("BattleScene", sceneOption);
-                    else
-                    {
+                        break;
+                    case SceneOption.Type.Rest:
                         // 여기에다가 대충 동작 추가
-                        GameObject _go = Instantiate(Resources.Load("Rest Object", typeof(GameObject)), Vector3.zero, Quaternion.identity) as GameObject;
-                        StartCoroutine(CO_RestProcess(_go, 3));
-                    }
-                    break;
+                        GameObject go = Instantiate(Resources.Load("Rest Object", typeof(GameObject)), Vector3.zero, Quaternion.identity) as GameObject;
+                        StartCoroutine(CO_RestProcess(go, 3));
+                        break;
+                    case SceneOption.Type.Event:
+                        int randam = Random.Range(0, 10);
+                        if (randam % 1 == 0)
+                        {
+                            SceneLoader.LoadScene("BattleScene", sceneOption);
+                        }
+                        else
+                        {
+                            // 여기에다가 대충 동작 추가
+                            GameObject _go = Instantiate(Resources.Load("Rest Object", typeof(GameObject)), Vector3.zero, Quaternion.identity) as GameObject;
+                            StartCoroutine(CO_RestProcess(_go, 3));
+                        }
+                        break;
                 }
             }
         }

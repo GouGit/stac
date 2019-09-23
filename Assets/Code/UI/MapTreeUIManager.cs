@@ -16,7 +16,7 @@ public class MapTreeUIManager : MonoBehaviour
 
     void LateUpdate()
     {
-        if (m_PlayerHPImage != null)
+        if (m_PlayerHPImage != null && Knight.instance != null)
             m_PlayerHPImage.fillAmount = (float)Knight.instance.HP / (float)Knight.instance.MaxHP;
     }
 }
