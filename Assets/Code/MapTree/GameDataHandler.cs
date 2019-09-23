@@ -399,8 +399,16 @@ public static class GameDataHandler
         {
             ShowCard cardObj = (Resources.Load("CardsPrefabs/" + card["name"].ToString()) as GameObject).GetComponent<ShowCard>();
             int upgradeLevel = card["upgradeLevel"].ToInt();
+            cardObj.level = upgradeLevel;
+
+            // Debug.Log(upgradeLevel);
 
             cardList.Add(new CardSet(cardObj, upgradeLevel));
+        }
+
+        foreach(var asdf in cardList)
+        {
+            Debug.Log(asdf.showCard.level);
         }
 
         return cardList;
