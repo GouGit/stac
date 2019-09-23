@@ -12,9 +12,9 @@ public class Knight : MonoBehaviour
     public bool isPetrification = false, isReflect = false;
     public int defensPower, attackPower;
     public int usingCard, usedCard;
-    private  LinkedList<GameObject> MyCard = new LinkedList<GameObject>();
-    private LinkedList<GameObject> HandCard = new LinkedList<GameObject>();
-    private LinkedList<GameObject> TrashCard = new LinkedList<GameObject>();
+    private  LinkedList<CardSet> MyCard = new LinkedList<CardSet>();
+    private LinkedList<CardSet> HandCard = new LinkedList<CardSet>();
+    private LinkedList<CardSet> TrashCard = new LinkedList<CardSet>();
     private GameObject showCard, defensUI;
     private GameObject stateUI;
     private Image hpbar;
@@ -57,7 +57,7 @@ public class Knight : MonoBehaviour
         for(int i = 0; i < GameManager.instance.AllCards.Count; i++)
         {
             // var obj = GameManager.instance.AllCards[i].showCard;
-            MyCard.AddLast(GameManager.instance.AllCards[i].showCard.gameObject);
+            MyCard.AddLast(GameManager.instance.AllCards[i]);
             // Debug.Log(obj.name + " : " + obj.level);
         }
         Shuffle();
@@ -74,7 +74,8 @@ public class Knight : MonoBehaviour
         for(var node = HandCard.First; node != null; node = node.Next)
         {
             GameObject temp;
-            temp = Instantiate(node.Value, new Vector3(i * 2, -3.0f, 0), Quaternion.identity);
+            node.Value.showCard.level = node.Value.upgradeLevel;
+            temp = Instantiate(node.Value.showCard.gameObject, new Vector3(i * 2, -3.0f, 0), Quaternion.identity);
             temp.gameObject.SetActive(true);
             temp.transform.position = temp.transform.position + new Vector3(0, 0, -i + 10);
             temp.transform.SetParent(showCard.transform);
@@ -107,7 +108,7 @@ public class Knight : MonoBehaviour
 
     void Shuffle()
     {
-        List<GameObject> result = new List<GameObject>();
+        List<CardSet> result = new List<CardSet>();
 
         for(var node = MyCard.First; node != null; node = node.Next)
         {
@@ -116,7 +117,7 @@ public class Knight : MonoBehaviour
 
         for(int i= 0; i < result.Count; i++)
         {
-            GameObject temp = result[i];
+            CardSet temp = result[i];
             int index = Random.Range(0,MyCard.Count);
             result[i] = result[index];
             result[index] = temp;
@@ -136,7 +137,7 @@ public class Knight : MonoBehaviour
             HandCard.AddFirst(MyCard.First.Value);
 
             GameObject temp;
-            temp = Instantiate(MyCard.First.Value, new Vector3(0, -3.0f, 0), Quaternion.identity);
+            temp = Instantiate(MyCard.First.Value.showCard.gameObject, new Vector3(0, -3.0f, 0), Quaternion.identity);
             temp.SetActive(true);
             temp.transform.SetParent(showCard.transform);
 
