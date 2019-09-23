@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: "\uAC15\uD0C0"
   cost: 1
-  attackPower: 8
+  cardValue: 8
   defensPower: 0
+  IsAttack: 1
   image: {fileID: -3204361316178981696, guid: ae3b64002de1f114ba38accfd7043c95, type: 3}
   type: 1
+  upgradeCostPerLevel: 0
+  upgradeGemPerLevel: 0
+  upgradeValue: 2
+  upgradeExtra: 0

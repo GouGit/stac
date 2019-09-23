@@ -18,17 +18,12 @@ public class CardSet
 public class ShowCard : MonoBehaviour
 {
     public Card card;
+    public int level;
     private new string name;
+    protected bool IsAttack;
     protected int cost;
-    public int attackPower;
+    public int cardValue;
     public int defensPower;
-    public int bonusCount;
-    public int fire;
-    public int poision;
-    public int lighting;
-    public int drawCount;
-    public int plusCost;
-    public int minCost;
     public int powerUp;
     protected Vector3 scale, origin;
     protected BoxCollider2D myBox;
@@ -40,27 +35,21 @@ public class ShowCard : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = card.image;
         name = card.name;
         cost = card.cost;
-        attackPower = card.attackPower;
+        IsAttack = card.IsAttack;
+        cardValue = card.cardValue;
         defensPower = card.defensPower;
-        bonusCount = card.bonusCount;
-        fire = card.fire;
-        poision = card.poision;
-        lighting = card.lighting;
-        drawCount = card.drawCount;
-        plusCost = card.plusCost;
-        minCost = card.minCost;
-        powerUp = card.powerUp;
         type = card.type;
         scale = transform.localScale;
         origin = transform.position;
         myBox = GetComponent<BoxCollider2D>();
+        CardUpgrade();
     }
 
     protected virtual void AddPower()
     {
         if(type == Type.TYPE.DIAMOND)
         {
-            attackPower *= 2;
+            cardValue *= 2;
             return;
         }
         
@@ -69,39 +58,45 @@ public class ShowCard : MonoBehaviour
         case Type.TYPE.RUBY:
             if(type == Type.TYPE.SAPPHIRE)
             {
-                attackPower *= 2;
+                cardValue *= 2;
             }
             else if(type == Type.TYPE.TOPAZ)
             {
-                attackPower /=2;
+                cardValue /=2;
             }
             break;
         case Type.TYPE.SAPPHIRE:
             if(type == Type.TYPE.TOPAZ)
             {
-                attackPower *= 2;
+                cardValue *= 2;
             }
             else if(type == Type.TYPE.RUBY)
             {
-                attackPower /=2;
+                cardValue /=2;
             }
             break;
         case Type.TYPE.TOPAZ:
             if(type == Type.TYPE.RUBY)
             {
-                attackPower *= 2;
+                cardValue *= 2;
             }
             else if(type == Type.TYPE.SAPPHIRE)
             {
-                attackPower /=2;
+                cardValue /=2;
             }
             break;
         case Type.TYPE.DIAMOND:
-            attackPower *= 2;
+            cardValue *= 2;
             break;
         default:
             break;
         }       
+    }
+
+    protected virtual void CardUpgrade()
+    {
+        cardValue += card.upgradeValue * level;
+        defensPower += card.upgradeExtra* level;
     }
 
     protected virtual void OnlyDefens()
@@ -133,7 +128,7 @@ public class ShowCard : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(mousePos, transform.forward, 0.0f, 1<<8);
         if(hit.collider != null)
         {
-            attackPower = attackPower + Knight.instance.attackPower;
+            cardValue = cardValue + Knight.instance.attackPower;
             Using(hit.collider.gameObject);
         }
         myBox.enabled = true;
@@ -143,14 +138,14 @@ public class ShowCard : MonoBehaviour
     {
         if(Knight.instance.bCnt > 0)
         {
-            attackPower = attackPower/2;
+            cardValue = cardValue/2;
         }
         if(GameManager.instance.cost >= cost)
         {
             GameManager.instance.cost -= cost;
             if(Knight.instance.fCnt > 0)
             {
-                Knight.instance.LoseHp(attackPower);
+                Knight.instance.LoseHp(cardValue);
                 gameObject.SetActive(false);
                 Knight.instance.Sort();
                 return;
@@ -158,7 +153,7 @@ public class ShowCard : MonoBehaviour
             ShowMonster monster = ob.GetComponent<ShowMonster>();
             monsterType = monster.mon.type;
             AddPower();
-            monster.LoseHp(attackPower);
+            monster.LoseHp(cardValue);
             SoundManager.Instance.PlaySFX(SoundManager.SFXList.KNIFE_1);
             Knight.instance.defensPower += defensPower;
             gameObject.SetActive(false);
@@ -170,7 +165,7 @@ public class ShowCard : MonoBehaviour
     {
         transform.localScale = scale * 1.25f;
         origin = transform.position;
-        if(attackPower > 0)
+        if(IsAttack)
         {
             BezierDrawer.Instance.gameObject.SetActive(true);
             BezierDrawer.Instance.startPosition = gameObject.transform.position; 
@@ -179,7 +174,7 @@ public class ShowCard : MonoBehaviour
 
     protected virtual void OnMouseDrag()
     {
-        if(attackPower <= 0)
+        if(!IsAttack)
         {
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = 0;
@@ -190,7 +185,7 @@ public class ShowCard : MonoBehaviour
     protected virtual void OnMouseUp()
     {
         transform.localScale = scale;
-        if(attackPower > 0)
+        if(IsAttack)
         {
             UseCard();
             BezierDrawer.Instance.gameObject.SetActive(false);

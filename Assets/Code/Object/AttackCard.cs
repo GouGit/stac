@@ -15,32 +15,19 @@ public class AttackCard : ShowCard
     public SKILL skill;
     private int holyCnt;
     private int doubleCnt;
+    private int rollCnt;
    
     protected override void Start()
     {
         base.Start();
         holyCnt = 0;
         doubleCnt = 2;
-    }
-
-    protected override void OnMouseDown()
-    {
-        transform.localScale = scale * 1.25f;
-        origin = transform.position;
-        BezierDrawer.Instance.gameObject.SetActive(true);
-        BezierDrawer.Instance.startPosition = gameObject.transform.position;
-    }
-
-    protected override void OnMouseUp()
-    {
-        transform.localScale = scale;
-        UseCard();
-        BezierDrawer.Instance.gameObject.SetActive(false);
+        rollCnt = card.upgradeExtra * level;
     }
 
     IEnumerator DoubleAttack(ShowMonster mon)
     {
-        mon.LoseHp(attackPower);
+        mon.LoseHp(cardValue);
         doubleCnt--;
         yield return new WaitForSeconds(0.25f);
         if(doubleCnt<=0)
@@ -57,7 +44,7 @@ public class AttackCard : ShowCard
 
      IEnumerator Roll(ShowMonster mon,int num)
     {
-        mon.LoseHp(attackPower);
+        mon.LoseHp(cardValue);
         num--;
         yield return new WaitForSeconds(0.25f);
         if(num<=0)
@@ -76,14 +63,14 @@ public class AttackCard : ShowCard
     {
         if(Knight.instance.bCnt > 0)
         {
-            attackPower = attackPower/2;
+            cardValue = cardValue/2;
         }
         if(GameManager.instance.cost >= cost)
         {
             GameManager.instance.cost -= cost;
             if(Knight.instance.fCnt > 0)
             {
-                Knight.instance.LoseHp(attackPower);
+                Knight.instance.LoseHp(cardValue);
                 gameObject.SetActive(false);
                 return;
             }
@@ -97,17 +84,17 @@ public class AttackCard : ShowCard
                 SoundManager.Instance.PlaySFX(SoundManager.SFXList.DOUBLE_KNIFE);
                     break;
             case SKILL.POWER_ATTACK:
-                monster.LoseHp(attackPower);
+                monster.LoseHp(cardValue);
                 Knight.instance.LoseHp(3);
                 gameObject.SetActive(false);
                 break;
             case SKILL.DOUBLE_SWORD:
-                monster.LoseHp((Knight.instance.defensPower+attackPower)*2);
+                monster.LoseHp((Knight.instance.defensPower+cardValue)*2);
                 Knight.instance.defensPower = 0;
                 gameObject.SetActive(false);
                 break;
             case SKILL.ROLL:
-                StartCoroutine(Roll(monster ,GameManager.instance.cost+bonusCount));
+                StartCoroutine(Roll(monster ,GameManager.instance.cost+rollCnt));
                 GameManager.instance.cost -= GameManager.instance.cost;
                 break;
             case SKILL.HOLY_SWORD:
@@ -118,7 +105,7 @@ public class AttackCard : ShowCard
                 }
                 else
                 {
-                    monster.LoseHp(attackPower);
+                    monster.LoseHp(cardValue);
                 }
                 gameObject.SetActive(false);
                 break;

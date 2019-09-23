@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     public int rubyCount = 0;
     public int sapphireCount = 0;
     public int diamondCount = 0;
-    
+
     public ResultWindow ResultWindowPrefab;
     public int stage_count = 0;// 현재 층
     public string mapName;// 현재 맵의 이름 (나중에 사용할 예정)
@@ -38,12 +38,12 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
             GameDataHandler.CheckFolder();
             DontDestroyOnLoad(gameObject);
-        }    
+        }
         else
         {
             Destroy(gameObject);
@@ -51,10 +51,9 @@ public class GameManager : MonoBehaviour
 
         GameDataHandler.LoadGemCount(out goldCount, out topazCount, out rubyCount, out sapphireCount, out diamondCount);
         var allcard = GameDataHandler.LoadCards();
-        if(allcard != null)
+        if (allcard != null)
         {
             AllCards = allcard;
-            Debug.Log(AllCards.Count);
         }
         //AllCards = GameDataHandler.LoadCards();
         stage_count = GameDataHandler.LoadStageCount();
@@ -65,6 +64,64 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         monsterOption = GetComponent<MonsterManager>();
+    }
+
+    public int GetGem(Type.TYPE type)
+    {
+        int retval = 0;
+        switch (type)
+        {
+            case Type.TYPE.DIAMOND:
+                retval = diamondCount;
+                break;
+
+            case Type.TYPE.RUBY:
+                retval = rubyCount;
+                break;
+
+            case Type.TYPE.SAPPHIRE:
+                retval = sapphireCount;
+                break;
+
+            case Type.TYPE.TOPAZ:
+                retval = topazCount;
+                break;
+        }
+
+        return retval;
+    }
+
+    public void AddGem(Type.TYPE type, int add)
+    {
+        switch (type)
+        {
+            case Type.TYPE.DIAMOND:
+                diamondCount += add;
+                break;
+
+            case Type.TYPE.RUBY:
+                rubyCount += add;
+                break;
+
+            case Type.TYPE.SAPPHIRE:
+                sapphireCount += add;
+                break;
+
+            case Type.TYPE.TOPAZ:
+                topazCount += add;
+                break;
+        }
+
+        GameDataHandler.SaveGemCount(goldCount, topazCount, rubyCount, sapphireCount, diamondCount);
+        MainUIMnager.Instance.SetText();
+    }
+
+    public void AddGold(int gold)
+    {
+        goldCount += gold;
+
+        GameDataHandler.SaveGemCount(goldCount, topazCount, rubyCount, sapphireCount, diamondCount);
+        MainUIMnager.Instance.SetText();
     }
 
     public void OnGameEnd()
@@ -115,7 +172,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void OnDisable()
     {
-        if(instance == this)
+        if (instance == this)
         {
             SceneManager.sceneLoaded -= AutoReset;
         }
@@ -124,14 +181,14 @@ public class GameManager : MonoBehaviour
     void AutoReset(Scene scene, LoadSceneMode mode)
     {
         GameDataHandler.SaveGemCount(goldCount, topazCount, rubyCount, sapphireCount, diamondCount);
-     
+
         switch (scene.name)
         {
             case "Title":
                 isFirstStart = true;
                 GameDataHandler.LoadGemCount(out goldCount, out topazCount, out rubyCount, out sapphireCount, out diamondCount);
                 MainUIMnager.Instance.SetText();
-            break;
+                break;
         }
     }
 
@@ -151,7 +208,7 @@ public class GameManager : MonoBehaviour
     // public void LoadGemCount()
     // {
     //     goldCount= PlayerPrefs.GetInt("goldCount");
-        
+
     //     topazCount = PlayerPrefs.GetInt("topazCount");
     //     rubyCount = PlayerPrefs.GetInt("rubyCount");
     //     sapphireCount = PlayerPrefs.GetInt("sapphireCount");
