@@ -45,6 +45,9 @@ public class ShowCard : MonoBehaviour
         origin = transform.position;
         myBox = GetComponent<BoxCollider2D>();
         CardUpgrade();
+        
+        if(level > 0)
+            Debug.Log(level);
     }
 
     protected virtual void AddPower()

@@ -355,7 +355,7 @@ public static class GameDataHandler
             ShowCard cardObj = set.showCard;
 
             card.Add("name", cardObj.name);
-            card.Add("upgradeLevel",set.upgradeLevel);
+            card.Add("upgradeLevel", set.upgradeLevel);
 
             cards.Add(card);
         }

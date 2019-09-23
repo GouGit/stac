@@ -19,6 +19,8 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
     [HideInInspector]
     public bool isClear = false;        // 맵의 진행도를 저장하고 불러올때 사용할 변수 입니다. 해당 Spot에 도달 했었는지를 나타냅니다.
 
+    //ㅁㄴㅇㄹ
+
     public List<Sprite> spriteList;
 
     public static Spot nowSpot;
@@ -137,7 +139,7 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
             {
                 isClear = true;
                 nowSpot = this;
-                
+
                 GameManager.instance.SaveProgress();
 
                 if(spot.sceneOption.type == SceneOption.Type.Rest)
