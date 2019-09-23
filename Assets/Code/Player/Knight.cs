@@ -19,6 +19,8 @@ public class Knight : MonoBehaviour
     private GameObject stateUI;
     private Image hpbar;
     private int hp, maxhp;
+    public int HP { get => hp; }
+    public int MaxHP { get => maxhp; }
     private string playerName;
     private FadeUI hitUI;
 
@@ -293,6 +295,13 @@ public class Knight : MonoBehaviour
         }
 
         hpbar.fillAmount = (float)hp/maxhp;
+    }
+
+    public void AddHp(int hp)
+    {
+        hp += hp;
+        if (hp > maxhp)
+            hp = maxhp;
     }
 
     void FixedUpdate()

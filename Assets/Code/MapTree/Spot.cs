@@ -160,6 +160,7 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
     {
         go.transform.GetChild(0).GetComponent<Canvas>().worldCamera = Camera.main;
         yield return new WaitForSeconds(delay);
+        Knight.instance.AddHp((int)(Knight.instance.MaxHP * 0.1f));
         go.transform.GetChild(1).GetComponent<ParticleSystem>().Stop();
         yield return new WaitForSeconds(1.0f);
         CheckClear();
