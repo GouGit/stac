@@ -36,13 +36,16 @@ public class Knight : MonoBehaviour
         }
     }
 
-    void Start()
+    void OnEnable()
     {
         hp = player.hp;
         maxhp = hp;
         defensPower = player.defensPower;
-        playerName = player.name;
+        playerName = player.name;    
+    }
 
+    void Start()
+    {
         playerUI.worldCamera = Camera.main;
         GameObject temp = Instantiate(playerUI.gameObject, Vector3.zero, Quaternion.identity);
         temp.SetActive(true);
