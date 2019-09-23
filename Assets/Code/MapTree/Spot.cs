@@ -42,12 +42,10 @@ public class Spot : MonoBehaviour, IPointerClickHandler
         SpriteRenderer render = GetComponent<SpriteRenderer>();
         render.sprite = spriteList[(int)sceneOption.type];
 
-        if (isClear)
+        if (isClear || ID == 0)
         {
             CheckClear();
         }
-
-        Debug.Log("sex");
     }
 
     public void CheckClear()
@@ -146,6 +144,7 @@ public class Spot : MonoBehaviour, IPointerClickHandler
 
                 switch (spot.sceneOption.type)
                 {
+                    case SceneOption.Type.Boss:
                     case SceneOption.Type.Battle:
                         SceneLoader.LoadScene("BattleScene", sceneOption);
                         break;

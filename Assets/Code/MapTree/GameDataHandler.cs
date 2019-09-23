@@ -199,6 +199,7 @@ public static class GameDataHandler
     /// <param name="fileName">저장할 JSON파일의 이름</param>
     public static void SaveProgress(Spot spot, string fileName)
     {
+        Debug.Log("진행도 저장함 : " + Spot.nowSpot.ID);
         JObject stage = new JObject();
         JObject spots = new JObject();
         JArray jarray = new JArray();
@@ -266,6 +267,8 @@ public static class GameDataHandler
 
         List<Spot> spotList = new List<Spot>();
 
+        Debug.Log("진행도를 불러옴");
+
         LoadProgress(spot ,(JObject)spots[0]);
     }
 
@@ -274,7 +277,7 @@ public static class GameDataHandler
         int ID = root["ID"].ToInt();
 
         bool isClear = root["clear"].ToBool();
-
+        
         if(spot.ID == ID)
         {
             spot.isClear = isClear;
@@ -291,7 +294,10 @@ public static class GameDataHandler
             int count = list.Count;
             for (int i = 0; i < count; i++)
             {
-                LoadProgress(spot.nextSpots[i], (JObject)list[i]);
+                for(int j = 0; j < spot.nextSpots.Count; j++)
+                {
+                    LoadProgress(spot.nextSpots[j], (JObject)list[i]);
+                }
             }
         }
     }

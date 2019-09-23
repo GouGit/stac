@@ -52,10 +52,6 @@ public class GameManager : MonoBehaviour
 
         GameDataHandler.LoadGemCount(out goldCount, out topazCount, out rubyCount, out sapphireCount, out diamondCount);
         var allcard = GameDataHandler.LoadCards();
-        foreach (var card in allcard)
-        {
-            Debug.Log(card.showCard.level);
-        }
         
         if (allcard != null)
         {
