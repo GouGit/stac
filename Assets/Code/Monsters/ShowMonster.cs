@@ -231,9 +231,14 @@ public abstract class ShowMonster : MonoBehaviour
         shaking = false;
     }
 
-    void OnDisable()
+    public void Dead()
     {
-
+        gameObject.SetActive(false);
+        if (GameManager.instance.monsterOption.IsEnd())
+        {
+            GameManager.instance.monsterOption.AllMonsters.Clear();
+            OnMonsterDead?.Invoke();
+        }
     }
 
     private IEnumerator CO_DISSOLVE(SpriteRenderer renderer, string keyword, float time)
@@ -254,13 +259,7 @@ public abstract class ShowMonster : MonoBehaviour
         renderer.enabled = false;
 
         yield return new WaitForSeconds(1.3f);
-
-        gameObject.SetActive(false);
-        if (GameManager.instance.monsterOption.IsEnd())
-        {
-            GameManager.instance.monsterOption.AllMonsters.Clear();
-            OnMonsterDead?.Invoke();
-        }
+        Dead();
     }
 
     protected virtual void ChangeState()

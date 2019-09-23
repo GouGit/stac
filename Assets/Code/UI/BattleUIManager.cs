@@ -13,4 +13,9 @@ public class BattleUIManager : MonoBehaviour
     {
         SceneLoader.Instance.LoadSceneWithFade("MapTree");
     }
+
+    public void DestroyAll()
+    {
+        GameManager.instance.monsterOption.DestoyAll();
+    }
 }

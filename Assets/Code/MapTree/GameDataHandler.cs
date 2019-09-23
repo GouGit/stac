@@ -406,11 +406,6 @@ public static class GameDataHandler
             cardList.Add(new CardSet(cardObj, upgradeLevel));
         }
 
-        foreach(var asdf in cardList)
-        {
-            Debug.Log(asdf.showCard.level);
-        }
-
         return cardList;
     }
 

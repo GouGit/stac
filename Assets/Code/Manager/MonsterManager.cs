@@ -74,6 +74,11 @@ public class MonsterManager : MonoBehaviour
         }
     }
 
+    public void DestoyAll()
+    {
+        AllMonsters.Clear();
+    }
+
     private Vector3 ReturnPos(int number)
     {
         return posistions[number];
