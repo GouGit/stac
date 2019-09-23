@@ -39,6 +39,10 @@
                 "ID": 4,
                 "position": "(0.0, 0.2, 0.0)",
                 "type": 2,
+                "prefabs": [
+                  "Gagoil",
+                  "Ork"
+                ],
                 "nextSpot": 3,
                 "spots": []
               },
