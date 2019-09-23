@@ -42,15 +42,21 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
 
         if(isClear)
         {
-            Color color = render.color;
-            color.a = 0.2f;
-            render.color = color;
+            CheckClear();
+        }
+    }
 
-            if(sceneOption.type == SceneOption.Type.Boss)
-            {
-                GameManager.instance.OnStageClear();
-                SceneLoader.Instance.LoadSceneWithDelay(SceneLoader.GetNowSceneName(), 2.0f);
-            }
+    public void CheckClear()
+    {
+        SpriteRenderer render = GetComponent<SpriteRenderer>();
+        Color color = render.color;
+        color.a = 0.2f;
+        render.color = color;
+
+        if (sceneOption.type == SceneOption.Type.Boss)
+        {
+            GameManager.instance.OnStageClear();
+            SceneLoader.Instance.LoadSceneWithDelay(SceneLoader.GetNowSceneName(), 2.0f);
         }
     }
 
@@ -137,6 +143,8 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
                 if(spot.sceneOption.type == SceneOption.Type.Rest)
                 {
                     // 여기에다가 대충 동작 추가
+                    GameObject go = Instantiate(Resources.Load("Rest Object", typeof(GameObject)), Vector3.zero, Quaternion.identity) as GameObject;
+                    StartCoroutine(CO_RestProcess(go, 3));
                 }
                 else
                 {
@@ -144,6 +152,17 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
                 }
             }
         }
+    }
+
+    public IEnumerator CO_RestProcess(GameObject go, float delay)
+    {
+        go.transform.GetChild(0).GetComponent<Canvas>().worldCamera = Camera.main;
+        yield return new WaitForSeconds(delay);
+        go.transform.GetChild(1).GetComponent<ParticleSystem>().Stop();
+        yield return new WaitForSeconds(1.0f);
+        CheckClear();
+        go.transform.GetChild(0).GetChild(0).GetComponent<FadeUI>().m_OnFadeoutEnd += (obj) => Destroy(go);
+        go.transform.GetChild(0).GetChild(0).GetComponent<FadeUI>().FadeOut();
     }
 
     public static void ViewNextSpot()
