@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 298474962}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.665, z: 0}
+  m_LocalPosition: {x: -1.106, y: 1.681, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 8198993514602083127}
@@ -50,7 +50,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: 1216904fad4d9d1488b0d87383333987, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -229,3 +229,11 @@ MonoBehaviour:
   card: {fileID: 11400000, guid: 65e8649c0b9af774093baa6d67c21c9d, type: 2}
   attackPower: 0
   defensPower: 0
+  bonusCount: 0
+  fire: 0
+  poision: 0
+  lighting: 0
+  drawCount: 0
+  plusCost: 0
+  minCost: 0
+  powerUp: 0
