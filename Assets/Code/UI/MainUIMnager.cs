@@ -23,6 +23,7 @@ public class MainUIMnager : MonoBehaviour
     }
 
     public float SlideObjectSpeed = 5.0f;
+    private bool isSettingButtonsActive = true;
     // Volume
     public RectTransform VolumeController;
     private bool isVolumeControl = false;
@@ -95,6 +96,20 @@ public class MainUIMnager : MonoBehaviour
             yield return null;
         }
         obj.localPosition = pos;
+    }
+
+    public void SetSettingButtonsToggle()
+    {
+        SetSettingButtonsActive(!isSettingButtonsActive);
+    }
+
+    public void SetSettingButtonsActive(bool active)
+    {
+        isSettingButtonsActive = active;
+        Transform SettingButton = GameObject.Find("SettingBtn").transform;
+        SettingButton.parent.GetChild(1).gameObject.SetActive(active);
+        SettingButton.parent.GetChild(2).gameObject.SetActive(active);
+        SettingButton.parent.parent.GetChild(0).gameObject.SetActive(active);
     }
 
     public void OpenUpgradePrefab()

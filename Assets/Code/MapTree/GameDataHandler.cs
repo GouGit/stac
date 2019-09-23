@@ -375,6 +375,7 @@ public static class GameDataHandler
 #endif        
         List<CardSet> cardList = new List<CardSet>();
         string jsonData = null;
+        
         try
         {
             jsonData = File.ReadAllText(Application.persistentDataPath + "/TemporaryFiles/CardList.json");
@@ -388,7 +389,13 @@ public static class GameDataHandler
 
         JArray cards = (JArray)list["CardList"];
 
-        foreach(JObject card in cards)
+        if (cards.Count == 0)
+        {
+            File.Delete(Application.persistentDataPath + "/TemporaryFiles/CardList.json");
+            return LoadCards();
+        }
+
+        foreach (JObject card in cards)
         {
             ShowCard cardObj = (Resources.Load("CardsPrefabs/" + card["name"].ToString()) as GameObject).GetComponent<ShowCard>();
             int upgradeLevel = card["upgradeLevel"].ToInt();

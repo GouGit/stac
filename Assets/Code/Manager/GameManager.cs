@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
         if(allcard != null)
         {
             AllCards = allcard;
+            Debug.Log(AllCards.Count);
         }
         //AllCards = GameDataHandler.LoadCards();
         stage_count = GameDataHandler.LoadStageCount();

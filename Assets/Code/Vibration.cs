@@ -56,6 +56,10 @@ public class Vibration : MonoBehaviour {
         {
             SetVibrationFactor(1);
         }
+        else
+        {
+            SetVibrationFactor(Factor);
+        }
 
         // 메인 씬일경우 설정의 슬라이드를 저장된 값과 동일하게 맞춘다
         if(SceneLoader.GetNowSceneIndex() == 0)
