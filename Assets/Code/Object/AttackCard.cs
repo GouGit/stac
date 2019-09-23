@@ -94,7 +94,8 @@ public class AttackCard : ShowCard
             {
             case SKILL.DOUBLE_ATTACK:
                 StartCoroutine(DoubleAttack(monster));
-                break;
+                SoundManager.Instance.PlaySFX(SoundManager.SFXList.DOUBLE_KNIFE);
+                    break;
             case SKILL.POWER_ATTACK:
                 monster.LoseHp(attackPower);
                 Knight.instance.LoseHp(3);
@@ -124,7 +125,8 @@ public class AttackCard : ShowCard
             }
 
             Knight.instance.defensPower += defensPower;
-            SoundManager.Instance.PlaySFX(SoundManager.SFXList.KNIFE_1);
+            if(skill != SKILL.DOUBLE_ATTACK)
+                SoundManager.Instance.PlaySFX(SoundManager.SFXList.KNIFE_1);
             Knight.instance.Sort();
         }
     }

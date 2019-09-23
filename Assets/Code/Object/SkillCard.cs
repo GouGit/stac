@@ -54,6 +54,7 @@ public class SkillCard : ShowCard
                         monster.fireParticle = Instantiate(Resources.Load("Particles/Fire Particle System") as GameObject).GetComponent<ParticleSystem>();
                         monster.fireParticle.transform.position = monster.transform.position;
                     }
+                    SoundManager.Instance.PlaySFX(SoundManager.SFXList.BURNING);
                     break;
             case SkILL.POISION:
                 monster.Poision += poision;
@@ -62,6 +63,7 @@ public class SkillCard : ShowCard
                         monster.poisionParticle = Instantiate(Resources.Load("Particles/Toxin Particle System") as GameObject).GetComponent<ParticleSystem>();
                         monster.poisionParticle.transform.position = monster.transform.position;
                     }
+                    SoundManager.Instance.PlaySFX(SoundManager.SFXList.GLASS_BREAK);
                     break;
             case SkILL.LIGHTING:
                 monster.Lighting += lighting;
@@ -70,6 +72,7 @@ public class SkillCard : ShowCard
                         monster.lightingParticle = Instantiate(Resources.Load("Particles/Lighting Particle System") as GameObject).GetComponent<ParticleSystem>();
                         monster.lightingParticle.transform.position = monster.transform.position;
                     }
+                    SoundManager.Instance.PlaySFX(SoundManager.SFXList.THUNDER);
                     break;
             case SkILL.DEBUFF:
                 monster.Fire = (monster.Fire+poision) * 2;
