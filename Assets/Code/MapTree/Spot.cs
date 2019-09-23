@@ -131,7 +131,7 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
             {
                 isClear = true;
                 nowSpot = this;
-                
+
                 GameManager.instance.SaveProgress();
 
                 if(spot.sceneOption.type == SceneOption.Type.Rest)
