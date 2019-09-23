@@ -91,28 +91,47 @@ public class SceneLoader : MonoBehaviour
 
     public static void LoadSceneWithFadeStatic(int index)
     {
-        FadeUI[] fadePanels = FindObjectsOfType<FadeUI>();
-        foreach (var fadePanel in fadePanels)
+        var fadePanel = GameObject.Find("FadePanel").GetComponent<FadeUI>();
+        fadePanel.m_OnFadeInEnd += (obj) =>
         {
-            fadePanel.m_OnFadeInEnd += (obj) =>
-            {
-                LoadScene(index);
-            };
-            fadePanel.FadeIn();
-        }
+            LoadScene(index);
+        };
+        fadePanel.FadeIn();
+
+        // 씬에 FadeUI가 2개 이상 있을 시 문제가 되므로 이름으로 오브젝트를 찾음
+        //FadeUI[] fadePanels = FindObjectsOfType<FadeUI>();
+        //foreach (var fadePanel in fadePanels)
+        //{
+        //    fadePanel.ClearCallbacks();
+        //    fadePanel.m_OnFadeInEnd += (obj) =>
+        //    {
+        //        LoadScene(index);
+        //    };
+        //    fadePanel.FadeIn();
+        //    break;
+        //}
     }
 
     public static void LoadSceneWithFadeStatic(string name)
     {
-        FadeUI[] fadePanels = FindObjectsOfType<FadeUI>();
-        foreach (var fadePanel in fadePanels)
+        var fadePanel = GameObject.Find("FadePanel").GetComponent<FadeUI>();
+        fadePanel.m_OnFadeInEnd += (obj) =>
         {
-            fadePanel.m_OnFadeInEnd += (obj) =>
-          {
-              LoadScene(name);
-          };
-            fadePanel.FadeIn();
-        }
+            LoadScene(name);
+        };
+        fadePanel.FadeIn();
+
+        // 씬에 FadeUI가 2개 이상 있을 시 문제가 되므로 이름으로 오브젝트를 찾음
+        //FadeUI[] fadePanels = FindObjectsOfType<FadeUI>();
+        //foreach (var fadePanel in fadePanels)
+        //{
+        //    fadePanel.ClearCallbacks();
+        //    fadePanel.m_OnFadeInEnd += (obj) =>
+        //  {
+        //      LoadScene(name);
+        //  };
+        //    fadePanel.FadeIn();
+        //}
     }
 
     public void LoadSceneWithFade(string name)
