@@ -13,14 +13,12 @@ public class AttackCard : ShowCard
         HOLY_SWORD
     }
     public SKILL skill;
-    private int holyCnt;
     private int doubleCnt;
     private int rollCnt;
    
     protected override void Start()
     {
         base.Start();
-        holyCnt = 0;
         doubleCnt = 2;
         rollCnt = card.upgradeExtra * level;
     }
@@ -98,9 +96,10 @@ public class AttackCard : ShowCard
                 GameManager.instance.cost -= GameManager.instance.cost;
                 break;
             case SKILL.HOLY_SWORD:
-                holyCnt++;
-                if(holyCnt >= 3)
+                GameManager.instance.holyCnt++;
+                if(GameManager.instance.holyCnt >= 2)
                 {
+                    GameManager.instance.holyCnt = 0;
                     monster.LoseHp(monster.hp);
                 }
                 else
