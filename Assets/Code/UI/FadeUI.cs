@@ -139,4 +139,12 @@ public class FadeUI : MonoBehaviour
         m_FadeObject.raycastTarget = false;
         m_OnFadeoutEnd(this);
     }
+
+    public void ClearCallbacks()
+    {
+        m_OnFadeInBegin = null;
+        m_OnFadeInEnd = null;
+        m_OnFadeOutBegin = null;
+        m_OnFadeoutEnd = null;
+    }
 }
