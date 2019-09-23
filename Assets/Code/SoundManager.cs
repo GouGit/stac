@@ -56,6 +56,11 @@ public class SoundManager : MonoBehaviour
         MONSTER_DAMAGE,
         MONSTER_DEATH,
         UI_TOUCH,
+        DOUBLE_KNIFE,
+        THUNDER,
+        FOOT_STEP,
+        GLASS_BREAK,
+        BURNING,
     }
 
     #region STATIC_FUNCTION
