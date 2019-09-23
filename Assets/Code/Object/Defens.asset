@@ -19,7 +19,7 @@ MonoBehaviour:
   IsAttack: 0
   image: {fileID: -225262636045133025, guid: cd5ccf687db9d4943af85c6c95e3c439, type: 3}
   type: 0
-  upgradeCostPerLevel: 0
-  upgradeGemPerLevel: 0
+  upgradeCostPerLevel: 1000
+  upgradeGemPerLevel: 5
   upgradeValue: 0
   upgradeExtra: 2

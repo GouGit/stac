@@ -131,10 +131,17 @@ public class Spot : MonoBehaviour,  IPointerClickHandler
             {
                 isClear = true;
                 nowSpot = this;
-
+                
                 GameManager.instance.SaveProgress();
 
-                SceneLoader.LoadScene("BattleScene", sceneOption);
+                if(spot.sceneOption.type == SceneOption.Type.Rest)
+                {
+                    // 여기에다가 대충 동작 추가
+                }
+                else
+                {
+                    SceneLoader.LoadScene("BattleScene", sceneOption);
+                }
             }
         }
     }
