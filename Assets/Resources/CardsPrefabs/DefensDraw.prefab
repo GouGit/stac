@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3758109508098588443}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.665, z: 0}
+  m_LocalPosition: {x: -1.106, y: 1.681, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 5064872638674164158}
@@ -78,7 +78,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3758109508098588443}
-  m_Text: "\uD0C0\uACA9"
+  m_Text: 0
   m_OffsetZ: 0
   m_CharacterSize: 0.25
   m_LineSpacing: 1
@@ -229,4 +229,11 @@ MonoBehaviour:
   card: {fileID: 11400000, guid: 07701fd6bdfe9c246912815817edd448, type: 2}
   attackPower: 0
   defensPower: 0
-  skill: 1
+  bonusCount: 0
+  fire: 0
+  poision: 0
+  lighting: 0
+  drawCount: 0
+  plusCost: 0
+  minCost: 0
+  powerUp: 0

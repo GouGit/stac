@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4194786413455301652
 Transform:
   m_ObjectHideFlags: 0
@@ -124,7 +124,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5213926467684825776
 Transform:
   m_ObjectHideFlags: 0
@@ -229,4 +229,12 @@ MonoBehaviour:
   card: {fileID: 11400000, guid: 222404b9d58e59d4f807ba4a693b67ce, type: 2}
   attackPower: 0
   defensPower: 0
+  bonusCount: 0
+  fire: 0
+  poision: 0
+  lighting: 0
+  drawCount: 0
+  plusCost: 0
+  minCost: 0
+  powerUp: 0
   skill: 2

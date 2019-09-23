@@ -6,7 +6,7 @@ public class CardName : MonoBehaviour
 {
     public string sortingLayerName;
     public int sortingOrder;
-    private new string name;
+    private string cost;
     private TextMesh textMesh;
 
     void Start () 
@@ -16,7 +16,10 @@ public class CardName : MonoBehaviour
         mesh.sortingLayerName = sortingLayerName;
         mesh.sortingOrder = sortingOrder;
         ShowCard show = transform.parent.GetComponent<ShowCard>();
-        name = show.card.name;
-        textMesh.text = name;
+        if(show.card.cost == 0)
+            cost = "X";
+        else
+            cost = "" + show.card.cost;
+        textMesh.text = cost;
     }
 }

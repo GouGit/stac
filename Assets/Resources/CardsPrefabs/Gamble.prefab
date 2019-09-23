@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1234923431085119578}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.665, z: 0}
+  m_LocalPosition: {x: -1.106, y: 1.681, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 7155694424395988735}
@@ -229,4 +229,12 @@ MonoBehaviour:
   card: {fileID: 11400000, guid: 9629a22c3d4bd9049a5bc17f0606e126, type: 2}
   attackPower: 0
   defensPower: 0
+  bonusCount: 0
+  fire: 0
+  poision: 0
+  lighting: 0
+  drawCount: 0
+  plusCost: 0
+  minCost: 0
+  powerUp: 0
   skill: 1
