@@ -14,15 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: "\uAC9C\uBE14"
   cost: 2
-  attackPower: 0
+  cardValue: 1
   defensPower: 0
-  bonusCount: 0
-  fire: 0
-  poision: 0
-  lighting: 0
-  drawCount: 0
-  plusCost: 0
-  minCost: 1
-  powerUp: 0
+  IsAttack: 0
   image: {fileID: -4975768849480274146, guid: cd5ccf687db9d4943af85c6c95e3c439, type: 3}
   type: 0
+  upgradeCostPerLevel: 0
+  upgradeGemPerLevel: 0
+  upgradeValue: 1
+  upgradeExtra: 2

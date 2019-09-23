@@ -13,30 +13,44 @@ public class SkillCard : ShowCard
         DONT
     }
     public SkILL skill;
+    private int maxLevel = 5;
 
     protected override void Start()
     {
         base.Start();
     }
 
-    protected override void OnMouseDown()
+    protected override void CardUpgrade()
     {
-        transform.localScale = scale * 1.25f;
-        origin = transform.position;
-        BezierDrawer.Instance.gameObject.SetActive(true);
-        BezierDrawer.Instance.startPosition = gameObject.transform.position; 
-    }
-
-    protected override void OnMouseDrag()
-    {
-        return;
-    }
-
-    protected override void OnMouseUp()
-    {
-        transform.localScale = scale;
-        UseCard();
-        BezierDrawer.Instance.gameObject.SetActive(false);
+        switch (card.name)
+        {
+        case "상처벌리기":
+            for(int i = 0; i < level; i++)
+            {
+                if(maxLevel == level)
+                    cost -= 1;
+                else
+                {
+                    cardValue += card.upgradeValue;
+                }
+            }
+            break;
+        case "금지지령":
+            for(int i = 0; i < level; i++)
+            {
+                if(maxLevel == level)
+                    cost -= 1;
+                else
+                {
+                    defensPower += card.upgradeExtra;
+                }   
+            }
+            break;
+        default:
+            cardValue += card.upgradeValue * level;
+            defensPower += card.upgradeExtra* level;
+            break;
+        }
     }
 
     protected override void Using(GameObject ob)
@@ -48,7 +62,7 @@ public class SkillCard : ShowCard
             switch (skill)
             {
             case SkILL.FIRE:
-                monster.Fire += fire;
+                monster.Fire += cardValue;
                     if (monster.fireParticle == null)
                     {
                         monster.fireParticle = Instantiate(Resources.Load("Particles/Fire Particle System") as GameObject).GetComponent<ParticleSystem>();
@@ -56,7 +70,7 @@ public class SkillCard : ShowCard
                     }
                     break;
             case SkILL.POISION:
-                monster.Poision += poision;
+                monster.Poision += cardValue;
                     if (monster.poisionParticle == null)
                     {
                         monster.poisionParticle = Instantiate(Resources.Load("Particles/Toxin Particle System") as GameObject).GetComponent<ParticleSystem>();
@@ -64,7 +78,7 @@ public class SkillCard : ShowCard
                     }
                     break;
             case SkILL.LIGHTING:
-                monster.Lighting += lighting;
+                monster.Lighting += cardValue;
                     if (monster.lightingParticle == null)
                     {
                         monster.lightingParticle = Instantiate(Resources.Load("Particles/Lighting Particle System") as GameObject).GetComponent<ParticleSystem>();
@@ -72,9 +86,9 @@ public class SkillCard : ShowCard
                     }
                     break;
             case SkILL.DEBUFF:
-                monster.Fire = (monster.Fire+poision) * 2;
-                monster.Lighting = (monster.Lighting+lighting) * 2;
-                monster.Poision = (monster.Poision+poision) * 2;
+                monster.Fire = (monster.Fire+cardValue) * 2;
+                monster.Lighting = (monster.Lighting+cardValue) * 2;
+                monster.Poision = (monster.Poision+cardValue) * 2;
                 break;
             case SkILL.DONT:
                 monster.isDont = true;
