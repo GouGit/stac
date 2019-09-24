@@ -21,7 +21,7 @@ public class Ork : ShowMonster
 
     protected override void EndTurn()
     {
-        attackPower += addPower;
+        base.attackPower += addPower;
         base.EndTurn();
     }
 
