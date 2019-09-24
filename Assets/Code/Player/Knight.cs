@@ -16,7 +16,7 @@ public class Knight : MonoBehaviour
     private LinkedList<CardSet> HandCard = new LinkedList<CardSet>();
     private LinkedList<CardSet> TrashCard = new LinkedList<CardSet>();
     private GameObject showCard, defensUI;
-    private GameObject stateUI;
+    private GameObject stateUI, deadUI;
     private Image hpbar;
     private int hp, maxhp;
     public int HP { get => hp; }
@@ -48,13 +48,12 @@ public class Knight : MonoBehaviour
         hpbar = temp.transform.GetChild(0).GetChild(0).GetComponent<Image>();
         defensUI = temp.transform.GetChild(1).gameObject;
         stateUI = temp.transform.GetChild(2).gameObject;
-        hitUI = temp.transform.GetChild(3).gameObject.GetComponent<FadeUI>();
+        hitUI = temp.transform.GetChild(4).gameObject.GetComponent<FadeUI>();
+        deadUI = temp.transform.GetChild(5).gameObject;
         
         for(int i = 0; i < GameManager.instance.AllCards.Count; i++)
         {
-            // var obj = GameManager.instance.AllCards[i].showCard;
             MyCard.AddLast(GameManager.instance.AllCards[i]);
-            // Debug.Log(obj.name + " : " + obj.level);
         }
         Shuffle();
         DrawCard();
@@ -281,6 +280,7 @@ public class Knight : MonoBehaviour
                 defensUI.SetActive(false);
                 hp += defensPower;
                 hitUI.FadeOut(1.0f, new Color(1,1,1,(1 - hp/maxhp)));
+                SoundManager.Instance.PlaySFX(SoundManager.SFXList.MONSTER_DAMAGE);
             }
         }
         else
@@ -288,12 +288,13 @@ public class Knight : MonoBehaviour
             hp -= damage;
             Vibration.Instance.CreateOneShot(50, 255);
             hitUI.FadeOut(1.0f, new Color(1,1,1,(1 - hp/maxhp)));
+            SoundManager.Instance.PlaySFX(SoundManager.SFXList.MONSTER_DAMAGE);
         }
 
         if(hp <= 0)
         {
             hp = 0;
-            Debug.Log("die");
+            deadUI.SetActive(true);
         }
 
         hpbar.fillAmount = (float)hp/maxhp;

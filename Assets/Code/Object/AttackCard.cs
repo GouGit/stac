@@ -80,7 +80,7 @@ public class AttackCard : ShowCard
             case SKILL.DOUBLE_ATTACK:
                 StartCoroutine(DoubleAttack(monster));
                 SoundManager.Instance.PlaySFX(SoundManager.SFXList.DOUBLE_KNIFE);
-                    break;
+                break;
             case SKILL.POWER_ATTACK:
                 monster.LoseHp(cardValue);
                 Knight.instance.LoseHp(3);
