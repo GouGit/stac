@@ -56,6 +56,10 @@
                                 "ID": 6,
                                 "position": "(-3.3, 2.3, 0.0)",
                                 "type": 2,
+                                "prefabs": [
+                                  "Reaper",
+                                  "Succbus"
+                                ],
                                 "spots": [
                                   {
                                     "ID": 7,
@@ -107,6 +111,11 @@
                                 "ID": 11,
                                 "position": "(-1.0, -0.7, 0.0)",
                                 "type": 2,
+                                "prefabs": [
+                                  "Succbus",
+                                  "Rich",
+                                  "Vampire"
+                                ],
                                 "nextSpot": 8,
                                 "spots": []
                               }
