@@ -155,7 +155,7 @@ public class Spot : MonoBehaviour, IPointerClickHandler
                         break;
                     case SceneOption.Type.Event:
                         int randam = Random.Range(0, 10);
-                        if (randam % 1 == 0)
+                        if (randam % 2 == 0)
                         {
                             SceneLoader.LoadScene("BattleScene", sceneOption);
                         }
