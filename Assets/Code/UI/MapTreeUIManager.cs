@@ -5,9 +5,22 @@ using UnityEngine.UI;
 
 public class MapTreeUIManager : MonoBehaviour
 {
+    private static MapTreeUIManager instance = null;
+
+    public static MapTreeUIManager Instance
+    {
+        get => instance;
+    }
+
+
     // 플레이어의 HP를 표시할 이미지입니다.
     public Image m_PlayerHPImage;
     public Player m_Player;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
