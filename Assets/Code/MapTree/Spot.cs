@@ -42,7 +42,7 @@ public class Spot : MonoBehaviour, IPointerClickHandler
         SpriteRenderer render = GetComponent<SpriteRenderer>();
         render.sprite = spriteList[(int)sceneOption.type];
 
-        if (isClear || ID == 0)
+        if (isClear || sceneOption.type == SceneOption.Type.Start)
         {
             CheckClear();
         }
