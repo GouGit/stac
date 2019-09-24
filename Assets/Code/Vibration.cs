@@ -62,7 +62,7 @@ public class Vibration : MonoBehaviour {
         }
 
         // 메인 씬일경우 설정의 슬라이드를 저장된 값과 동일하게 맞춘다
-        if(SceneLoader.GetNowSceneIndex() == 0)
+        if (SceneLoader.GetNowSceneName() == "Title" || SceneLoader.GetNowSceneName() == "MapTree")
         {
             GameObject.Find("VibrationController").transform.GetChild(0).GetComponent<UnityEngine.UI.Slider>().value = Factor;
             m_VibrationText.text = ((int)(Factor * 100)).ToString() + "%";

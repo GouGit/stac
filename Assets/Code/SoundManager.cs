@@ -99,34 +99,6 @@ public class SoundManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this);
         }
-        
-        if (SceneLoader.GetNowSceneIndex() == 0)
-        {
-            m_VolumeText = GameObject.Find("VolumeText").GetComponent<UnityEngine.UI.Text>();
-        }
-
-        float volume = 1.0f;
-        // 데이터가 저장되어있지 않으면 기본값 (1)로 설정
-        if (PlayerPrefs.HasKey(PlayerPrefsKey))
-        {
-            volume = PlayerPrefs.GetFloat(PlayerPrefsKey);
-            AudioListener.volume = volume;
-        }
-        else
-        {
-            SetVolume(1);
-        }
-
-        if (SceneLoader.GetNowSceneIndex() == 0)
-        {
-            UnityEngine.UI.Slider VolumeController = GameObject.Find("VolumeController").transform.GetChild(0).GetComponent<UnityEngine.UI.Slider>();
-            VolumeController.value = volume;
-            VolumeController.onValueChanged.AddListener((value) =>
-            {
-                SetVolume(value);
-            });
-            m_VolumeText.text = ((int)(volume * 100)).ToString() + "%";
-        }
 
         m_iSESourceIndex = 0;
 
@@ -138,6 +110,49 @@ public class SoundManager : MonoBehaviour
         {
             m_SFXSource[i] = gameObject.AddComponent<AudioSource>();
         }
+    }
+
+    public void OnLevelLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+    {
+        if (SceneLoader.GetNowSceneName() == "Title" || SceneLoader.GetNowSceneName() == "MapTree")
+        {
+            m_VolumeText = GameObject.Find("VolumeText").GetComponent<UnityEngine.UI.Text>();
+        }
+
+        float volume = 1.0f;
+        // 데이터가 저장되어있지 않으면 기본값 (1)로 설정
+        if (PlayerPrefs.HasKey(PlayerPrefsKey))
+        {
+            volume = PlayerPrefs.GetFloat(PlayerPrefsKey);
+            SetVolume(volume);
+        }
+        else
+        {
+            SetVolume(1);
+        }
+
+        if (SceneLoader.GetNowSceneName() == "Title" || SceneLoader.GetNowSceneName() == "MapTree")
+        {
+            UnityEngine.UI.Slider VolumeController = GameObject.Find("VolumeController").transform.GetChild(0).GetComponent<UnityEngine.UI.Slider>();
+            Debug.Log(volume);
+            VolumeController.value = volume;
+            VolumeController.onValueChanged.AddListener((value) =>
+            {
+                SetVolume(value);
+            });
+            m_VolumeText.text = ((int)(volume * 100)).ToString() + "%";
+        }
+    }
+
+    private void OnEnable()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnLevelLoaded;
+        
+    }
+
+    private void OnDisable()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnLevelLoaded;
     }
 
     public bool PlayBGM(BGMList soundIndex, float time = 0, float volume = 1.0f)

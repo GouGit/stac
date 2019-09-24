@@ -55,16 +55,19 @@ public class MainUIMnager : MonoBehaviour
     {
         instance = this;
         GameObject Images = GameObject.Find("Images");
-        m_Player.hp = m_Player.maxHp;
+        if (m_Player)
+            m_Player.hp = m_Player.maxHp;
+        if (SceneLoader.GetNowSceneName() == "MapTree")
+            isSettingButtonsActive = false;
         // GameObject GoldImg = Images?.transform?.GetChild(0)?.gameObject;
         // GameObject MaterialImg = Images?.transform?.GetChild(0)?.gameObject;
 
-        // GoldText = GoldImg?.transform?.GetChild(0)?.GetComponent<Text>();
+            // GoldText = GoldImg?.transform?.GetChild(0)?.GetComponent<Text>();
 
-        // RubyText = MaterialImg?.transform?.GetChild(0)?.GetComponent<Text>();
-        // SapphireText = MaterialImg?.transform?.GetChild(1)?.GetComponent<Text>();
-        // TopazText = MaterialImg?.transform?.GetChild(2)?.GetComponent<Text>();
-        // DiamondText = MaterialImg?.transform?.GetChild(3)?.GetComponent<Text>();
+            // RubyText = MaterialImg?.transform?.GetChild(0)?.GetComponent<Text>();
+            // SapphireText = MaterialImg?.transform?.GetChild(1)?.GetComponent<Text>();
+            // TopazText = MaterialImg?.transform?.GetChild(2)?.GetComponent<Text>();
+            // DiamondText = MaterialImg?.transform?.GetChild(3)?.GetComponent<Text>();
     }
 
     public void VolumeControl()
@@ -76,7 +79,7 @@ public class MainUIMnager : MonoBehaviour
             StopCoroutine(VolumeCoroutine);
             VolumeCoroutine = null;
         }
-        VolumeCoroutine = StartCoroutine(CO_SlideObject(VolumeController, isVolumeControl ? new Vector3(555, 130) : new Vector3(1210, 130)));
+        VolumeCoroutine = StartCoroutine(CO_SlideObject(VolumeController, isVolumeControl ? new Vector3(555, 130) : new Vector3(1310, 130)));
     }
 
     public void VibrationControl()
@@ -88,7 +91,7 @@ public class MainUIMnager : MonoBehaviour
             StopCoroutine(VibrationCoroutine);
             VibrationCoroutine = null;
         }
-        VibrationCoroutine = StartCoroutine(CO_SlideObject(VibrationController, isVibrationControl ? new Vector3(555, -130) : new Vector3(1210, -130)));
+        VibrationCoroutine = StartCoroutine(CO_SlideObject(VibrationController, isVibrationControl ? new Vector3(555, -130) : new Vector3(1310, -130)));
     }
 
     IEnumerator CO_SlideObject(RectTransform obj, Vector3 pos)
@@ -99,6 +102,16 @@ public class MainUIMnager : MonoBehaviour
             yield return null;
         }
         obj.localPosition = pos;
+    }
+
+    public void SetVolume(float value)
+    {
+        SoundManager.Instance.SetVolume(value);
+    }
+
+    public void SetVibration(float value)
+    {
+        Vibration.Instance.SetVibrationFactor(value);
     }
 
     public void SetSettingButtonsToggle()
