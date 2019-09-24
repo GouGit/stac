@@ -41,8 +41,11 @@ public class Dragon : ShowMonster
 
         if (hp <= 0)
         {
+            StartCoroutine(CO_DISSOLVE(GetComponent<SpriteRenderer>(), "_Edges", 1));
+            Destroy(lightingParticle);
+            Destroy(fireParticle);
+            Destroy(poisionParticle);
             ui.gameObject.SetActive(false);
-            gameObject.SetActive(false);
         }
     }
 

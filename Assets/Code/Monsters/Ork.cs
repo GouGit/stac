@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Ork : ShowMonster
 {
-
     private int addPower;
     
     protected override void Start()
@@ -21,7 +20,7 @@ public class Ork : ShowMonster
 
     protected override void EndTurn()
     {
-        base.attackPower += addPower;
+        attackPower += addPower;
         base.EndTurn();
     }
 

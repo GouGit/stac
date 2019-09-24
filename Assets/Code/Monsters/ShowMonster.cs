@@ -245,7 +245,7 @@ public abstract class ShowMonster : MonoBehaviour
         }
     }
 
-    private IEnumerator CO_DISSOLVE(SpriteRenderer renderer, string keyword, float time)
+    protected IEnumerator CO_DISSOLVE(SpriteRenderer renderer, string keyword, float time)
     {
         MaterialPropertyBlock _propBlock = new MaterialPropertyBlock();
         float value = 0.0f;
