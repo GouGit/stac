@@ -3,64 +3,64 @@
     "spots": [
       {
         "ID": 0,
-        "position": "(-8.0, -4.0, 0.0)",
+        "position": "(-3.0, 2.0, 0.0)",
         "type": 4,
         "spots": [
           {
             "ID": 1,
-            "position": "(-7.5, -1.5, 0.0)",
+            "position": "(-6.0, 1.5, 0.0)",
             "type": 1,
+            "prefabs": [
+              "Skeleton",
+              "Gagoil"
+            ],
             "spots": [
               {
                 "ID": 2,
-                "position": "(-7.0, 0.9, 0.0)",
-                "type": 1,
+                "position": "(-7.0, -0.5, 0.0)",
+                "type": 3,
                 "spots": [
                   {
                     "ID": 3,
-                    "position": "(-5.2, 1.9, 0.0)",
+                    "position": "(-5.0, -1.1, 0.0)",
                     "type": 1,
+                    "prefabs": [
+                      "Ork",
+                      "Frankenstein",
+                      "Ork"
+                    ],
                     "spots": [
                       {
                         "ID": 4,
-                        "position": "(-4.5, 0.0, 0.0)",
-                        "type": 1,
+                        "position": "(-6.0, -3.1, 0.0)",
+                        "type": 2,
+                        "prefabs": [
+                          "Skeleton",
+                          "Skeleton",
+                          "Skeleton"
+                        ],
                         "spots": [
                           {
                             "ID": 5,
-                            "position": "(-3.3, -2.2, 0.0)",
+                            "position": "(-4.5, -2.2, 0.0)",
                             "type": 1,
-                            "nextSpot": 8,
+                            "prefabs": [
+                              "Ork",
+                              "Gagoil",
+                              "Medusa"
+                            ],
                             "spots": [
                               {
                                 "ID": 6,
-                                "position": "(-1.5, -3.9, 0.0)",
-                                "type": 1,
+                                "position": "(-3.0, -4.0, 0.0)",
+                                "type": 3,
                                 "spots": [
                                   {
                                     "ID": 7,
-                                    "position": "(0.2, -2.2, 0.0)",
-                                    "type": 1,
-                                    "spots": [
-                                      {
-                                        "ID": 8,
-                                        "position": "(-1.4, -0.6, 0.0)",
-                                        "type": 1,
-                                        "spots": [
-                                          {
-                                            "ID": 9,
-                                            "position": "(-1.8, 1.5, 0.0)",
-                                            "type": 1,
-                                            "spots": [
-                                              {
-                                                "ID": 10,
-                                                "position": "(0.8, 1.7, 0.0)",
-                                                "type": 0
-                                              }
-                                            ]
-                                          }
-                                        ]
-                                      }
+                                    "position": "(-3.0, -1.0, 0.0)",
+                                    "type": 0,
+                                    "prefabs": [
+                                      "Kraken"
                                     ]
                                   }
                                 ]
@@ -72,21 +72,88 @@
                     ]
                   }
                 ]
-              },
-              {
-                "ID": 11,
-                "position": "(-5.6, -1.8, 0.0)",
-                "type": 1,
-                "nextSpot": 4,
-                "spots": []
               }
             ]
           },
           {
-            "ID": 12,
-            "position": "(-5.6, -3.5, 0.0)",
+            "ID": 8,
+            "position": "(-4.5, 0.5, 0.0)",
             "type": 1,
-            "nextSpot": 11,
+            "prefabs": [
+              "Ork",
+              "Gagoil"
+            ],
+            "nextSpot": 2,
+            "spots": []
+          },
+          {
+            "ID": 9,
+            "position": "(0.0, 1.5, 0.0)",
+            "type": 1,
+            "prefabs": [
+              "Skeleton",
+              "Gagoil"
+            ],
+            "spots": [
+              {
+                "ID": 10,
+                "position": "(1.0, -0.5, 0.0)",
+                "type": 2,
+                "prefabs": [
+                  "Ork",
+                  "Ork"
+                ],
+                "spots": [
+                  {
+                    "ID": 11,
+                    "position": "(-1.0, -1.1, 0.0)",
+                    "type": 1,
+                    "prefabs": [
+                      "Frankenstein",
+                      "Skeleton",
+                      "Medusa"
+                    ],
+                    "spots": [
+                      {
+                        "ID": 12,
+                        "position": "(0.0, -3.1, 0.0)",
+                        "type": 2,
+                        "prefabs": [
+                          "Skeleton",
+                          "Skeleton",
+                          "Skeleton"
+                        ],
+                        "spots": [
+                          {
+                            "ID": 13,
+                            "position": "(-1.5, -2.2, 0.0)",
+                            "type": 1,
+                            "prefabs": [
+                              "Medusa",
+                              "Medusa",
+                              "Gagoil"
+                            ],
+                            "nextSpot": 6,
+                            "spots": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "ID": 14,
+            "position": "(-1.5, 0.5, 0.0)",
+            "type": 1,
+            "prefabs": [
+              "Skeleton",
+              "Skeleton",
+              "Skeleton"
+            ],
+            "nextSpot": 10,
             "spots": []
           }
         ]
