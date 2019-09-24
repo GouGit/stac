@@ -92,7 +92,7 @@ public class Vibration : MonoBehaviour {
         if (isAndroid()) {
             //If Android 8.0 (API 26+) or never use the new vibrationeffects
             if (getSDKInt() >= 26) {
-                CreateVibrationEffect("createOneShot", new object[] { milliseconds, amplitude * Factor });
+                CreateVibrationEffect("createOneShot", new object[] { milliseconds, (int)(amplitude * Factor) });
             }
             else {
                 OldVibrate(milliseconds);
