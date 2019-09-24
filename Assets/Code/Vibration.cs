@@ -142,17 +142,43 @@ public class Vibration : MonoBehaviour {
 
     //Handels all new vibration effects
     private void CreateVibrationEffect(string function, params object[] args) {
-
-        AndroidJavaObject vibrationEffect = vibrationEffectClass.CallStatic<AndroidJavaObject>(function, args);
-        vibrator.Call("vibrate", vibrationEffect);
+        if (!HasVibrator())
+            return;
+        try
+        {
+            AndroidJavaObject vibrationEffect = vibrationEffectClass.CallStatic<AndroidJavaObject>(function, args);
+            vibrator.Call("vibrate", vibrationEffect);
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError("Vibration Erorr : " + e.Message);
+        }
     }
 
     //Handles old vibration effects
     private void OldVibrate(long milliseconds) {
-        vibrator.Call("vibrate", milliseconds);
+        if (!HasVibrator())
+            return;
+        try
+        {
+            vibrator.Call("vibrate", milliseconds);
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError("Vibration Erorr : " + e.Message);
+        }
     }
     private void OldVibrate(long[] pattern, int repeat) {
-        vibrator.Call("vibrate", pattern, repeat);
+        if (!HasVibrator())
+            return;
+        try
+        {
+            vibrator.Call("vibrate", pattern, repeat);
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError("Vibration Erorr : " + e.Message);
+        }
     }
 
     public bool HasVibrator() {
