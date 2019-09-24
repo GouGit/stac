@@ -97,7 +97,7 @@ MonoBehaviour:
   liner: {fileID: 5275741467283866455}
   nextSpots: []
   sceneOption:
-    type: 0
+    type: 4
     objectList: []
   isTraversal: 0
   ID: 0
