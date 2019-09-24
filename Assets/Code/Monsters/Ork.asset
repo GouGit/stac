@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Ork
   m_EditorClassIdentifier: 
   name: ork
-  hp: 60
-  attackPower: 8
+  hp: 40
+  attackPower: 3
   defensPower: 0
   image: {fileID: 6446785247130113390, guid: 31a6359c96acbae4d9578d291de12995, type: 3}
   type: 3

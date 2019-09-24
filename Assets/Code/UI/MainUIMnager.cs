@@ -59,6 +59,7 @@ public class MainUIMnager : MonoBehaviour
             m_Player.hp = m_Player.maxHp;
         if (SceneLoader.GetNowSceneName() == "MapTree")
             isSettingButtonsActive = false;
+
         // GameObject GoldImg = Images?.transform?.GetChild(0)?.gameObject;
         // GameObject MaterialImg = Images?.transform?.GetChild(0)?.gameObject;
 

@@ -98,6 +98,9 @@ public abstract class ShowMonster : MonoBehaviour
 
     void MyTurn()
     {
+        if (Knight.instance.HP <= 0)
+            return;
+
         ChangeState();
         attackUI.SetActive(isAttack);
         defensUI.SetActive(!isAttack);
@@ -131,7 +134,10 @@ public abstract class ShowMonster : MonoBehaviour
 
     protected virtual void EndTurn()
     {
-        if(Fire != 0)
+        if (Knight.instance.HP <= 0)
+            return;
+
+        if (Fire != 0)
         {
             LoseHp(Fire);
             Fire--;
