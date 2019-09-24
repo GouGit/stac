@@ -294,6 +294,7 @@ public class Knight : MonoBehaviour
         if(hp <= 0)
         {
             hp = 0;
+            GameManager.instance.monsterOption.AllMonsters.Clear();
             deadUI.SetActive(true);
         }
 

@@ -26,8 +26,7 @@
                     "type": 1,
                     "prefabs": [
                       "Ork",
-                      "Frankenstein",
-                      "Ork"
+                      "Frankenstein"
                     ],
                     "spots": [
                       {
@@ -35,7 +34,6 @@
                         "position": "(-6.0, -3.1, 0.0)",
                         "type": 2,
                         "prefabs": [
-                          "Skeleton",
                           "Skeleton",
                           "Skeleton"
                         ],
@@ -45,7 +43,6 @@
                             "position": "(-4.5, -2.2, 0.0)",
                             "type": 1,
                             "prefabs": [
-                              "Ork",
                               "Gagoil",
                               "Medusa"
                             ],
@@ -91,7 +88,7 @@
             "position": "(0.0, 1.5, 0.0)",
             "type": 1,
             "prefabs": [
-              "Skeleton",
+              "Gagoil",
               "Gagoil"
             ],
             "spots": [
@@ -101,7 +98,7 @@
                 "type": 2,
                 "prefabs": [
                   "Ork",
-                  "Ork"
+                  "Skeleton"
                 ],
                 "spots": [
                   {
@@ -110,7 +107,6 @@
                     "type": 1,
                     "prefabs": [
                       "Frankenstein",
-                      "Skeleton",
                       "Medusa"
                     ],
                     "spots": [
@@ -121,7 +117,7 @@
                         "prefabs": [
                           "Skeleton",
                           "Skeleton",
-                          "Skeleton"
+                          "Gagoil"
                         ],
                         "spots": [
                           {
@@ -149,9 +145,8 @@
             "position": "(-1.5, 0.5, 0.0)",
             "type": 1,
             "prefabs": [
-              "Skeleton",
-              "Skeleton",
-              "Skeleton"
+              "Ork",
+              "Medusa"
             ],
             "nextSpot": 10,
             "spots": []
