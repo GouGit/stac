@@ -18,6 +18,7 @@ public class MonsterUI : MonoBehaviour
     private SetMonster set;
     private Text text;
     private Image image;
+    private Kraken kk;
 
     void Start()
     {
@@ -35,7 +36,12 @@ public class MonsterUI : MonoBehaviour
         image = GetComponent<Image>();
         text = transform.GetChild(0).GetComponent<Text>();
 
-        maxHp = mon.hp;    
+        maxHp = mon.hp; 
+
+        if(mon.mon.name == "kraken")
+        {
+            kk = mon.GetComponent<Kraken>();
+        }   
     }
 
     void Update()
@@ -47,7 +53,14 @@ public class MonsterUI : MonoBehaviour
             text.text = "Hp:"+mon.hp;
             break;
         case TYPE.ATTACK:
-            text.text = ""+mon.attackPower;
+            if(mon.mon.name == "kraken")
+            {
+                text.text = ""+mon.attackPower+"x"+kk.Life();
+            }
+            else
+            {
+                text.text = ""+mon.attackPower;
+            }
             break;
         case TYPE.DEFENS:
             text.text = ""+mon.defensPower;

@@ -22,6 +22,7 @@ public class Frankenstein : ShowMonster
         if(actionCount == 3)
         {
             attackPower += addPower;
+            temPower = attackPower;
             hp += addHp;
             maxHp += addHp;
             MonsterUI hpui = hpUI.GetComponentInChildren<MonsterUI>();

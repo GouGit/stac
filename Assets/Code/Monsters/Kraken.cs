@@ -17,7 +17,7 @@ public class Kraken : ShowMonster
         loseDefens = 5;
         maxHp = hp;
         randomAction = Random.Range(0, 10);
-        if(randomAction <= 5)
+        if(randomAction%2 == 0)
         {
             isAttack = false;
         }
@@ -27,6 +27,11 @@ public class Kraken : ShowMonster
         }
         attackUI.SetActive(isAttack);
         defensUI.SetActive(!isAttack);
+    }
+
+    public int Life()
+    {
+        return legNum;
     }
 
     public override void LoseHp(int damage)
@@ -65,6 +70,7 @@ public class Kraken : ShowMonster
             {
                 hp = (int)(maxHp * 0.1f);
                 attackPower += addPower;
+                temPower = attackPower;
                 defensPower -= loseDefens;
             }
         }
@@ -82,7 +88,7 @@ public class Kraken : ShowMonster
         }
         
         randomAction = Random.Range(0, 10);
-        if(randomAction <= 5)
+        if(randomAction%2 == 0)
         {
             isAttack = true;
         }
