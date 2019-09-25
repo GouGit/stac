@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Succubus : ShowMonster
 {
-    private int actionCount = 0;
+    private int actionCount = 1;
 
     protected override void Start()
     {
@@ -21,17 +21,22 @@ public class Succubus : ShowMonster
         {
             action = ACTION.DEFENS;
         }
-        actionCount++;
-    }
 
-    protected override void Attack()
-    {
         if(actionCount == 2)
         {
             Knight.instance.fCnt++;
             actionCount = 0;
             isAttack = false;
         }
+        else
+        {
+            actionCount++;
+            isAttack = true;
+        }
+    }
+
+    protected override void Attack()
+    {
         if(Knight.instance.isReflect)
         {
             LoseHp(attackPower);
