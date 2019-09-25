@@ -191,6 +191,8 @@ public class GameManager : MonoBehaviour
                 isFirstStart = true;
                 GameDataHandler.LoadGemCount(out goldCount, out topazCount, out rubyCount, out sapphireCount, out diamondCount);
                 MainUIMnager.Instance.SetText();
+                stage_count = GameDataHandler.LoadStageCount();
+                mapName = "Stage" + stage_count;
                 break;
         }
     }

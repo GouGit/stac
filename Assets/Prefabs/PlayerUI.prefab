@@ -1105,7 +1105,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 5993871529192923536, guid: a45108bab4cac234eb752fc5060d837c,
             type: 3}
-          m_MethodName: LoadTitle
+          m_MethodName: LoadTitleDie
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
