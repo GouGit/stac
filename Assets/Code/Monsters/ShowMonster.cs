@@ -252,6 +252,7 @@ public abstract class ShowMonster : MonoBehaviour
         if (GameManager.instance.monsterOption.IsEnd())
         {
             Knight.instance.player.hp = Knight.instance.HP;
+            GameManager.instance.holyCnt = 0;
             GameManager.instance.monsterOption.AllMonsters.Clear();
             OnMonsterDead?.Invoke();
         }
