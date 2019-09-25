@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6d2f6c7a35aed4fa0e171c10083df3, type: 3}
   m_Name: Pill
   m_EditorClassIdentifier: 
-  name: "\uB9CC\uBCD1\uD1B5\uCE58\uC57D"
+  name: "\uB0B4 \uC0C1\uD0DC\uC774\uC0C1\uC744 \uBAA8\uB450 \uD68C\uBCF5\uD55C\uB2E4."
   cost: 2
   cardValue: 0
   defensPower: 0

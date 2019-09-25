@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6d2f6c7a35aed4fa0e171c10083df3, type: 3}
   m_Name: Saving
   m_EditorClassIdentifier: 
-  name: "\uC774\uC790"
+  name: "\uB2E4\uC74C\uD134\uC5D0 \uCF54\uC2A4\uD2B8\uB97C \uB354 \uBC1B\uB294\uB2E4."
   cost: 2
   cardValue: 2
   defensPower: 0

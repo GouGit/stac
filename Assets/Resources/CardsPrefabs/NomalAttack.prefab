@@ -192,7 +192,8 @@ SpriteRenderer:
   m_SortingLayerID: -728780115
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 1290491457682603020, guid: ae3b64002de1f114ba38accfd7043c95,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -200,7 +201,7 @@ SpriteRenderer:
   m_Size: {x: 2.97, y: 4.13}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &8198993514602083081
@@ -243,6 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   card: {fileID: 11400000, guid: 65e8649c0b9af774093baa6d67c21c9d, type: 2}
   level: 0
+  explain: 
   cardValue: 0
   defensPower: 0
   powerUp: 0

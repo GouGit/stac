@@ -243,6 +243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   card: {fileID: 11400000, guid: 2d5cd30398ce08f4baff6a8e3e38f318, type: 2}
   level: 0
+  explain: 
   cardValue: 0
   defensPower: 0
   powerUp: 0

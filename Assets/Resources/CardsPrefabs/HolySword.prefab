@@ -123,6 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   card: {fileID: 11400000, guid: 288e6cfdb81618d4089dc90dec29d78a, type: 2}
   level: 0
+  explain: 
   cardValue: 0
   defensPower: 0
   powerUp: 0

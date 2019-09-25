@@ -20,7 +20,7 @@ public class ShowCard : MonoBehaviour
 {
     public Card card;
     public int level;
-    private new string name;
+    public string explain;
     protected bool IsAttack;
     protected int cost;
     public int cardValue;
@@ -34,7 +34,6 @@ public class ShowCard : MonoBehaviour
     protected virtual void Start()
     {
         GetComponent<SpriteRenderer>().sprite = card.image;
-        name = card.name;
         cost = card.cost;
         IsAttack = card.IsAttack;
         cardValue = card.cardValue;
@@ -44,6 +43,7 @@ public class ShowCard : MonoBehaviour
         origin = transform.position;
         myBox = GetComponent<BoxCollider2D>();
         CardUpgrade();
+        explain = card.name;
     }
 
     protected virtual void AddPower()
@@ -102,7 +102,7 @@ public class ShowCard : MonoBehaviour
 
     protected virtual void OnlyDefens()
     {
-        if(origin.y + 2 <= transform.position.y)
+        if(origin.y + 2.5f <= transform.position.y)
         {
             if(GameManager.instance.cost >= cost)
             {
@@ -111,14 +111,6 @@ public class ShowCard : MonoBehaviour
                 gameObject.SetActive(false);
                 Knight.instance.Sort();
             }
-            else
-            {
-                transform.position = origin;
-            }
-        }
-        else
-        {
-            transform.position = origin;
         }
     }
 
@@ -166,6 +158,7 @@ public class ShowCard : MonoBehaviour
     {
         transform.localScale = scale * 1.25f;
         origin = transform.position;
+        transform.position += Vector3.up;
         if(IsAttack)
         {
             BezierDrawer.Instance.gameObject.SetActive(true);
@@ -195,5 +188,6 @@ public class ShowCard : MonoBehaviour
         {
             OnlyDefens();
         }
+        transform.position = origin;
     }
 }

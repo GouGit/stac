@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6d2f6c7a35aed4fa0e171c10083df3, type: 3}
   m_Name: HolySword
   m_EditorClassIdentifier: 
-  name: "\uC2EC\uD310\uC758\uAC80"
+  name: "2\uBC88 \uC0AC\uC6A9\uC2DC \uC801\uC744 \uC989\uC0AC\uC2DC\uD0A8\uB2E4"
   cost: 3
   cardValue: 0
   defensPower: 0

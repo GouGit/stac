@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6d2f6c7a35aed4fa0e171c10083df3, type: 3}
   m_Name: PowerUp
   m_EditorClassIdentifier: 
-  name: "\uBC8C\uD06C\uC5C5"
+  name: "\uD50C\uB808\uC774\uC5B4\uC758 \uACF5\uACA9\uB825\uC774 \uC0C1\uC2B9\uD55C\uB2E4."
   cost: 2
   cardValue: 2
   defensPower: 0
