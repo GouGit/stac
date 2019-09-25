@@ -63,6 +63,7 @@ public class SkillCard : ShowCard
             {
             case SkILL.FIRE:
                 monster.Fire += cardValue;
+                monster.PowerDown();
                     if (monster.fireParticle == null)
                     {
                         monster.fireParticle = Instantiate(Resources.Load("Particles/Fire Particle System") as GameObject).GetComponent<ParticleSystem>();

@@ -96,6 +96,11 @@ public abstract class ShowMonster : MonoBehaviour
         EndTurn();
     }
 
+    public void PowerDown()
+    {
+        attackPower = temPower/2;
+    }
+
     void MyTurn()
     {
         if (Knight.instance.HP <= 0)
