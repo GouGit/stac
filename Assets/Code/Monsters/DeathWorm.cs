@@ -33,8 +33,8 @@ public class DeathWorm : ShowMonster
         {
             actionCount = 0;
             randomAction = Random.Range(2,4);
-            int addPower = Knight.instance.defensPower;
-            Knight.instance.LoseHp(attackPower + addPower);
+            Knight.instance.defensPower = 0;
+            Knight.instance.LoseHp(attackPower);
         }
         else
         {
