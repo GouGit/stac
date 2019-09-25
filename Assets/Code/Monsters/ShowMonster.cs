@@ -103,9 +103,7 @@ public abstract class ShowMonster : MonoBehaviour
 
     void MyTurn()
     {
-        if (Knight.instance.HP <= 0)
-            return;
-
+        CheckDebuff();
         ChangeState();
         attackUI.SetActive(isAttack);
         defensUI.SetActive(!isAttack);
@@ -113,18 +111,24 @@ public abstract class ShowMonster : MonoBehaviour
         ondefensPower = 0;
         Vector3 scale = new Vector3(1,1,1);
         transform.localScale = scale;
+    }
+
+    protected void CheckDebuff()
+    {
         if(Lighting != 0)
         {
-            if(Random.Range(0,10) < 5)
+            if(Random.Range(0,10)%2 == 0)
             {
                 StartCoroutine(WaitTime());
                 action = ACTION.END;
             }
             Lighting--;
         }
+
         if(Fire!=0)
         {
             attackPower = temPower/2;
+            Fire--;
         }
         else
         {
@@ -135,18 +139,7 @@ public abstract class ShowMonster : MonoBehaviour
         {
             defensPower = 0;
         }
-    }
-
-    protected virtual void EndTurn()
-    {
-        if (Knight.instance.HP <= 0)
-            return;
-
-        if (Fire != 0)
-        {
-            LoseHp(Fire);
-            Fire--;
-        }
+        
         if(Poision != 0)
         {
             int defens = ondefensPower;
@@ -155,17 +148,24 @@ public abstract class ShowMonster : MonoBehaviour
             Poision--;
             ondefensPower = defens;
         }
+    }
+
+    protected virtual void EndTurn()
+    {
+        if (Knight.instance.HP <= 0)
+            return;
+
         action = ACTION.NONE;
         isDont = false;
         defensPower = tempDefens;
-        GameManager.instance.cost = 3 + GameManager.instance.savingCost;
-        if(GameManager.instance.isPlayerTurn || GameManager.instance.monsterOption.AllMonsters.Count == 1)
-        {
-            GameManager.instance.savingCost = 0;
-        }
         GameManager.instance.isPlayerTurn = true;
         Knight.instance.defensPower = 0;
         Knight.instance.isReflect = false;
+        if(GameManager.instance.cost == 0 )
+        {
+            GameManager.instance.cost = 3 + GameManager.instance.savingCost;
+            GameManager.instance.savingCost = 0;
+        }
         Knight.instance.DrawCard();
         Knight.instance.CheckDebuff();
         Vector3 scale = new Vector3(0.8f,0.8f,1);
@@ -231,12 +231,13 @@ public abstract class ShowMonster : MonoBehaviour
         
         if(hp <= 0)
         {
+            if (Knight.instance.HP <= 0)
+                return;
             StartCoroutine(CO_DISSOLVE(GetComponent<SpriteRenderer>(), "_Edges", 1));
             Destroy(lightingParticle);
             Destroy(fireParticle);
             Destroy(poisionParticle);
             ui.gameObject.SetActive(false);
-            //gameObject.SetActive(false);
         }
     }
 

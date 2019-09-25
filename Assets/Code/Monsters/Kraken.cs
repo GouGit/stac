@@ -60,6 +60,8 @@ public class Kraken : ShowMonster
             legNum--;
             if(legNum <= 0)
             {
+                if (Knight.instance.HP <= 0)
+                    return;
                 StartCoroutine(CO_DISSOLVE(GetComponent<SpriteRenderer>(), "_Edges", 1));
                 Destroy(lightingParticle);
                 Destroy(fireParticle);

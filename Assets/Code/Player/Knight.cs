@@ -189,7 +189,6 @@ public class Knight : MonoBehaviour
     {
         if(bCnt > 0)
         {
-            LoseHp(bCnt);
             bCnt--;
         }
         if(fCnt > 0)
@@ -257,6 +256,7 @@ public class Knight : MonoBehaviour
     public void EndTurn()
     {
         GameManager.instance.isPlayerTurn = false;
+        GameManager.instance.cost = 0;
         DropCard();
         StateCheck();
         Vector3 scale = new Vector3(0.8f,0.8f,1);
