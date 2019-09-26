@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Rich
   m_EditorClassIdentifier: 
   name: 'rich '
+  explain: "3\uD134\uC5D0 \uD55C\uBC88 \uC8FD\uC740 \uBAAC\uC2A4\uD130\uB97C \uC790\uC2E0\uC758
+    \uCCB4\uB825 \uC808\uBC18\uC73C\uB85C \uBD80\uD65C\uC2DC\uD0A8\uB2E4."
   hp: 30
   attackPower: 4
   defensPower: 8

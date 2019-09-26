@@ -22,5 +22,6 @@ public class CardText : MonoBehaviour
         {
             textMesh.text = "";
         }
+        transform.position += Vector3.back;
     }
 }

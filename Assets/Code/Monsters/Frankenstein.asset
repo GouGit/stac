@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Frankenstein
   m_EditorClassIdentifier: 
   name: frankenstein
+  explain: "3\uD134\uB9C8\uB2E4 \uC790\uC2E0\uC758 \uC0DD\uBA85\uB825\uACFC \uACF5\uACA9\uB825\uC744
+    \uAC15\uD654\uD55C\uB2E4."
   hp: 50
   attackPower: 5
   defensPower: 8

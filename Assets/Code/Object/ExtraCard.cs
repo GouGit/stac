@@ -70,7 +70,7 @@ public class ExtraCard : ShowCard
                     Knight.instance.defensPower += defensPower;
                     break;
                 case SKILL.SAVING:
-                    GameManager.instance.savingCost = cardValue;
+                    GameManager.instance.savingCost += cardValue;
                     Knight.instance.defensPower += defensPower;
                     break;
                 case SKILL.REFLECT:
@@ -91,7 +91,5 @@ public class ExtraCard : ShowCard
             transform.position = origin;
         }
     }
-
-
 
 }

@@ -18,18 +18,45 @@ public class Frankenstein : ShowMonster
 
     protected override void ChangeState()
     {
-        actionCount++;
-        if(actionCount == 3)
+        if(!isSkill)
         {
-            attackPower += addPower;
-            temPower = attackPower;
-            hp += addHp;
-            maxHp += addHp;
-            MonsterUI hpui = hpUI.GetComponentInChildren<MonsterUI>();
-            hpui.maxHp = maxHp;
-            actionCount = 0;
+            actionCount++;
+            if(actionCount >= 2)
+            {
+                isSkill = true;
+                skillUI.SetActive(true);
+                attackUI.SetActive(false);
+                defensUI.SetActive(false);
+            }
         }
-        base.ChangeState();
+        else
+        {
+            skillUI.SetActive(false);
+            action = ACTION.SKILL;
+            actionCount = 0;
+            isSkill = false;
+            return;
+        }
+
+        if(isAttack)
+        {
+            action = ACTION.ATTACK;
+        }
+        else
+        {
+            action = ACTION.DEFENS;
+        }
+        isAttack = !isAttack;
+    }
+
+    protected override void Skill()
+    {
+        attackPower += addPower;
+        temPower = attackPower;
+        hp += addHp;
+        maxHp += addHp;
+        MonsterUI hpui = hpUI.GetComponentInChildren<MonsterUI>();
+        hpui.maxHp = maxHp;
     }
 
 }

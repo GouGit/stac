@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Kraken
   m_EditorClassIdentifier: 
   name: kraken
+  explain: "6\uBC88 \uBD80\uD65C\uD558\uBA70 \uC790\uC2E0\uC758 \uBAA9\uC228\uB9CC\uD07C
+    \uACF5\uACA9\uD55C\uB2E4. \uBAA9\uC228\uC774 \uC904\uC218\uB85D \uD53C\uD574\uB7C9\uC774
+    \uAC15\uD574\uC9C4\uB2E4."
   hp: 100
   attackPower: 3
   defensPower: 30

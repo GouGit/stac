@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Ork
   m_EditorClassIdentifier: 
   name: ork
+  explain: "\uB9E4\uD134 \uACF5\uACA9\uB825\uC774 2\uC99D\uAC00\uD55C\uB2E4."
   hp: 40
   attackPower: 3
   defensPower: 0

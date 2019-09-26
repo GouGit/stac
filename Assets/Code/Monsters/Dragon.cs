@@ -5,7 +5,7 @@ using UnityEngine;
 public class Dragon : ShowMonster
 {
     private bool isFly;
-    private int actionCnt;
+    private int actionCount;
     private int tempPower;
     
     protected override void Start()
@@ -51,31 +51,57 @@ public class Dragon : ShowMonster
         }
     }
 
-    protected override void Attack()
+    protected override void ChangeState()
     {
-        if(isFly)
+        if(!isSkill)
         {
-            Knight.instance.LoseHp(attackPower);
-            actionCnt = 0;
-            isFly = false;
-            attackPower = tempPower;
-        }
-        else
-        {   
-            if(Knight.instance.isReflect)
+            actionCount++;
+            if(actionCount >= 2)
             {
-                LoseHp(attackPower);
-            }
-            Knight.instance.LoseHp(attackPower);
-            Knight.instance.bCnt = 1;
-            actionCnt++;
-            if(actionCnt >= 3)
-            {
+                isSkill = true;
                 isFly = true;
                 tempPower = attackPower;
                 attackPower = tempPower * 3;
+                skillUI.SetActive(true);
+                attackUI.SetActive(false);
+                defensUI.SetActive(false);
             }
         }
+        else
+        {
+            skillUI.SetActive(false);
+            action = ACTION.SKILL;
+            attackPower = tempPower;
+            actionCount = 0;
+            isFly = false;
+            isSkill = false;
+            return;
+        }
+
+        if(isAttack)
+        {
+            action = ACTION.ATTACK;
+        }
+        else
+        {
+            action = ACTION.DEFENS;
+        }
+        isAttack = !isAttack;
+    }
+
+    protected override void Skill()
+    {
+        Knight.instance.LoseHp(attackPower);
+    }
+
+    protected override void Attack()
+    {
+        if(Knight.instance.isReflect)
+        {
+            LoseHp(attackPower);
+        }
+        Knight.instance.LoseHp(attackPower);
+        Knight.instance.bCnt = 1;
     }
 
 }

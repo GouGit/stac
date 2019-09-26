@@ -6,6 +6,7 @@ using UnityEngine;
 public class Monster : ScriptableObject
 {
     public new string name;
+    public string explain;
     public int hp;
     public int attackPower;
     public int defensPower;

@@ -21,5 +21,6 @@ public class CardName : MonoBehaviour
         else
             cost = "" + show.card.cost;
         textMesh.text = cost;
+        transform.position += Vector3.back;
     }
 }

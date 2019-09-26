@@ -15,6 +15,26 @@ public class DeathWorm : ShowMonster
 
     protected override void ChangeState()
     {
+        if(!isSkill)
+        {
+            actionCount++;
+            if(actionCount >= randomAction-1)
+            {
+                isSkill = true;
+                skillUI.SetActive(true);
+                attackUI.SetActive(false);
+                defensUI.SetActive(false);
+            }
+        }
+        else
+        {
+            skillUI.SetActive(false);
+            action = ACTION.SKILL;
+            actionCount = 0;
+            isSkill = false;
+            return;
+        }
+
         if(isAttack)
         {
             action = ACTION.ATTACK;
@@ -24,26 +44,22 @@ public class DeathWorm : ShowMonster
             action = ACTION.DEFENS;
         }
         isAttack = !isAttack;
-        actionCount++;
+    }
+
+    protected override void Skill()
+    {
+        randomAction = Random.Range(2,4);
+        Knight.instance.defensPower = 0;
+        Knight.instance.LoseHp(attackPower);
     }
 
     protected override void Attack()
     {
-        if(actionCount >= randomAction)
+        if(Knight.instance.isReflect)
         {
-            actionCount = 0;
-            randomAction = Random.Range(2,4);
-            int addPower = Knight.instance.defensPower;
-            Knight.instance.LoseHp(attackPower + addPower);
+            LoseHp(attackPower);
         }
-        else
-        {
-            if(Knight.instance.isReflect)
-            {
-                LoseHp(attackPower);
-            }
-            Knight.instance.LoseHp(attackPower);
-        }
+        Knight.instance.LoseHp(attackPower);
     }
     
 }

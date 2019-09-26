@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Gagoil
   m_EditorClassIdentifier: 
   name: gagoil
+  explain: "\uD544\uB4DC\uC758 \uBAA8\uB4E0 \uBAAC\uC2A4\uD130\uC5D0\uAC8C \uBC29\uC5B4\uB3C4\uB97C
+    \uC900\uB2E4."
   hp: 50
   attackPower: 4
   defensPower: 5
