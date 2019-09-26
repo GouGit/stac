@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Poision
   m_EditorClassIdentifier: 
   name: "\uC911\uB3C5"
-  explain: "\uC911\uB3C5\uC0C1\uD0DC\uB85C \uB9CC\uB4E0\uB2E4."
+  explain: "\uC911\uB3C5\uC0C1\uD0DC\uB85C \uB9CC\uB4E0\uB2E4. \uC911\uB3C5: \uC911\uB3C5\uC218\uCE58
+    \uB9CC\uD07C \uB370\uBBF8\uC9C0\uB97C \uC785\uD78C\uB2E4."
   cost: 1
   cardValue: 4
   defensPower: 0

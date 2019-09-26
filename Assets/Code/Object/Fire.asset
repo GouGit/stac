@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Fire
   m_EditorClassIdentifier: 
   name: "\uD654\uC0C1"
-  explain: "\uD654\uC0C1\uC0C1\uD0DC\uB85C \uB9CC\uB4E0\uB2E4."
+  explain: "\uD654\uC0C1\uC0C1\uD0DC\uB85C \uB9CC\uB4E0\uB2E4. \uD654\uC0C1: \uC0C1\uB300\uBC29\uC758
+    \uACF5\uACA9\uB825\uC744 \uC808\uBC18 \uB0AE\uCD98\uB2E4."
   cost: 1
   cardValue: 2
   defensPower: 0
