@@ -20,6 +20,6 @@ MonoBehaviour:
   image: {fileID: 4389950316153859957, guid: cd5ccf687db9d4943af85c6c95e3c439, type: 3}
   type: 0
   upgradeCostPerLevel: 2000
-  upgradeGemPerLevel: 10
+  upgradeGemPerLevel: 0
   upgradeValue: 0
   upgradeExtra: 2
