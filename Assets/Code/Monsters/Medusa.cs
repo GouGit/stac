@@ -38,8 +38,10 @@ public class Medusa : ShowMonster
         {
             isHalf = true;
             isAttack = true;
+            isSkill = true;
             attackUI.SetActive(isAttack);
             defensUI.SetActive(!isAttack);
+            skillUI.SetActive(true);
         }
         
         if(hp <= 0)
@@ -54,12 +56,14 @@ public class Medusa : ShowMonster
         }
     }
 
+    protected override void Skill()
+    {
+        Knight.instance.isPetrification = true;
+        skillUI.SetActive(false);
+    }
+
     protected override void Attack()
     {
-        if(isHalf)
-        {
-            Knight.instance.isPetrification = true;
-        }
         if(Knight.instance.isReflect)
         {
             LoseHp(attackPower);

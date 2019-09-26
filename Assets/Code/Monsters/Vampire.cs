@@ -10,6 +10,7 @@ public class Vampire : ShowMonster
     {
         base.Start();
         maxHp = hp;
+        skillUI.SetActive(true);
     }
 
     protected override void Attack()

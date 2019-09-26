@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Rich : ShowMonster
 {
-
     private int actionCount = 0;
 
     protected override void Start()
@@ -14,24 +13,26 @@ public class Rich : ShowMonster
 
     protected override void ChangeState()
     {
-        actionCount++;
-        if(actionCount == 5)
+        if(!isSkill)
         {
-            for(var node = GameManager.instance.monsterOption.AllMonsters.First; node != null; node = node.Next)
+            actionCount++;
+            if(actionCount >= 2)
             {
-                if(!node.Value.activeSelf)
-                {
-                    ShowMonster monster = node.Value.GetComponent<ShowMonster>();
-                    monster.hp = hp/2;
-                    monster.gameObject.SetActive(true);
-                    monster.ui.SetActive(true);
-                    actionCount = 0;
-                    action = ACTION.END;
-                    StartCoroutine(WaitTime());
-                    return;
-                }
+                isSkill = true;
+                skillUI.SetActive(true);
+                attackUI.SetActive(false);
+                defensUI.SetActive(false);
             }
         }
+        else
+        {
+            skillUI.SetActive(false);
+            action = ACTION.SKILL;
+            actionCount = 0;
+            isSkill = false;
+            return;
+        }
+       
         if(isAttack)
         {
             action = ACTION.ATTACK;
@@ -41,6 +42,24 @@ public class Rich : ShowMonster
             action = ACTION.DEFENS;
         }
         isAttack = !isAttack;
+    }
+
+    protected override void Skill()
+    {
+        for(var node = GameManager.instance.monsterOption.AllMonsters.First; node != null; node = node.Next)
+        {
+            if(!node.Value.activeSelf)
+            {
+                ShowMonster monster = node.Value.GetComponent<ShowMonster>();
+                monster.hp = hp/2;
+                monster.gameObject.SetActive(true);
+                monster.ui.SetActive(true);
+                actionCount = 0;
+                action = ACTION.END;
+                StartCoroutine(WaitTime());
+                return;
+            }
+        }
     }
 
 

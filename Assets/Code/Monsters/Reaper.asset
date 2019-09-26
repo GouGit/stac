@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Reaper
   m_EditorClassIdentifier: 
   name: reaper
+  explain: "\uBAAC\uC2A4\uD130\uAC00 \uC8FD\uC73C\uBA74 \uC790\uC2E0\uC744 \uAC15\uD654\uD55C\uB2E4."
   hp: 45
   attackPower: 5
   defensPower: 5

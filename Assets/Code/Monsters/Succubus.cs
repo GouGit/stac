@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Succubus : ShowMonster
 {
-    private int actionCount = 1;
+    private int actionCount = 0;
 
     protected override void Start()
     {
@@ -13,6 +13,26 @@ public class Succubus : ShowMonster
 
     protected override void ChangeState()
     {
+        if(!isSkill)
+        {
+            actionCount++;
+            if(actionCount >= 2)
+            {
+                isSkill = true;
+                skillUI.SetActive(true);
+                attackUI.SetActive(false);
+                defensUI.SetActive(false);
+            }
+        }
+        else
+        {
+            skillUI.SetActive(false);
+            action = ACTION.SKILL;
+            actionCount = 0;
+            isSkill = false;
+            return;
+        }
+
         if(isAttack)
         {
             action = ACTION.ATTACK;
@@ -20,18 +40,6 @@ public class Succubus : ShowMonster
         else
         {
             action = ACTION.DEFENS;
-        }
-
-        if(actionCount == 2)
-        {
-            Knight.instance.fCnt++;
-            actionCount = 0;
-            isAttack = false;
-        }
-        else
-        {
-            actionCount++;
-            isAttack = true;
         }
     }
 
@@ -42,6 +50,12 @@ public class Succubus : ShowMonster
             LoseHp(attackPower);
         }
         Knight.instance.LoseHp(attackPower);
+    }
+
+    protected override void Skill()
+    {
+        Knight.instance.fCnt++;
+        isAttack = false;
     }
 
     protected override void Defens()

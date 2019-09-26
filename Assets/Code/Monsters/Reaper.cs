@@ -16,6 +16,7 @@ public class Reaper : ShowMonster
         addDefens = 2;
         maxHp = hp;
         monsterCnt = GameManager.instance.monsterOption.AllMonsters.Count;
+        skillUI.SetActive(true);
     }
 
     protected override void ChangeState()

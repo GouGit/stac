@@ -285,7 +285,7 @@ public class Knight : MonoBehaviour
         }
         else
         {
-            hp -= damage;
+            hp -= Mathf.Abs(damage);
             Vibration.Instance.CreateOneShot(50, 255);
             hitUI.FadeOut(1.0f, new Color(1,1,1,(1 - hp/maxhp)));
             SoundManager.Instance.PlaySFX(SoundManager.SFXList.MONSTER_DAMAGE);

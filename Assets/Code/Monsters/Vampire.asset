@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Vampire
   m_EditorClassIdentifier: 
   name: 'vampire '
+  explain: "\uD50C\uB808\uC774\uC5B4\uC5D0\uAC8C \uC785\uD78C \uD53C\uD574\uB9CC\uD07C
+    \uCCB4\uB825\uC744 \uD68C\uBCF5\uD55C\uB2E4."
   hp: 45
   attackPower: 7
   defensPower: 5

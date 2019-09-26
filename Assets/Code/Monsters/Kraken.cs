@@ -27,6 +27,7 @@ public class Kraken : ShowMonster
         }
         attackUI.SetActive(isAttack);
         defensUI.SetActive(!isAttack);
+        skillUI.SetActive(true);
     }
 
     public int Life()

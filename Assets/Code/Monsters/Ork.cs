@@ -10,6 +10,7 @@ public class Ork : ShowMonster
     {
         base.Start();
         addPower = 2;
+        skillUI.SetActive(true);
     }
 
     protected override void ChangeState()

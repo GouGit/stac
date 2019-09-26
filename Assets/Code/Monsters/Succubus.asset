@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Succubus
   m_EditorClassIdentifier: 
   name: succubus
+  explain: "\uB9E4\uD639\uC744 \uAC74\uB2E4."
   hp: 40
   attackPower: 4
   defensPower: 6

@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Dragon
   m_EditorClassIdentifier: 
   name: dragon
+  explain: "3\uD134\uB9C8\uB2E4 \uBE44\uD589\uD558\uC5EC \uACF5\uACA9\uC744 \uBB34\uC2DC\uD558\uACE0
+    \uB9C9\uAC15\uD55C \uD53C\uD574\uB97C \uC8FC\uB294 \uACF5\uACA9\uC744 \uD55C\uB2E4."
   hp: 200
   attackPower: 10
   defensPower: 30

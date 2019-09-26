@@ -12,11 +12,13 @@ public abstract class ShowMonster : MonoBehaviour
         NONE,
         ATTACK,
         DEFENS,
+        SKILL,
         END
     }
     public Canvas uiCanvas;
     public GameObject ui;
-    protected GameObject hpUI, attackUI, defensUI, defensOnUI, stateUI;
+    protected GameObject hpUI, attackUI, defensUI, defensOnUI, stateUI, skillUI;
+    protected Text explain;
     public Type.TYPE type;
     protected ACTION action;
     protected new string name;
@@ -72,8 +74,13 @@ public abstract class ShowMonster : MonoBehaviour
         attackUI.transform.position = transform.position + Vector3.down*2f + Vector3.right*1.5f;
         defensUI = ui.transform.GetChild(3).gameObject;
         defensUI.transform.position = transform.position + Vector3.down*2f + Vector3.right*1.5f;
-        stateUI = ui.transform.GetChild(4).gameObject;
-        stateUI.transform.position = transform.position + Vector3.right*2f;
+        skillUI = ui.transform.GetChild(4).gameObject;
+        skillUI.transform.position = transform.position + Vector3.right*1.5f + Vector3.down;
+        stateUI = ui.transform.GetChild(5).gameObject;
+        stateUI.transform.position = transform.position + Vector3.right*1.5f;
+
+        explain = skillUI.transform.GetChild(0).GetChild(0).GetComponent<Text>();
+        explain.text = mon.explain;
 
         hpUI.SetActive(true);
         attackUI.SetActive(isAttack);
@@ -106,8 +113,12 @@ public abstract class ShowMonster : MonoBehaviour
     {
         CheckDebuff();
         ChangeState();
-        attackUI.SetActive(isAttack);
-        defensUI.SetActive(!isAttack);
+
+        if(!isSkill)
+        {
+            attackUI.SetActive(isAttack);
+            defensUI.SetActive(!isAttack);
+        }
 
         ondefensPower = 0;
         Vector3 scale = new Vector3(1,1,1);
@@ -282,6 +293,13 @@ public abstract class ShowMonster : MonoBehaviour
 
     protected virtual void ChangeState()
     {
+        if(isSkill)
+        {
+            action = ACTION.SKILL;
+            isSkill = false;
+            return;
+        }
+
         if(isAttack)
         {
             action = ACTION.ATTACK;
@@ -300,6 +318,11 @@ public abstract class ShowMonster : MonoBehaviour
             LoseHp(attackPower);
         }
         Knight.instance.LoseHp(attackPower);
+    }
+
+    protected virtual void Skill()
+    {
+
     }
 
     protected virtual void Defens()
@@ -343,6 +366,11 @@ public abstract class ShowMonster : MonoBehaviour
             break;
         case ACTION.DEFENS:
             Defens();
+            action = ACTION.END;
+            StartCoroutine(WaitTime());
+            break;
+        case ACTION.SKILL:
+            Skill();
             action = ACTION.END;
             StartCoroutine(WaitTime());
             break;

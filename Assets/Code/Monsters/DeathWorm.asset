@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: DeathWorm
   m_EditorClassIdentifier: 
   name: Death Worm
+  explain: "2~4\uD134\uC5D0 \uD55C\uBC88 \uD50C\uB808\uC774\uC5B4\uC758 \uBC29\uC5B4\uB3C4\uB97C
+    \uBB34\uC2DC\uD55C\uB2E4."
   hp: 80
   attackPower: 10
   defensPower: 5

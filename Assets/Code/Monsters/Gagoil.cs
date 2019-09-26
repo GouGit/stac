@@ -10,6 +10,7 @@ public class Gagoil : ShowMonster
         isAttack = false;
         attackUI.SetActive(isAttack);
         defensUI.SetActive(!isAttack);
+        skillUI.SetActive(true);
     }
 
     protected override void Defens()

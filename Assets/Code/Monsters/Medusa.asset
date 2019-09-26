@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Medusa
   m_EditorClassIdentifier: 
   name: medusa
+  explain: "\uC11D\uD654\uACF5\uACA9\uC744 \uD55C\uB2E4."
   hp: 50
   attackPower: 8
   defensPower: 8
