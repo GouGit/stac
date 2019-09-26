@@ -6,6 +6,7 @@ using UnityEngine;
 public class Card : ScriptableObject
 {
     public new string name;
+    public string explain;
     public int cost;
     public int cardValue; //각 카드별로 사용되는 내용 ex) 공겨카드->공격력, 드로우->드로우 개수
     public int defensPower;

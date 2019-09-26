@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6d2f6c7a35aed4fa0e171c10083df3, type: 3}
   m_Name: Poision
   m_EditorClassIdentifier: 
-  name: "\uC0C1\uB300\uB97C \uC911\uB3C5\uC0C1\uD0DC\uB85C \uB9CC\uB4E0\uB2E4."
+  name: "\uC911\uB3C5"
+  explain: "\uC911\uB3C5\uC0C1\uD0DC\uB85C \uB9CC\uB4E0\uB2E4."
   cost: 1
   cardValue: 4
   defensPower: 0

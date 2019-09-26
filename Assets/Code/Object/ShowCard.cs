@@ -30,7 +30,7 @@ public class ShowCard : MonoBehaviour
     protected Vector3 scale, origin;
     protected BoxCollider2D myBox;
     protected Type.TYPE type, monsterType;
-
+    protected GameObject board;
 
     protected virtual void Start()
     {
@@ -42,9 +42,10 @@ public class ShowCard : MonoBehaviour
         type = card.type;
         scale = transform.localScale;
         origin = transform.position;
+        explain = card.name;
+        board = GameObject.Find("NomalUI").gameObject;
         myBox = GetComponent<BoxCollider2D>();
         CardUpgrade();
-        explain = card.name;
     }
 
     protected virtual void AddPower()
@@ -121,8 +122,15 @@ public class ShowCard : MonoBehaviour
 
     protected void LowerCost()
     {
-        FadeUI ui = GameObject.Find("NomalUI").transform.GetChild(1).GetComponent<FadeUI>();
+        FadeUI ui = board.transform.GetChild(2).GetComponent<FadeUI>();
         ui.FadeOut(0.5f, new Color(0,0,0,1));
+    }
+
+    protected void Explain(bool isON)
+    {
+        board.transform.GetChild(1).gameObject.SetActive(isON);
+        Text text = board.transform.GetChild(1).GetChild(0).GetComponent<Text>();
+        text.text = card.explain;
     }
 
     protected virtual void UseCard()
@@ -179,6 +187,7 @@ public class ShowCard : MonoBehaviour
             BezierDrawer.Instance.gameObject.SetActive(true);
             BezierDrawer.Instance.startPosition = gameObject.transform.position; 
         }
+        Explain(true);
     }
 
     protected virtual void OnMouseDrag()
@@ -204,5 +213,6 @@ public class ShowCard : MonoBehaviour
             OnlyDefens();
         }
         transform.position = origin;
+        Explain(false);
     }
 }

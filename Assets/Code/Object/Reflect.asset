@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6d2f6c7a35aed4fa0e171c10083df3, type: 3}
   m_Name: Reflect
   m_EditorClassIdentifier: 
-  name: "\uD53C\uD574\uB97C \uBC18\uC0AC\uD55C\uB2E4."
+  name: "\uAC00\uC2DC\uBC29\uD328"
+  explain: "\uBC29\uC5B4\uB3C4\uB97C \uC5BB\uACE0 \uACF5\uACA9\uC744 \uBC18\uC0AC\uD55C\uB2E4."
   cost: 1
   cardValue: 0
   defensPower: 5

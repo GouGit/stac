@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6d2f6c7a35aed4fa0e171c10083df3, type: 3}
   m_Name: Roll
   m_EditorClassIdentifier: 
-  name: "\uD53C\uD574\uB97C \uC785\uD78C\uB2E4."
+  name: "\uC5F0\uD0C0"
+  explain: "\uCF54\uC2A4\uD2B8\uB97C \uBAA8\uB450 \uC18C\uBE44\uD558\uACE0 \uC18C\uBE44\uD55C
+    \uCF54\uC2A4\uD2B8 \uB9CC\uD07C \uD53C\uD574\uB97C \uC785\uD78C\uB2E4."
   cost: 0
   cardValue: 3
   defensPower: 0
