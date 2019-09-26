@@ -6,19 +6,19 @@ public class BattleUIManager : MonoBehaviour
 {
     public void LoadTitle()
     {
-        SceneLoader.Instance.LoadSceneWithFade("Title");
+        SceneLoader.LoadSceneWithFadeStatic("Title");
     }
 
     public void LoadTitleDie()
     {
-        SceneLoader.Instance.LoadSceneWithFade("Title");
+        SceneLoader.LoadSceneWithFadeStatic("Title");
         GameDataHandler.SaveStageCount(0);                
         Debug.Log("asdf");
     }
 
     public void LoadMapTree()
     {
-        SceneLoader.Instance.LoadSceneWithFade("MapTree");
+        SceneLoader.LoadSceneWithFadeStatic("MapTree");
     }
 
     public void DestroyAll()
