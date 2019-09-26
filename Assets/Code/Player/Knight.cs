@@ -61,6 +61,7 @@ public class Knight : MonoBehaviour
 
         GameManager.instance.cost = 3;
         GameManager.instance.isPlayerTurn = true;
+        GameManager.instance.holyCnt = 0;
         hpbar.fillAmount = (float)hp/maxhp;
     }
 

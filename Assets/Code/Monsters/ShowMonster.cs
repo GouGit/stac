@@ -264,7 +264,6 @@ public abstract class ShowMonster : MonoBehaviour
         if (GameManager.instance.monsterOption.IsEnd())
         {
             Knight.instance.player.hp = Knight.instance.HP;
-            GameManager.instance.holyCnt = 0;
             GameManager.instance.monsterOption.AllMonsters.Clear();
             OnMonsterDead?.Invoke();
         }
@@ -351,7 +350,7 @@ public abstract class ShowMonster : MonoBehaviour
     {
         Shake();
 
-        if(GameManager.instance.isPlayerTurn)
+        if(GameManager.instance.isPlayerTurn || Knight.instance.HP <= 0 || hp <= 0)
             return;
         
         switch (action)
