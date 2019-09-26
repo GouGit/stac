@@ -83,12 +83,9 @@ public class ExtraCard : ShowCard
             }
             else
             {
+                LowerCost();
                 transform.position = origin;
             }
-        }
-        else
-        {
-            transform.position = origin;
         }
     }
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class CardSet
@@ -111,7 +112,17 @@ public class ShowCard : MonoBehaviour
                 gameObject.SetActive(false);
                 Knight.instance.Sort();
             }
+            else
+            {
+                LowerCost();
+            }
         }
+    }
+
+    protected void LowerCost()
+    {
+        FadeUI ui = GameObject.Find("NomalUI").transform.GetChild(1).GetComponent<FadeUI>();
+        ui.FadeOut(0.5f, new Color(0,0,0,1));
     }
 
     protected virtual void UseCard()
@@ -121,8 +132,16 @@ public class ShowCard : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(mousePos, transform.forward, 0.0f, 1<<8);
         if(hit.collider != null)
         {
-            cardValue = cardValue + Knight.instance.attackPower;
-            Using(hit.collider.gameObject);
+            if(GameManager.instance.cost >= cost)
+            {
+                GameManager.instance.cost -= cost;
+                cardValue = cardValue + Knight.instance.attackPower;
+                Using(hit.collider.gameObject);
+            }
+            else
+            {
+                LowerCost();
+            }
         }
         myBox.enabled = true;
     }
@@ -133,25 +152,21 @@ public class ShowCard : MonoBehaviour
         {
             cardValue = cardValue/2;
         }
-        if(GameManager.instance.cost >= cost)
+        if(Knight.instance.fCnt > 0)
         {
-            GameManager.instance.cost -= cost;
-            if(Knight.instance.fCnt > 0)
-            {
-                Knight.instance.LoseHp(cardValue);
-                gameObject.SetActive(false);
-                Knight.instance.Sort();
-                return;
-            }
-            ShowMonster monster = ob.GetComponent<ShowMonster>();
-            monsterType = monster.mon.type;
-            AddPower();
-            monster.LoseHp(cardValue);
-            SoundManager.Instance.PlaySFX(SoundManager.SFXList.KNIFE_1);
-            Knight.instance.defensPower += defensPower;
+            Knight.instance.LoseHp(cardValue);
             gameObject.SetActive(false);
             Knight.instance.Sort();
+            return;
         }
+        ShowMonster monster = ob.GetComponent<ShowMonster>();
+        monsterType = monster.mon.type;
+        AddPower();
+        monster.LoseHp(cardValue);
+        SoundManager.Instance.PlaySFX(SoundManager.SFXList.KNIFE_1);
+        Knight.instance.defensPower += defensPower;
+        gameObject.SetActive(false);
+        Knight.instance.Sort();
     }
 
     protected virtual void OnMouseDown()

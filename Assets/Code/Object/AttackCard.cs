@@ -63,58 +63,54 @@ public class AttackCard : ShowCard
         {
             cardValue = cardValue/2;
         }
-        if(GameManager.instance.cost >= cost)
+        if(Knight.instance.fCnt > 0)
         {
-            GameManager.instance.cost -= cost;
-            if(Knight.instance.fCnt > 0)
-            {
-                Knight.instance.LoseHp(cardValue);
-                gameObject.SetActive(false);
-                return;
-            }
-            ShowMonster monster = ob.GetComponent<ShowMonster>();
-            monsterType = monster.mon.type;
-            AddPower();
-            switch (skill)
-            {
-            case SKILL.DOUBLE_ATTACK:
-                StartCoroutine(DoubleAttack(monster));
-                SoundManager.Instance.PlaySFX(SoundManager.SFXList.DOUBLE_KNIFE);
-                break;
-            case SKILL.POWER_ATTACK:
-                monster.LoseHp(cardValue);
-                Knight.instance.LoseHp(3);
-                gameObject.SetActive(false);
-                break;
-            case SKILL.DOUBLE_SWORD:
-                monster.LoseHp((Knight.instance.defensPower+cardValue)*2);
-                Knight.instance.defensPower = 0;
-                gameObject.SetActive(false);
-                break;
-            case SKILL.ROLL:
-                StartCoroutine(Roll(monster ,GameManager.instance.cost+rollCnt));
-                GameManager.instance.cost -= GameManager.instance.cost;
-                break;
-            case SKILL.HOLY_SWORD:
-                GameManager.instance.holyCnt++;
-                if(GameManager.instance.holyCnt >= 2)
-                {
-                    GameManager.instance.holyCnt = 0;
-                    monster.LoseHp(monster.hp);
-                }
-                else
-                {
-                    monster.LoseHp(cardValue);
-                }
-                gameObject.SetActive(false);
-                break;
-            }
-
-            Knight.instance.defensPower += defensPower;
-            if(skill != SKILL.DOUBLE_ATTACK)
-                SoundManager.Instance.PlaySFX(SoundManager.SFXList.KNIFE_1);
-            Knight.instance.Sort();
+            Knight.instance.LoseHp(cardValue);
+            gameObject.SetActive(false);
+            return;
         }
+        ShowMonster monster = ob.GetComponent<ShowMonster>();
+        monsterType = monster.mon.type;
+        AddPower();
+        switch (skill)
+        {
+        case SKILL.DOUBLE_ATTACK:
+            StartCoroutine(DoubleAttack(monster));
+            SoundManager.Instance.PlaySFX(SoundManager.SFXList.DOUBLE_KNIFE);
+            break;
+        case SKILL.POWER_ATTACK:
+            monster.LoseHp(cardValue);
+            Knight.instance.LoseHp(3);
+            gameObject.SetActive(false);
+            break;
+        case SKILL.DOUBLE_SWORD:
+            monster.LoseHp((Knight.instance.defensPower+cardValue)*2);
+            Knight.instance.defensPower = 0;
+            gameObject.SetActive(false);
+            break;
+        case SKILL.ROLL:
+            StartCoroutine(Roll(monster ,GameManager.instance.cost+rollCnt));
+            GameManager.instance.cost -= GameManager.instance.cost;
+            break;
+        case SKILL.HOLY_SWORD:
+            GameManager.instance.holyCnt++;
+            if(GameManager.instance.holyCnt >= 2)
+            {
+                GameManager.instance.holyCnt = 0;
+                monster.LoseHp(monster.hp);
+            }
+            else
+            {
+                monster.LoseHp(cardValue);
+            }
+            gameObject.SetActive(false);
+            break;
+        }
+
+        Knight.instance.defensPower += defensPower;
+        if(skill != SKILL.DOUBLE_ATTACK)
+            SoundManager.Instance.PlaySFX(SoundManager.SFXList.KNIFE_1);
+        Knight.instance.Sort();
     }
 
     

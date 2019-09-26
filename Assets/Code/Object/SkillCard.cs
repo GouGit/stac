@@ -55,52 +55,48 @@ public class SkillCard : ShowCard
 
     protected override void Using(GameObject ob)
     {
-        if(GameManager.instance.cost >= cost)
+        ShowMonster monster = ob.GetComponent<ShowMonster>();
+        switch (skill)
         {
-            GameManager.instance.cost -= cost;
-            ShowMonster monster = ob.GetComponent<ShowMonster>();
-            switch (skill)
-            {
-            case SkILL.FIRE:
-                monster.Fire += cardValue;
-                monster.PowerDown();
-                    if (monster.fireParticle == null)
-                    {
-                        monster.fireParticle = Instantiate(Resources.Load("Particles/Fire Particle System") as GameObject).GetComponent<ParticleSystem>();
-                        monster.fireParticle.transform.position = monster.transform.position;
-                    }
-                    SoundManager.Instance.PlaySFX(SoundManager.SFXList.BURNING);
-                    break;
-            case SkILL.POISION:
-                monster.Poision += cardValue;
-                    if (monster.poisionParticle == null)
-                    {
-                        monster.poisionParticle = Instantiate(Resources.Load("Particles/Toxin Particle System") as GameObject).GetComponent<ParticleSystem>();
-                        monster.poisionParticle.transform.position = monster.transform.position;
-                    }
-                    SoundManager.Instance.PlaySFX(SoundManager.SFXList.GLASS_BREAK);
-                    break;
-            case SkILL.LIGHTING:
-                monster.Lighting += cardValue;
-                    if (monster.lightingParticle == null)
-                    {
-                        monster.lightingParticle = Instantiate(Resources.Load("Particles/Lighting Particle System") as GameObject).GetComponent<ParticleSystem>();
-                        monster.lightingParticle.transform.position = monster.transform.position;
-                    }
-                    SoundManager.Instance.PlaySFX(SoundManager.SFXList.THUNDER);
-                    break;
-            case SkILL.DEBUFF:
-                monster.Fire = (monster.Fire+cardValue) * 2;
-                monster.Lighting = (monster.Lighting+cardValue) * 2;
-                monster.Poision = (monster.Poision+cardValue) * 2;
+        case SkILL.FIRE:
+            monster.Fire += cardValue;
+            monster.PowerDown();
+                if (monster.fireParticle == null)
+                {
+                    monster.fireParticle = Instantiate(Resources.Load("Particles/Fire Particle System") as GameObject).GetComponent<ParticleSystem>();
+                    monster.fireParticle.transform.position = monster.transform.position;
+                }
+                SoundManager.Instance.PlaySFX(SoundManager.SFXList.BURNING);
                 break;
-            case SkILL.DONT:
-                monster.isDont = true;
-                Knight.instance.defensPower += defensPower;
+        case SkILL.POISION:
+            monster.Poision += cardValue;
+                if (monster.poisionParticle == null)
+                {
+                    monster.poisionParticle = Instantiate(Resources.Load("Particles/Toxin Particle System") as GameObject).GetComponent<ParticleSystem>();
+                    monster.poisionParticle.transform.position = monster.transform.position;
+                }
+                SoundManager.Instance.PlaySFX(SoundManager.SFXList.GLASS_BREAK);
                 break;
-            }
-            gameObject.SetActive(false);   
-            Knight.instance.Sort();
+        case SkILL.LIGHTING:
+            monster.Lighting += cardValue;
+                if (monster.lightingParticle == null)
+                {
+                    monster.lightingParticle = Instantiate(Resources.Load("Particles/Lighting Particle System") as GameObject).GetComponent<ParticleSystem>();
+                    monster.lightingParticle.transform.position = monster.transform.position;
+                }
+                SoundManager.Instance.PlaySFX(SoundManager.SFXList.THUNDER);
+                break;
+        case SkILL.DEBUFF:
+            monster.Fire = (monster.Fire+cardValue) * 2;
+            monster.Lighting = (monster.Lighting+cardValue) * 2;
+            monster.Poision = (monster.Poision+cardValue) * 2;
+            break;
+        case SkILL.DONT:
+            monster.isDont = true;
+            Knight.instance.defensPower += defensPower;
+            break;
         }
+        gameObject.SetActive(false);   
+        Knight.instance.Sort();
     }
 }
