@@ -1352,7 +1352,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -312242807
   m_SortingLayer: 5
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: b4e7cb8a1ac16ce45b8c56dcdb8c4720, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -1403,7 +1403,7 @@ PrefabInstance:
     - target: {fileID: 6297119653412859325, guid: 7a81d36dac60f09429b7dbeccc6bcdc6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 18.53
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6297119653412859325, guid: 7a81d36dac60f09429b7dbeccc6bcdc6,
         type: 3}
@@ -1469,6 +1469,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_DynamicOccludee
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6297119653412859326, guid: 7a81d36dac60f09429b7dbeccc6bcdc6,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6297119653412859326, guid: 7a81d36dac60f09429b7dbeccc6bcdc6,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a81d36dac60f09429b7dbeccc6bcdc6, type: 3}
@@ -1907,6 +1917,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1487710732}
+    - target: {fileID: 2845783988113334434, guid: 827738f91605fa042842beabc6b9ecfb,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -312242807
+      objectReference: {fileID: 0}
     - target: {fileID: 345290388, guid: 827738f91605fa042842beabc6b9ecfb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1915,8 +1930,69 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 5993871529911733990}
+    - target: {fileID: 1713787723617113201, guid: 827738f91605fa042842beabc6b9ecfb,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1713787723617113201, guid: 827738f91605fa042842beabc6b9ecfb,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1713787723617113201, guid: 827738f91605fa042842beabc6b9ecfb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -367
+      objectReference: {fileID: 0}
+    - target: {fileID: 3837217008567915515, guid: 827738f91605fa042842beabc6b9ecfb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7919162662215268778, guid: 827738f91605fa042842beabc6b9ecfb,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.5882353
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 827738f91605fa042842beabc6b9ecfb, type: 3}
+--- !u!1 &1885442359 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3837217008567915515, guid: 827738f91605fa042842beabc6b9ecfb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1885442358}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1885442360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885442359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1885442359}
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1001 &5993871529911733989
 PrefabInstance:
   m_ObjectHideFlags: 0
