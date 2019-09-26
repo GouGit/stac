@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6d2f6c7a35aed4fa0e171c10083df3, type: 3}
   m_Name: NomalAttack
   m_EditorClassIdentifier: 
-  name: "\uD53C\uD574\uB97C \uC900\uB2E4."
+  name: "\uD0C0\uACA9"
+  explain: "\uD53C\uD574\uB97C \uC785\uD78C\uB2E4."
   cost: 1
   cardValue: 5
   defensPower: 0

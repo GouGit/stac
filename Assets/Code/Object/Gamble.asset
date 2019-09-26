@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6d2f6c7a35aed4fa0e171c10083df3, type: 3}
   m_Name: Gamble
   m_EditorClassIdentifier: 
-  name: "\uB79C\uB364\uC73C\uB85C \uCF54\uC2A4\uD2B8\uB97C \uC5BB\uB294\uB2E4"
+  name: "\uAC9C\uBE14"
+  explain: "\uCF54\uC2A4\uD2B8\uB97C \uB79C\uB364\uC73C\uB85C \uC5BB\uB294\uB2E4."
   cost: 2
   cardValue: 1
   defensPower: 0
