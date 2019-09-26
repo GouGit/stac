@@ -295,18 +295,11 @@ public class Knight : MonoBehaviour
         if(hp <= 0)
         {
             hp = 0;
-            GameManager.instance.monsterOption.AllMonsters.Clear();
             deadUI.SetActive(true);
+            GameManager.instance.monsterOption.AllMonsters.Clear();
         }
 
         hpbar.fillAmount = (float)hp/maxhp;
-    }
-
-    public void AddHp(int hp)
-    {
-        hp += hp;
-        if (hp > maxhp)
-            hp = maxhp;
     }
 
     void FixedUpdate()
